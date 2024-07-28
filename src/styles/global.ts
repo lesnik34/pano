@@ -5,10 +5,6 @@ const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
     ${projectFonts}
 
-    html {
-      overflow-y: scroll;
-    }
-
     html,
     body {
       padding: 0;

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import { MIN_DESKTOP_WIDTH, MIN_TABLET_WIDTH } from '@utils/constants';
+import { DefaultTheme } from 'styled-components';
 
-const useWindowSize = () => {
+const useWindowSize = (theme: DefaultTheme) => {
   const isDesktopWidth = () =>
-    typeof window !== 'undefined' ? window.matchMedia(`(min-width: ${MIN_DESKTOP_WIDTH}px)`).matches : false;
+    typeof window !== 'undefined' ? window.matchMedia(`(min-width: ${theme.device.minDesktopWidth})`).matches : false;
   const isTabletWidth = () =>
-    typeof window !== 'undefined' ? window.matchMedia(`(min-width: ${MIN_TABLET_WIDTH}px)`).matches : false;
+    typeof window !== 'undefined' ? window.matchMedia(`(min-width: ${theme.device.minTabletWidth})`).matches : false;
   const isRetinaScreen = () =>
     typeof window !== 'undefined' ? window.matchMedia('(min-resolution: 2dppx)').matches : false;
 
