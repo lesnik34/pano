@@ -1,8 +1,8 @@
 import TagManager from 'react-gtm-module';
 
 const GTM = () => {
-  const id = process.env.GTM_ID;
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const id = import.meta.env.VITE_GTM_ID;
+  const isDevelopment = import.meta.env.DEV;
 
   if (id === undefined || isDevelopment || typeof window === 'undefined') {
     return null;

@@ -6,7 +6,7 @@ const errorHandler = (error: unknown) => Promise.reject(error);
 const Http = {
   Private: (config?: AxiosRequestConfig, baseUrl?: string) => {
     const instance = axios.create({
-      baseURL: baseUrl || process.env.RES_URL,
+      baseURL: baseUrl || import.meta.env.VITE_RES_URL,
       timeout: 60000,
       ...(config || {}),
     });
@@ -21,7 +21,7 @@ const Http = {
 
   Public: (config?: AxiosRequestConfig, baseUrl?: string) => {
     const instance = axios.create({
-      baseURL: baseUrl || process.env.RES_URL,
+      baseURL: baseUrl || import.meta.env.VITE_RES_URL,
       timeout: 60000,
       ...(config || {}),
     });
