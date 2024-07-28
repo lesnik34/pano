@@ -29,7 +29,10 @@
     "lint": "eslint . --ext .ts,.tsx",
     "stub": "concurrently \"npm run database\" \"npm run server\"",
     "server": "node ./stub/index.js",
-    "database": "json-server -w stub/database/db.json -p 3001"
+    "database": "json-server -w stub/database/db.json -p 3001",
+    "nginx:start": "./nginx/nginx -p ./nginx",
+    "nginx:stop": "./nginx/nginx -p ./nginx -s stop",
+    "nginx:check": "cat ./nginx/logs/nginx.pid"
   },
   "browserslist": {
     "production": [
