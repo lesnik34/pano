@@ -23,13 +23,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "ENV_MODE=dev craco start",
-    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "start": "concurrently \"npm run dev\" \"npm run stub\"",
+    "build": "ENV_MODE=prod craco build",
+    "dev": "ENV_MODE=dev craco start",
+    "lint": "eslint . --ext .ts,.tsx",
     "stub": "concurrently \"npm run database\" \"npm run server\"",
     "server": "node ./stub/index.js",
-    "database": "json-server -w stub/database/db.json -p 3001",
-    "build": "ENV_MODE=prod craco build",
-    "lint": "eslint . --ext .ts,.tsx"
+    "database": "json-server -w stub/database/db.json -p 3001"
   },
   "browserslist": {
     "production": [
