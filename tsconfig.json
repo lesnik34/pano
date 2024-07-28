@@ -1,5 +1,4 @@
 {
-  "extends": "./alias.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -17,5 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "types/react-app-env.d.ts"]
+  "extends": "./tsconfig.paths.json",
+  "include": ["src", "types/*"]
 }

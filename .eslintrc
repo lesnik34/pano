@@ -28,12 +28,10 @@
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
-      "typescript": {
-        "alwaysTryTypes": true
-      }
+      "typescript": {}
     }
   },
-  "ignorePatterns": ["next.config.js", "server.js", "next-sitemap.js"],
+  "ignorePatterns": ["craco.config.js", "scripts/**/*.js", "types/**/*.ts"],
   "rules": {
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [
