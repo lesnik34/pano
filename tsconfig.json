@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node"],
+    "typeRoots": ["./node_modules/telegram-webapps"],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -17,5 +17,5 @@
     "jsx": "react-jsx"
   },
   "extends": "./tsconfig.paths.json",
-  "include": ["src", "types/*"]
+  "include": ["src", "types/*", "*.config.ts"]
 }

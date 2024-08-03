@@ -1,6 +1,8 @@
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import axios from 'axios';
 import type { AxiosRequestConfig, AxiosError } from 'axios';
+import { DEFAULT_ERROR_CODE } from '@constants/common';
+import i18n from '@utils/i18next';
 
 export const customBaseQuery =
   (
@@ -25,7 +27,17 @@ export const customBaseQuery =
         params,
         headers,
       });
-      return { data: result.data };
+
+      if (result.data?.status) {
+        return { data: result.data.body };
+      }
+
+      return {
+        error: {
+          status: result.data.error.code || DEFAULT_ERROR_CODE,
+          data: result.data.error.message || i18n.t('default.error.message'),
+        },
+      };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {

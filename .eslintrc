@@ -31,7 +31,7 @@
       "typescript": {}
     }
   },
-  "ignorePatterns": ["craco.config.js", "scripts/**/*.js", "types/**/*.ts"],
+  "ignorePatterns": ["*.config.js", "types/**", "stub/**"],
   "rules": {
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [

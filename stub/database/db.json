@@ -1,12 +1,12 @@
 {
-  "pokemon": [
+  "users": [
     {
-      "id": "pikachu",
-      "name": "Pikachu"
-    },
-    {
-      "id": "squirtle",
-      "name": "Squirtle"
+      "id": "1145810815",
+      "username": "lesnik343",
+      "avatarUrl": "",
+      "appointment": "Работяга",
+      "firstName": "Nikita",
+      "lastName": "Lesnyak"
     }
   ]
 }

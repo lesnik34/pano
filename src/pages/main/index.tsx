@@ -1,14 +1,17 @@
-import Layout from '@components/global/layout';
-import { TitleStyled } from './main.styled';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { PAGE_TASKS } from '@constants/pages';
+import PageLoader from '@components/page-loader';
 
 const Main = () => {
-  console.log(123);
+  const navigate = useNavigate();
 
-  return (
-    <Layout>
-      <TitleStyled>Main</TitleStyled>
-    </Layout>
-  );
+  useEffect(() => {
+    navigate(PAGE_TASKS);
+  }, [navigate]);
+
+  return <PageLoader />;
 };
 
 export default Main;

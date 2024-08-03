@@ -1,12 +1,8 @@
-const path = require('path');
-const fs = require('fs');
 const express = require('express');
+const { SELF_PORT, SUCCESS_CODE } = require('./utils/constants');
+const { router: usersRouter } = require('./users')
 
 const app = express();
-
-const PORT = 3030;
-const SUCCESS_CODE = 200;
-const EXAMPLE_JSON = path.resolve(__dirname, './jsons/example.json');
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -23,14 +19,8 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.get('/example', (req, res, next) => {
-  if (fs.existsSync(EXAMPLE_JSON)) {
-    res.sendFile(EXAMPLE_JSON);
-  } else {
-    return next();
-  }
-});
+app.use(usersRouter)
 
-app.listen(PORT, () => {
-  console.log(`Mock api server starts at ${PORT}`);
+app.listen(SELF_PORT, () => {
+  console.log(`Mock api server starts at ${SELF_PORT}`);
 });

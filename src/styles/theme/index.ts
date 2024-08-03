@@ -10,10 +10,6 @@ declare module 'styled-components' {
     fonts: {
       text: string;
     };
-    colors: {
-      text: string;
-      background: string;
-    };
   }
 }
 
@@ -25,10 +21,6 @@ const theme = {
   },
   fonts: {
     text: 'Fira Sans, sans-serif',
-  },
-  colors: {
-    text: '#BF4F74',
-    background: 'white',
   },
 };
 

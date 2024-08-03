@@ -1,7 +1,20 @@
-import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { DEFAULT_ERROR_CODE } from '@constants/common';
+import i18n from '@/utils/i18next';
 
-const requestHandler = (request: InternalAxiosRequestConfig<unknown>) => request;
-const errorHandler = (error: unknown) => Promise.reject(error);
+const responseHandler = (response: AxiosResponse) => response;
+const errorHandler = (error: AxiosError) => {
+  console.log('handler', error);
+  return Promise.resolve({
+    data: {
+      status: false,
+      error: {
+        code: error.response?.status || DEFAULT_ERROR_CODE,
+        message: error.message || i18n.t('default.error.message'),
+      },
+    },
+  });
+};
 
 const Http = {
   Private: (config?: AxiosRequestConfig, baseUrl?: string) => {
@@ -11,8 +24,8 @@ const Http = {
       ...(config || {}),
     });
 
-    instance.interceptors.request.use(
-      (request) => requestHandler(request),
+    instance.interceptors.response.use(
+      (response) => responseHandler(response),
       (error) => errorHandler(error),
     );
 
@@ -26,8 +39,8 @@ const Http = {
       ...(config || {}),
     });
 
-    instance.interceptors.request.use(
-      (request) => requestHandler(request),
+    instance.interceptors.response.use(
+      (request) => responseHandler(request),
       (error) => errorHandler(error),
     );
 

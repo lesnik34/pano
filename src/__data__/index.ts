@@ -1,3 +1,6 @@
-export * from './selectors';
-export * from './slices';
+import selectors from './selectors';
+import slices from './slices';
+
 export * from './store';
+
+export { slices, selectors };

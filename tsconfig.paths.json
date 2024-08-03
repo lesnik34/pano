@@ -10,7 +10,9 @@
       "@context/*": ["./context/*"],
       "@styles/*": ["./styles/*"],
       "@utils/*": ["./utils/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@assets/*": ["./assets/*"],
+      "@constants/*": ["./constants/*"]
     }
   }
 }

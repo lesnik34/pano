@@ -1,14 +1,20 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
-import { AppDispatch, RootState } from './types';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { query } from '@api/index';
+
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    auth: authReducer,
+    [query.usersApi.reducerPath]: query.usersApi.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(query.usersApi.middleware),
 });
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppDispatch = () => useDispatch<AppDispatch>();

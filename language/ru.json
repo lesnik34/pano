@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "default.error.message": "Что-то пошло не так...",
+    "default.loader.label": "Загрузка...",
+    "no.auth.page.title": "403",
+    "error.page.title": "Error",
+    "not.found.page.title": "404",
+    "move.to.main": "Перейти на главную",
+    "default.error.page.title": "Ошибка",
+    "default.error.page.description": "Что-то пошло не так...",
+    "default.error.page.button.title": "Попробовать еще",
+    "no.telegram.message": "Возможно вы зашли не через Telegram, попробуйте заново перейдя в него"
+  }
+}

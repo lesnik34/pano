@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+import tw from 'twin.macro';
 import projectFonts from './fonts';
 
 const GlobalStyle = createGlobalStyle(
@@ -10,7 +11,10 @@ const GlobalStyle = createGlobalStyle(
       padding: 0;
       margin: 0;
       font-family: ${theme.fonts.text};
-      background-color: ${theme.colors.background};
+    }
+
+    body {
+      ${tw`antialiased min-h-svh`}
     }
 
     a {

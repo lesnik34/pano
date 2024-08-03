@@ -1,1 +1,5 @@
-export * from './counter';
+import { authUser } from './auth';
+
+export default {
+  authUser,
+};
