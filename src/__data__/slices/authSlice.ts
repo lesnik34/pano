@@ -1,20 +1,21 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { common, UserI } from '@api/index';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { BaseErrorI, common } from '@api/index';
+import { LOCAL_KEYS } from '@constants/common';
 
 export interface AuthState {
-  user: UserI | null;
+  userId: string;
   token: string | null;
   isAuth: boolean;
   isLoading: boolean;
-  isError: boolean;
+  error: BaseErrorI['error'] | null;
 }
 
 const initialState: AuthState = {
-  user: null,
+  userId: '',
   token: null,
   isAuth: false,
   isLoading: false,
-  isError: false,
+  error: null,
 };
 
 export const authAsync = createAsyncThunk('auth/authUser', async (initData: string, { rejectWithValue }) => {
@@ -23,7 +24,7 @@ export const authAsync = createAsyncThunk('auth/authUser', async (initData: stri
     return data.body;
   }
 
-  return rejectWithValue(true);
+  return rejectWithValue(data.error);
 });
 
 export const authSlice = createSlice({
@@ -31,11 +32,14 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     clearAuthUser: (state) => {
-      state.user = null;
+      localStorage.removeItem(LOCAL_KEYS.AUTH);
+
+      state.userId = '';
       state.token = null;
+      state.isAuth = false;
     },
-    clearError: (state) => {
-      state.isError = false;
+    setError: (state, action: PayloadAction<BaseErrorI['error'] | null>) => {
+      state.error = action.payload;
       state.isLoading = false;
     },
   },
@@ -43,22 +47,23 @@ export const authSlice = createSlice({
     builder
       .addCase(authAsync.pending, (state) => {
         state.isLoading = true;
-        state.isError = false;
+        state.error = null;
       })
       .addCase(authAsync.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isError = false;
         state.isAuth = true;
+        state.error = null;
         state.token = action.payload.token;
-        state.user = action.payload.user;
+        state.userId = action.payload.userId;
       })
-      .addCase(authAsync.rejected, (state) => {
+      .addCase(authAsync.rejected, (state, action) => {
+        const error = action.payload as BaseErrorI['error'];
         state.isLoading = false;
-        state.isError = true;
+        state.error = error;
       });
   },
 });
 
-export const { clearAuthUser, clearError } = authSlice.actions;
+export const { clearAuthUser, setError } = authSlice.actions;
 
 export default authSlice.reducer;

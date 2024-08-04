@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 
 import { selectors, useAppDispatch, useAppSelector, slices } from '@store/index';
 import PageLoader from '@components/page-loader';
 import useTelegram from '@hooks/telegram';
-import PageError from '@components/error';
+import Error from '@components/error';
 import { ContainerStyled } from '@styles/container';
 
 const AuthZone = () => {
@@ -14,35 +14,38 @@ const AuthZone = () => {
   const { telegram } = useTelegram();
   const [errorMessage, setErrorMessage] = useState('');
 
-  const isLoading = useAppSelector(selectors.auth.isLoading);
-  const isError = useAppSelector(selectors.auth.isError);
+  const isAuthLoading = useAppSelector(selectors.auth.isLoading);
+  const authError = useAppSelector(selectors.auth.error);
   const isAuth = useAppSelector(selectors.auth.isAuth);
+
+  const isLoading = isAuthLoading;
+  const isError = errorMessage || !!authError;
   const isOutletVisible = isAuth && !isError && !isLoading;
 
   const handleAuthAsync = useCallback(() => {
     if (!telegram.initData) {
       setErrorMessage(t('no.telegram.message'));
+      return;
     }
 
-    dispatch(slices.authAsync(telegram.initData));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [telegram.initData]);
+    if (!isAuth) {
+      dispatch(slices.authAsync(telegram.initData || '123'));
+    }
+  }, [dispatch, isAuth, t, telegram.initData]);
 
   useEffect(() => {
-    handleAuthAsync();
+    if (!isAuth && !authError) {
+      handleAuthAsync();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuth]);
 
   return (
-    <>
+    <ContainerStyled>
       {isOutletVisible && <Outlet />}
       {isLoading && <PageLoader />}
-      {isError && (
-        <ContainerStyled>
-          <PageError description={errorMessage} onClick={handleAuthAsync} />
-        </ContainerStyled>
-      )}
-    </>
+      {isError && <Error isFullScreen description={authError?.message || errorMessage} onClick={handleAuthAsync} />}
+    </ContainerStyled>
   );
 };
 

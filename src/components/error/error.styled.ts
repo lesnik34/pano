@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 
-export const WrapperStyled = styled.div`
-  min-height: 100lvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
+export const WrapperStyled = styled.div<{ $isFullScreen?: boolean }>(
+  ({ $isFullScreen }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: ${$isFullScreen ? '100lvh' : '100%'};
+  `,
+);
 
 export const ContentStyled = styled.div`
   display: flex;

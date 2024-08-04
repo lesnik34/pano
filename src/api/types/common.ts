@@ -12,12 +12,3 @@ export interface BaseErrorI {
     message: string;
   };
 }
-
-// export interface BaseResponseI<T> {
-//   status: boolean;
-//   body?: T;
-//   error?: {
-//     code: string;
-//     message: string;
-//   };
-// }

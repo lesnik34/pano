@@ -14,8 +14,7 @@ const Proposals = () => {
     <Layout>
       <TitleStyled>Proposals</TitleStyled>
 
-      <Link href="/tasks">Button tasks</Link>
-      <a href="/tasks">123</a>
+      <Link href="/dashboard/tasks">Button tasks</Link>
     </Layout>
   );
 };

@@ -1,7 +1,7 @@
-import { authAsync, clearAuthUser, clearError } from './authSlice';
+import { authAsync, clearAuthUser, setError } from './authSlice';
 
 export default {
   authAsync,
   clearAuthUser,
-  clearError,
+  setError,
 };

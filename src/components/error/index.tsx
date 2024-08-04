@@ -8,13 +8,14 @@ interface ErrorI {
   description?: string;
   buttonText?: string;
   onClick?: () => void;
+  isFullScreen?: boolean;
 }
 
-const Error: React.FC<ErrorI> = ({ title, description, buttonText, onClick = () => {} }) => {
+const Error: React.FC<ErrorI> = ({ title, description, buttonText, isFullScreen, onClick = () => {} }) => {
   const { t } = useTranslation();
 
   return (
-    <WrapperStyled>
+    <WrapperStyled $isFullScreen={isFullScreen}>
       <ContentStyled>
         <TitleStyled>{title || t('default.error.page.title')}</TitleStyled>
 

@@ -3,18 +3,16 @@ import { DEFAULT_ERROR_CODE } from '@constants/common';
 import i18n from '@/utils/i18next';
 
 const responseHandler = (response: AxiosResponse) => response;
-const errorHandler = (error: AxiosError) => {
-  console.log('handler', error);
-  return Promise.resolve({
+const errorHandler = (error: AxiosError) =>
+  Promise.resolve({
     data: {
       status: false,
       error: {
-        code: error.response?.status || DEFAULT_ERROR_CODE,
+        code: error.response?.status ? String(error.response?.status) : DEFAULT_ERROR_CODE,
         message: error.message || i18n.t('default.error.message'),
       },
     },
   });
-};
 
 const Http = {
   Private: (config?: AxiosRequestConfig, baseUrl?: string) => {

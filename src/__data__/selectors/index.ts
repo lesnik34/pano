@@ -1,3 +1,3 @@
-import { isAuth, isError, isLoading, token, user } from './auth';
+import { isAuth, isLoading, token, userId, error } from './auth';
 
-export default { auth: { isAuth, isError, isLoading, token, user } };
+export default { auth: { isAuth, isLoading, token, userId, error } };

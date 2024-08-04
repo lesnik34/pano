@@ -13,6 +13,9 @@ export const usersApi = createApi({
         url: `${API_URLS.USER}/${id}`,
       }),
     }),
+    refetchErroredQueries: builder.mutation<null, void>({
+      queryFn: () => ({ data: null }),
+    }),
   }),
 });
 

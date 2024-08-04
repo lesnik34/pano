@@ -1,35 +1,35 @@
-import { ContainerStyled } from '@styles/container';
+import { selectors, useAppSelector } from '@store/index';
+import UserBar from '@components/user-bar';
+import NavLinks from '@components/nav-links';
 import { query } from '@api/index';
-import useTelegram from '@hooks/telegram';
 
 import Notifications from './notifications';
-import UserBar from '../../user-bar';
-
-import { WrapperStyled } from './header.styled';
+import { WrapperNavbarStyled, WrapperUserStyled, HeaderStyled } from './header.styled';
 
 const Header = () => {
-  const { user } = useTelegram();
-  const userID = `${user?.id}`;
-  const { data, isError, isLoading } = query.useGetUserByIdQuery(userID);
+  const userId = useAppSelector(selectors.auth.userId);
+  const { data, isError, isLoading } = query.useGetUserByIdQuery(userId);
   const { firstName, lastName, appointment, avatarUrl } = data || {};
   const userName = `${firstName ?? ''} ${lastName ?? ''}`.trim();
 
   return (
-    <header>
-      <ContainerStyled>
-        <WrapperStyled>
-          <Notifications />
+    <HeaderStyled>
+      <WrapperUserStyled>
+        <Notifications />
 
-          <UserBar
-            name={userName}
-            description={appointment}
-            avatarUrl={avatarUrl}
-            isLoading={isLoading}
-            isError={isError}
-          />
-        </WrapperStyled>
-      </ContainerStyled>
-    </header>
+        <UserBar
+          name={userName}
+          description={appointment}
+          avatarUrl={avatarUrl}
+          isLoading={isLoading}
+          isError={isError}
+        />
+      </WrapperUserStyled>
+
+      <WrapperNavbarStyled>
+        <NavLinks />
+      </WrapperNavbarStyled>
+    </HeaderStyled>
   );
 };
 

@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { query } from '@api/index';
 
+import { authMiddleware } from './middlewares/auth';
 import authReducer from './slices/authSlice';
 
 export const store = configureStore({
@@ -9,7 +10,8 @@ export const store = configureStore({
     auth: authReducer,
     [query.usersApi.reducerPath]: query.usersApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(query.usersApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(query.usersApi.middleware).prepend(authMiddleware.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

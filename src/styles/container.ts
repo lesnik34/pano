@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import tw from 'twin.macro';
 
 export const ContainerStyled = styled.div(
   ({ theme }) => css`
@@ -15,3 +16,7 @@ export const ContainerStyled = styled.div(
     }
   `,
 );
+
+export const AppWrapper = styled.div`
+  ${tw`light text-foreground bg-background min-h-svh`}
+`;

@@ -8,6 +8,7 @@ import { GlobalStyles as BaseStyles } from 'twin.macro';
 
 import theme from '@styles/theme';
 import GlobalStyle from '@styles/global';
+import { AppWrapper } from '@styles/container';
 import '@utils/i18next';
 import '@styles/index.css';
 
@@ -21,12 +22,12 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <NextUIProvider navigate={navigate}>
-          <div className={`${telegram.colorScheme} text-foreground bg-background`}>
+          <AppWrapper className={telegram.colorScheme ?? 'dark'}>
             <GlobalStyle />
             <BaseStyles />
 
             <Router />
-          </div>
+          </AppWrapper>
         </NextUIProvider>
       </ThemeProvider>
     </Provider>

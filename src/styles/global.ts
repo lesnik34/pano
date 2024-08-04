@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle(
     }
 
     body {
-      ${tw`antialiased min-h-svh`}
+      ${tw`antialiased`}
     }
 
     a {
