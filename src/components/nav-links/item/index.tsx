@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { IconType } from 'react-icons';
+import { useNavigate } from 'react-router-dom';
 import useCurrentPath from '@hooks/use-current-path';
 
 import { IconWrapperStyled, TextStyled, ButtonStyled, ButtonWrapperStyled } from './item.styled';
@@ -11,17 +12,31 @@ interface ItemI {
 }
 
 const Item: React.FC<ItemI> = ({ title, url, icon }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { isPathMatch } = useCurrentPath(url);
-  console.log(isPathMatch, url);
   const Icon = icon;
 
+  const onClick = useCallback(() => {
+    if (url) {
+      navigate(url);
+    }
+  }, [navigate, url]);
+
+  useEffect(() => {
+    if (isPathMatch && wrapperRef.current) {
+      wrapperRef.current.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+  }, [isPathMatch]);
+
   return (
-    <ButtonWrapperStyled $isActive={isPathMatch}>
+    <ButtonWrapperStyled ref={wrapperRef} $isActive={isPathMatch}>
       <ButtonStyled
-        variant={isPathMatch ? 'solid' : 'flat'}
-        color="default"
+        onClick={onClick}
+        variant="flat"
+        color={isPathMatch ? 'primary' : 'default'}
         startContent={
-          <IconWrapperStyled>
+          <IconWrapperStyled $isActive={isPathMatch}>
             <Icon size={18} />
           </IconWrapperStyled>
         }

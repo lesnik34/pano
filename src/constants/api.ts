@@ -6,6 +6,7 @@ export const API_PREFIX = '';
 export const API_URLS = {
   AUTH_USER: `${API_PREFIX}/v1/auth`,
   USER: `${API_PREFIX}/v1/users`,
+  TASKS: `${API_PREFIX}/v1/tasks`,
 };
 
 export const DEFAULT_ERROR_RESPONSE: BaseErrorI = {

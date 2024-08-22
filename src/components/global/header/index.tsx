@@ -6,11 +6,14 @@ import { query } from '@api/index';
 import Notifications from './notifications';
 import { WrapperNavbarStyled, WrapperUserStyled, HeaderStyled } from './header.styled';
 
-const Header = () => {
+interface HeaderI {
+  navHidden?: boolean;
+}
+
+const Header: React.FC<HeaderI> = ({ navHidden }) => {
   const userId = useAppSelector(selectors.auth.userId);
-  const { data, isError, isLoading } = query.useGetUserByIdQuery(userId);
+  const { data, isError, isFetching } = query.useGetUserByIdQuery(userId);
   const { firstName, lastName, appointment, avatarUrl } = data || {};
-  const userName = `${firstName ?? ''} ${lastName ?? ''}`.trim();
 
   return (
     <HeaderStyled>
@@ -18,17 +21,20 @@ const Header = () => {
         <Notifications />
 
         <UserBar
-          name={userName}
+          firstName={firstName}
+          lastName={lastName}
           description={appointment}
           avatarUrl={avatarUrl}
-          isLoading={isLoading}
+          isLoading={isFetching}
           isError={isError}
         />
       </WrapperUserStyled>
 
-      <WrapperNavbarStyled>
-        <NavLinks />
-      </WrapperNavbarStyled>
+      {!navHidden && (
+        <WrapperNavbarStyled>
+          <NavLinks />
+        </WrapperNavbarStyled>
+      )}
     </HeaderStyled>
   );
 };

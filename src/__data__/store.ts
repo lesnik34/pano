@@ -4,14 +4,19 @@ import { query } from '@api/index';
 
 import { authMiddleware } from './middlewares/auth';
 import authReducer from './slices/authSlice';
+import tasksReducer from './slices/tasksSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    tasks: tasksReducer,
     [query.usersApi.reducerPath]: query.usersApi.reducer,
+    [query.tasksApi.reducerPath]: query.tasksApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(query.usersApi.middleware).prepend(authMiddleware.middleware),
+    getDefaultMiddleware()
+      .concat([query.usersApi.middleware, query.tasksApi.middleware])
+      .prepend(authMiddleware.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

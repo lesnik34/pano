@@ -7,11 +7,12 @@ import GTM from '@components/global/gtm';
 
 interface LayoutI {
   children: JSX.Element | React.ReactNode;
+  navHidden?: boolean;
 }
 
-const Layout: React.FC<LayoutI> = ({ children }) => (
+const Layout: React.FC<LayoutI> = ({ children, navHidden }) => (
   <>
-    <Header />
+    <Header navHidden={navHidden} />
 
     <Metrika />
     <GTM />

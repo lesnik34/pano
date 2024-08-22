@@ -2,6 +2,7 @@
   "translation": {
     "default.error.message": "Что-то пошло не так...",
     "default.loader.label": "Загрузка...",
+    "submit.text": "Применить",
     "no.auth.page.title": "403",
     "error.page.title": "Error",
     "not.found.page.title": "404",
@@ -9,6 +10,12 @@
     "default.error.page.title": "Ошибка",
     "default.error.page.description": "Что-то пошло не так...",
     "default.error.page.button.title": "Попробовать еще",
-    "no.telegram.message": "Возможно вы зашли не через Telegram, попробуйте заново перейдя в него"
+    "no.telegram.message": "Возможно вы зашли не через Telegram, попробуйте заново перейдя в него",
+    "task.status.done": "Сделано",
+    "task.status.to.do": "Не в работе",
+    "task.status.in.progress": "В процессе",
+    "task.status.canceled": "Отменено",
+    "filter.text": "Фильтры",
+    "filter.status.text": "Статус задачи"
   }
 }

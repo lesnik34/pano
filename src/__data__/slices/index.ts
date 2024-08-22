@@ -1,7 +1,7 @@
-import { authAsync, clearAuthUser, setError } from './authSlice';
+import * as auth from './authSlice';
+import * as tasks from './tasksSlice';
 
 export default {
-  authAsync,
-  clearAuthUser,
-  setError,
+  auth,
+  tasks,
 };

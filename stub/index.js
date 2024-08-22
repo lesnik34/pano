@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors')
 const { SELF_PORT, SUCCESS_CODE } = require('./utils/constants');
 const { router: usersRouter } = require('./users')
+const { router: tasksRouter } = require('./tasks')
 const { router: authRouter } = require('./auth')
 
 const app = express();
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.use(usersRouter)
+app.use(tasksRouter)
 app.use(authRouter)
 
 app.listen(SELF_PORT, () => {

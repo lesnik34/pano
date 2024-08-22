@@ -10,10 +10,14 @@ export default {
   plugins: [
     nextui({
       themes: {
-        light: {},
+        light: {
+          colors: {
+            background: '#F5F7F8',
+          },
+        },
         dark: {
           colors: {
-            background: '#1D1D1E',
+            background: '#18191A',
           },
         },
       },

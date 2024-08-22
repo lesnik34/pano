@@ -1,3 +1,4 @@
-import { isAuth, isLoading, token, userId, error } from './auth';
+import * as auth from './auth';
+import * as tasks from './tasks';
 
-export default { auth: { isAuth, isLoading, token, userId, error } };
+export default { auth, tasks };

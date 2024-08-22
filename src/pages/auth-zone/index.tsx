@@ -23,13 +23,14 @@ const AuthZone = () => {
   const isOutletVisible = isAuth && !isError && !isLoading;
 
   const handleAuthAsync = useCallback(() => {
-    if (!telegram.initData) {
-      setErrorMessage(t('no.telegram.message'));
-      return;
-    }
+    // if (!telegram.initData) {
+    //   setErrorMessage(t('no.telegram.message'));
+    //   return;
+    // }
 
     if (!isAuth) {
-      dispatch(slices.authAsync(telegram.initData || '123'));
+      setErrorMessage('');
+      dispatch(slices.auth.authAsync(telegram.initData || '123'));
     }
   }, [dispatch, isAuth, t, telegram.initData]);
 

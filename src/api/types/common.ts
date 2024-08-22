@@ -12,3 +12,9 @@ export interface BaseErrorI {
     message: string;
   };
 }
+
+export interface PagesSortI {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}

@@ -17,8 +17,8 @@ startAppListening({
     let attempts = 0;
 
     return (action, listenerApi) => {
-      const { payload } = action as unknown as ActionI;
-      if (payload.status !== 401) {
+      const { payload } = (action as unknown as ActionI) || {};
+      if (payload?.status !== 401) {
         return;
       }
 

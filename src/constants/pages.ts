@@ -26,3 +26,8 @@ export const NAV_LINKS = [
     icon: BiTrophy,
   },
 ];
+
+export const TASK_PARAMS = {
+  page: 'page',
+  status: 'status',
+};

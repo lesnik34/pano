@@ -36,6 +36,7 @@
     "build": "ENV_MODE=prod tsc && vite build",
     "preview": "vite preview",
     "dev": "ENV_MODE=dev vite",
+    "dev:host": "ENV_MODE=dev vite --host",
     "lint": "eslint . --ext .ts,.tsx",
     "stub": "concurrently \"npm run database\" \"npm run server\"",
     "server": "node ./stub/index.js",
@@ -62,7 +63,6 @@
     }
   },
   "devDependencies": {
-    "@craco/craco": "^5.9.0",
     "@types/react-gtm-module": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
@@ -70,7 +70,6 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-styled-components": "^2.1.4",
     "concurrently": "^8.2.2",
-    "craco-alias": "^3.0.1",
     "dotenv": "^16.4.5",
     "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "12.3.1",
