@@ -1,5 +1,5 @@
-import { TaskI } from '@/api';
-import { getTaskStatusColor } from '@/styles/utils/common';
+import { TaskI } from '@api/types';
+import { getTaskStatusProperties } from '@styles/utils/common';
 import { Button } from '@nextui-org/react';
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
@@ -19,7 +19,7 @@ export const ButtonWrapperStyled = styled(Button)`
 
 export const StatusLineStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
   ({ $taskStatus }) => css`
-    ${getTaskStatusColor($taskStatus)}
+    ${getTaskStatusProperties($taskStatus).style}
     position: absolute;
     left: 0;
     top: 0;
@@ -54,7 +54,7 @@ export const DescriptionStyled = styled.p`
 
 export const DateStyled = styled.span<{ $deadline?: boolean }>(
   ({ $deadline }) => css`
-    ${$deadline ? tw`text-danger` : tw`text-default-900`}
+    ${$deadline ? tw`text-red-400` : tw`text-default-900`}
     ${tw`text-xs font-bold`}
   `,
 );
@@ -69,7 +69,7 @@ export const FooterStyled = styled.div`
 
 export const StatusStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
   ({ $taskStatus }) => css`
-    ${getTaskStatusColor($taskStatus)}
+    ${getTaskStatusProperties($taskStatus).style}
     ${tw`text-xs text-white font-medium`}
     min-width: 105px;
     padding: 7px 14px;

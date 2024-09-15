@@ -1,21 +1,4 @@
-import { TaskStatus } from '@api/types';
 import { MIN_DATE_DIFF } from '@constants/common';
-import i18n from './i18next';
-
-export const getTaskStatusText = (status: TaskStatus) => {
-  switch (status) {
-    case TaskStatus.canceled:
-      return i18n.t('task.status.canceled');
-    case TaskStatus.done:
-      return i18n.t('task.status.done');
-    case TaskStatus.inProgress:
-      return i18n.t('task.status.in.progress');
-    case TaskStatus.toDo:
-      return i18n.t('task.status.to.do');
-    default:
-      return '';
-  }
-};
 
 const getZeroToDate = (number: number): string => {
   if (number < 10) {
@@ -36,6 +19,20 @@ export const getLocalDate = (date?: string) => {
   const month = getZeroToDate(parsedDate.getMonth() + 1);
 
   return `${day}.${month}`;
+};
+
+export const getCurrentGlobalDate = (date?: string) => {
+  if (!date) {
+    return null;
+  }
+
+  const parsedDate = new Date(date);
+
+  const year = parsedDate.getFullYear();
+  const day = getZeroToDate(parsedDate.getDate());
+  const month = getZeroToDate(parsedDate.getMonth() + 1);
+
+  return `${year}-${month}-${day}`;
 };
 
 export const getDateRange = (start?: string, end?: string): string => {

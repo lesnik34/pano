@@ -52,7 +52,7 @@
     "react/no-array-index-key": "warn",
     "react/no-unescaped-entities": "warn",
     "react/destructuring-assignment": "warn",
-    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-props-no-spreading": "off",
     "react/state-in-constructor": "warn",
     "react/no-danger": "warn",
     "react/prop-types": "off",

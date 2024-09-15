@@ -5,13 +5,14 @@ import { LoaderWrapperStyled } from './loader.styled';
 
 interface PageLoaderI {
   label?: string;
+  mode?: 'fullHeight' | 'lg';
 }
 
-const PageLoader: React.FC<PageLoaderI> = ({ label }) => {
+const PageLoader: React.FC<PageLoaderI> = ({ label, mode = 'fullHeight' }) => {
   const { t } = useTranslation();
 
   return (
-    <LoaderWrapperStyled>
+    <LoaderWrapperStyled $mode={mode}>
       <Spinner label={label || t('default.loader.label')} />
     </LoaderWrapperStyled>
   );

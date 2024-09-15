@@ -3,8 +3,9 @@ import { NextUIProvider } from '@nextui-org/react';
 import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { store } from '@store/index';
+import { store } from '@store/store';
 import useTelegram from '@hooks/telegram';
+import { ToastContainer } from 'react-toastify';
 import { GlobalStyles as BaseStyles } from 'twin.macro';
 
 import theme from '@styles/theme';
@@ -13,21 +14,23 @@ import '@utils/i18next';
 import '@styles/index.css';
 
 import Router from './router';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const { initOptions } = useTelegram();
+  const { initOptions, telegram } = useTelegram();
   const navigate = useNavigate();
 
   useEffect(() => {
-    initOptions();
+    initOptions?.();
   }, [initOptions]);
 
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <NextUIProvider navigate={navigate}>
+        <NextUIProvider locale="ru-RU" navigate={navigate}>
           <GlobalStyle />
           <BaseStyles />
+          <ToastContainer theme={telegram?.colorScheme} position="top-center" />
 
           <Router />
         </NextUIProvider>

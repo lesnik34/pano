@@ -4,7 +4,7 @@ import i18n from '@utils/i18next';
 export const API_PREFIX = '';
 
 export const API_URLS = {
-  AUTH_USER: `${API_PREFIX}/v1/auth`,
+  AUTH_USER: `${API_PREFIX}/v1/auth/login`,
   USER: `${API_PREFIX}/v1/users`,
   TASKS: `${API_PREFIX}/v1/tasks`,
 };
@@ -16,3 +16,5 @@ export const DEFAULT_ERROR_RESPONSE: BaseErrorI = {
     message: i18n.t('default.error.message'),
   },
 };
+
+export const MAX_ATTEMPTS_403 = 1;

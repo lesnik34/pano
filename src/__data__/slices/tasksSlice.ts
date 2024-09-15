@@ -19,12 +19,13 @@ export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    setPage: (state, action: PayloadAction<string>) => {
+    setPage: (state, action: PayloadAction<unknown>) => {
       state.params.page = Number(action.payload);
     },
-    setStatus: (state, action: PayloadAction<string>) => {
-      const value = action.payload.split(',');
-      state.params.status = value;
+    setStatus: (state, action: PayloadAction<unknown>) => {
+      const values = String(action.payload).split(',');
+
+      state.params.status = values;
     },
   },
 });

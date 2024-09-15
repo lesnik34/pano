@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { query } from '@api/index';
+import query from '@api/query';
 
 import { authMiddleware } from './middlewares/auth';
 import authReducer from './slices/authSlice';

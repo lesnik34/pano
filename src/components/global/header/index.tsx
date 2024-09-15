@@ -1,7 +1,8 @@
-import { selectors, useAppSelector } from '@store/index';
 import UserBar from '@components/user-bar';
 import NavLinks from '@components/nav-links';
-import { query } from '@api/index';
+import query from '@api/query';
+import { useAppSelector } from '@store/store';
+import selectors from '@store/selectors';
 
 import Notifications from './notifications';
 import { WrapperNavbarStyled, WrapperUserStyled, HeaderStyled } from './header.styled';

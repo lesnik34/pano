@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const TitleStyled = styled.h1`
   font-size: 1.5em;

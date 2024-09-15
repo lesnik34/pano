@@ -8,8 +8,9 @@ export interface BaseSuccessI<T> {
 export interface BaseErrorI {
   status: false;
   error: {
-    code: string;
-    message: string;
+    code?: string;
+    title?: string;
+    message?: string;
   };
 }
 

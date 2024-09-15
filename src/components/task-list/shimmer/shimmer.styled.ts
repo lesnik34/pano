@@ -1,5 +1,5 @@
 import { Button, Skeleton } from '@nextui-org/react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const ButtonWrapperStyled = styled(Button)`
@@ -25,24 +25,24 @@ export const HeaderStyled = styled.div`
 `;
 
 export const TitleStyled = styled(Skeleton)`
+  ${tw`rounded-lg`}
   min-width: 50%;
   min-height: 16px;
   margin-bottom: 2px;
-  border-radius: 10px;
 `;
 
 export const DescriptionStyled = styled(Skeleton)`
+  ${tw`rounded-lg`}
   min-width: 70%;
   min-height: 16px;
   margin-bottom: 2px;
-  border-radius: 10px;
 `;
 
 export const DateStyled = styled(Skeleton)`
+  ${tw`rounded-lg`}
   min-width: 20%;
   min-height: 16px;
   margin-bottom: 2px;
-  border-radius: 10px;
 `;
 
 export const FooterStyled = styled.div`
@@ -54,8 +54,8 @@ export const FooterStyled = styled.div`
 `;
 
 export const ButtonStatusStyled = styled(Skeleton)`
+  ${tw`rounded-lg`}
   min-width: 20%;
   min-height: 16px;
   margin-bottom: 2px;
-  border-radius: 10px;
 `;

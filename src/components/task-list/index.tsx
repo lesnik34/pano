@@ -1,5 +1,6 @@
 import React from 'react';
-import { TaskI } from '@/api';
+import { v4 as uuid } from 'uuid';
+import { TaskI } from '@api/types';
 
 import Item from './item';
 import ItemShimmer from './shimmer';
@@ -19,8 +20,8 @@ const TaskList: React.FC<TaskListI> = ({ items, isLoading }) => {
   return (
     <WrapperStyled>
       {isLoading &&
-        shimmerItems.map((_, i) => (
-          <ItemWrapperStyled key={i}>
+        shimmerItems.map(() => (
+          <ItemWrapperStyled key={uuid()}>
             <ItemShimmer />
           </ItemWrapperStyled>
         ))}

@@ -32,6 +32,16 @@ export interface TaskI {
   title?: string;
   description?: string;
   executor: string;
+  creator: string;
+  date_start?: string;
+  date_end?: string;
+}
+
+export interface NewTaskI extends Omit<TaskI, 'id'> {}
+export interface EditTaskI {
+  title?: string;
+  description?: string;
+  executor?: string;
   date_start?: string;
   date_end?: string;
 }
@@ -41,6 +51,7 @@ export interface ShortTaskI {
   status: TaskStatus;
   title?: string;
   description?: string;
+  creator: string;
   executor: string;
   date_start?: string;
   date_end?: string;

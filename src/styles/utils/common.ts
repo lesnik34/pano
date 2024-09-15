@@ -1,18 +1,43 @@
+import tw, { TwStyle } from 'twin.macro';
 import { TaskStatus } from '@api/types';
-import tw from 'twin.macro';
+import i18n from '@utils/i18next';
 
-export const getTaskStatusColor = (status: TaskStatus) => {
+export const getTaskStatusProperties = (status?: TaskStatus) => {
+  let style: TwStyle = tw``;
+  let color: 'default' | 'primary' | 'success' | 'warning' = 'default';
+  let text = '';
+
   switch (status) {
     case TaskStatus.toDo:
-      return tw`bg-content4`;
+      style = tw`bg-content4`;
+      color = 'default';
+      text = i18n.t('task.status.to.do');
+      break;
     case TaskStatus.canceled:
-      return tw`bg-warning`;
+      style = tw`bg-warning`;
+      color = 'warning';
+      text = i18n.t('task.status.canceled');
+      break;
     case TaskStatus.done:
-      return tw`bg-success`;
+      style = tw`bg-success`;
+      color = 'success';
+      text = i18n.t('task.status.done');
+      break;
     case TaskStatus.inProgress:
-      return tw`bg-primary`;
+      style = tw`bg-primary`;
+      color = 'primary';
+      text = i18n.t('task.status.in.progress');
+      break;
 
     default:
-      return tw`bg-content4`;
+      style = tw`bg-content4`;
+      color = 'default';
+      text = '';
   }
+
+  return {
+    style,
+    color,
+    text,
+  };
 };

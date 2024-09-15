@@ -3,8 +3,9 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/rea
 import { FiFilter } from 'react-icons/fi';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { selectors, useAppSelector } from '@store/index';
 import { TASK_PARAMS } from '@constants/pages';
+import { useAppSelector } from '@store/store';
+import selectors from '@store/selectors';
 
 import { PopoverWrapper, SectionStyled } from './parameters.styled';
 import Status from './status';
@@ -34,9 +35,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
   return (
     <Popover placement="bottom-start" isOpen={isPopoverVisible} onOpenChange={setPopoverVision}>
       <PopoverTrigger>
-        <Button isLoading={isLoading} variant="flat" color="default" startContent={<FiFilter />}>
-          {t('filter.text')}
-        </Button>
+        <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
       </PopoverTrigger>
 
       <PopoverContent>

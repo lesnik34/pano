@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import { Checkbox, CheckboxGroup } from '@nextui-org/react';
 import { useTranslation } from 'react-i18next';
 
-import { selectors, useAppSelector } from '@store/index';
-import { TaskStatus } from '@api/index';
+import { useAppSelector } from '@store/store';
+import { TaskStatus } from '@api/types';
+import selectors from '@store/selectors';
 
 interface StatusI {
   setCurrentStatus: (argument: Array<string>) => void;

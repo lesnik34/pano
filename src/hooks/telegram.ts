@@ -1,7 +1,10 @@
 const useTelegram = () => {
-  const telegram = Telegram.WebApp;
-  const { user } = telegram.initDataUnsafe;
+  const telegram = Telegram?.WebApp;
+  if (!telegram) {
+    return {};
+  }
 
+  const { user } = telegram.initDataUnsafe;
   const initOptions = () => {
     if (!telegram.isExpanded) {
       telegram.expand();

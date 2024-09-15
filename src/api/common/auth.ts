@@ -10,7 +10,7 @@ interface ResponseI {
   token: string;
 }
 
-export const authUser = async (initData?: string) => {
+export const authUser = async (initData?: string, user?: string, hash?: string): Promise<BaseResponseI<ResponseI>> => {
   const authLocal = localStorage.getItem(LOCAL_KEYS.AUTH);
 
   if (!initData) {
@@ -24,10 +24,15 @@ export const authUser = async (initData?: string) => {
     } as BaseSuccessI<ResponseI>;
   }
 
-  const { data } = await api.post<BaseResponseI<ResponseI>>(API_URLS.AUTH_USER, { initData });
+  const { data } = await api.post<BaseResponseI<string>>(API_URLS.AUTH_USER, { initData, user, hash });
+
   const localAuthToSet = data.status && data.body;
   if (localAuthToSet) {
-    localStorage.setItem(LOCAL_KEYS.AUTH, JSON.stringify(localAuthToSet));
+    localStorage.setItem(LOCAL_KEYS.AUTH, JSON.stringify({ token: localAuthToSet, userId: user }));
+  }
+
+  if (data.status) {
+    return { ...data, body: { token: data.body, userId: user ?? '' } };
   }
 
   return data;

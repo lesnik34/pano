@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BaseErrorI, common } from '@api/index';
 import { LOCAL_KEYS } from '@constants/common';
+import common from '@api/common';
+import { BaseErrorI } from '@api/types';
 
 export interface AuthState {
   userId: string;
@@ -8,6 +9,12 @@ export interface AuthState {
   isAuth: boolean;
   isLoading: boolean;
   error: BaseErrorI['error'] | null;
+}
+
+interface AuthParamI {
+  initData?: string;
+  user?: string;
+  hash?: string;
 }
 
 const initialState: AuthState = {
@@ -18,8 +25,8 @@ const initialState: AuthState = {
   error: null,
 };
 
-export const authAsync = createAsyncThunk('auth/authUser', async (initData: string, { rejectWithValue }) => {
-  const data = await common.authUser(initData);
+export const authAsync = createAsyncThunk('auth/authUser', async (params: AuthParamI, { rejectWithValue }) => {
+  const data = await common.authUser(params.initData, params.user, params.hash);
   if (data.status) {
     return data.body;
   }

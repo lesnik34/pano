@@ -17,8 +17,8 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
 
   const isErrorVisible = isError;
   const isTaskListVisible = !isError;
-  const isPaginationVisible = totalPages && params.page && totalPages > 1;
-  const isHeaderVisible = data && !isFetching;
+  const isPaginationVisible = totalPages && params.page >= 0 && totalPages > 1;
+  // const isHeaderVisible = data && !isFetching;
 
   const errorHandler = useCallback(() => {
     refetch();

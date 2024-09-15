@@ -7,6 +7,7 @@
     "error.page.title": "Error",
     "not.found.page.title": "404",
     "move.to.main": "Перейти на главную",
+    "move.to.tasks": "К задачам",
     "default.error.page.title": "Ошибка",
     "default.error.page.description": "Что-то пошло не так...",
     "default.error.page.button.title": "Попробовать еще",
@@ -16,6 +17,23 @@
     "task.status.in.progress": "В процессе",
     "task.status.canceled": "Отменено",
     "filter.text": "Фильтры",
-    "filter.status.text": "Статус задачи"
+    "filter.status.text": "Статус задачи",
+    "text.back": "Назад",
+    "task.executor.label": "Исполнитель",
+    "task.creator.label": "Создатель задачи",
+    "task.date.label": "Срок",
+    "edit.button.text": "Редактировать",
+    "empty.symbol": "—",
+    "not.found.text": "Не найден",
+    "save.text": "Сохранить",
+    "cancel.text": "Отменить",
+    "input.title.label": "Заголовок",
+    "input.executor.label": "Исполнитель",
+    "input.description.label": "Описание",
+    "input.date.label": "Срок",
+    "edit.task.headline": "Редактирование задачи",
+    "create.task.headline": "Создание задачи",
+    "task.description.placeholder": "Описание задачи",
+    "edit.success.message": "Сохранено"
   }
 }

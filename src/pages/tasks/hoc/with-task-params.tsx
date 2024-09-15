@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useAppDispatch, slices, selectors, useAppSelector } from '@store/index';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { TASK_PARAMS } from '@constants/pages';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import selectors from '@store/selectors';
+import slices from '@store/slices';
 
 export interface TaskParamsComponentI {
   params: {
@@ -34,19 +36,18 @@ const withTaskParams = (Component: React.ComponentType<TaskParamsComponentI>) =>
   );
 
   const syncQueryStore = useCallback(
-    (name: string, sliceValue: string, changeValue: ActionCreatorWithPayload<string>) => {
+    (name: string, sliceValue: unknown, changeValue: ActionCreatorWithPayload<unknown>) => {
       const paramValue = searchParams.get(name);
-      const currentValue = paramValue || sliceValue;
 
       if (!paramValue) {
         setSearchParams((params) => {
-          params.set(name, String(currentValue));
+          params.set(name, String(sliceValue));
           return params;
         });
       }
 
-      if (currentValue !== sliceValue) {
-        dispatch(changeValue(currentValue));
+      if (paramValue && paramValue !== String(sliceValue)) {
+        dispatch(changeValue(paramValue));
       }
     },
     [dispatch, searchParams, setSearchParams],
@@ -54,7 +55,7 @@ const withTaskParams = (Component: React.ComponentType<TaskParamsComponentI>) =>
 
   useEffect(() => {
     queryList.forEach((query) => {
-      syncQueryStore(query.name, String(query.sliceValue), query.changeStore);
+      syncQueryStore(query.name, query.sliceValue, query.changeStore);
     });
   }, [queryList, searchParams, syncQueryStore]);
 

@@ -7,6 +7,8 @@ export const DASH_PAGE = '/dashboard';
 
 export const PAGE_TASKS = '/dashboard/tasks';
 
+export const PAGE_NEW_TASK = '/dashboard/tasks/new-task';
+
 export const PAGE_PROPOSALS = '/dashboard/proposals';
 
 export const NAV_LINKS = [

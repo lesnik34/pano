@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const WrapperStyled = styled.div`
-  padding-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 40px;
 `;
 
 export const ErrorWrapperStyled = styled.div`
