@@ -1,9 +1,8 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import { TaskI } from '@api/types';
+import SkeletonTaskList from '@components/skeleton/task-list';
 
 import Item from './item';
-import ItemShimmer from './shimmer';
 import { ItemWrapperStyled, WrapperStyled } from './task.styled';
 
 interface TaskListI {
@@ -11,20 +10,13 @@ interface TaskListI {
   isLoading?: boolean;
 }
 
-const SHIMMER_LENGTH = 5;
-
 const TaskList: React.FC<TaskListI> = ({ items, isLoading }) => {
   const isItemsVisible = items && !isLoading;
-  const shimmerItems = new Array(SHIMMER_LENGTH).fill(1);
 
   return (
     <WrapperStyled>
-      {isLoading &&
-        shimmerItems.map(() => (
-          <ItemWrapperStyled key={uuid()}>
-            <ItemShimmer />
-          </ItemWrapperStyled>
-        ))}
+      {isLoading && <SkeletonTaskList />}
+
       {isItemsVisible &&
         items?.map((item) => (
           <ItemWrapperStyled key={item.id}>

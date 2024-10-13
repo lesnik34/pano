@@ -1,3 +1,5 @@
+import theme from '@styles/theme';
+
 const useTelegram = () => {
   const telegram = Telegram?.WebApp;
   if (!telegram) {
@@ -11,8 +13,8 @@ const useTelegram = () => {
     }
 
     document.body.classList.add('dark', 'text-foreground', 'bg-background');
-    telegram.setBackgroundColor('#18191A');
-    telegram.setHeaderColor('#1E1E1F');
+    telegram.setBackgroundColor(theme.dark.colors.background);
+    telegram.setHeaderColor(theme.dark.colors.header);
     telegram.disableVerticalSwipes();
     telegram.ready();
   };

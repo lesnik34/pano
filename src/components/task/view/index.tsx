@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import { Divider, Skeleton } from '@nextui-org/react';
+import { Divider } from '@nextui-org/react';
 import { TaskStatus } from '@api/types';
+import SkeletonTask from '@components/skeleton/task';
 
 import {
   CreatorWrapper,
@@ -40,36 +41,32 @@ const Item: React.FC<ItemI> = ({
 }) => {
   const isTaskDone = useMemo(() => status === TaskStatus.done || status === TaskStatus.canceled, [status]);
 
-  return (
+  return isLoading ? (
+    <SkeletonTask />
+  ) : (
     <WrapperStyled>
-      <Skeleton className="rounded-lg" isLoaded={!isLoading}>
-        <HeaderWrapper $status={status}>
-          <Title text={title ?? ''} />
+      <HeaderWrapper $status={status}>
+        <Title text={title ?? ''} />
 
-          <WrapperContent>
-            <ExecutorWrapper>
-              <Executor userId={executorId ?? ''} />
-            </ExecutorWrapper>
+        <WrapperContent>
+          <ExecutorWrapper>
+            <Executor userId={executorId ?? ''} />
+          </ExecutorWrapper>
 
-            <DateWrapper>
-              <Date isDone={isTaskDone} dateFrom={dateFrom} dateTill={dateTill} />
-            </DateWrapper>
-          </WrapperContent>
-        </HeaderWrapper>
-      </Skeleton>
+          <DateWrapper>
+            <Date isDone={isTaskDone} dateFrom={dateFrom} dateTill={dateTill} />
+          </DateWrapper>
+        </WrapperContent>
+      </HeaderWrapper>
 
       <DescriptionWrapper>
-        <Skeleton className="rounded-lg" isLoaded={!isLoading}>
-          <Description text={description ?? ''} />
-        </Skeleton>
+        <Description text={description ?? ''} />
       </DescriptionWrapper>
 
       <Divider />
 
       <CreatorWrapper>
-        <Skeleton className="rounded-lg" isLoaded={!isLoading}>
-          <Creator userId={creatorId ?? ''} />
-        </Skeleton>
+        <Creator userId={creatorId ?? ''} />
       </CreatorWrapper>
     </WrapperStyled>
   );

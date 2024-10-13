@@ -1,6 +1,5 @@
 import { User } from '@nextui-org/react';
-
-import { NameWrapperStyled, DescriptionWrapperStyled } from './user-bar.styles';
+import SkeletonUser from '@components/skeleton/user';
 
 interface UserBarI {
   firstName?: string;
@@ -16,10 +15,12 @@ const UserBar: React.FC<UserBarI> = ({ firstName, lastName, description, avatarU
   const userName = `${firstName?.trim() ?? ''} ${lastName?.trim() ?? ''}`;
   const isSkeletonVisible = isError || isLoading;
 
-  return (
+  return isSkeletonVisible ? (
+    <SkeletonUser />
+  ) : (
     <User
-      name={<NameWrapperStyled isLoaded={!isSkeletonVisible}>{userName}</NameWrapperStyled>}
-      description={<DescriptionWrapperStyled isLoaded={!isSkeletonVisible}>{description}</DescriptionWrapperStyled>}
+      name={userName}
+      description={description}
       avatarProps={{
         src: avatarUrl,
       }}

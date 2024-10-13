@@ -22,12 +22,12 @@ const App = () => {
 
   useEffect(() => {
     initOptions?.();
-  }, [initOptions]);
+  }, []);
 
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <NextUIProvider locale="ru-RU" navigate={navigate}>
+        <NextUIProvider locale="ru-RU" navigate={navigate} disableAnimation disableRipple>
           <GlobalStyle />
           <BaseStyles />
           <ToastContainer theme="dark" position="top-center" />
