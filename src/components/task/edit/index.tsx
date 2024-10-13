@@ -45,11 +45,11 @@ const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
       </DescriptionWrapper>
 
       <ExecutorWrapper>
-        <Executor value={data?.executor} isLoading={isLoading} />
+        <Executor value={data?.executor.id} isLoading={isLoading} />
       </ExecutorWrapper>
 
       <DateWrapper>
-        <Date dateTill={data?.date_end} isLoading={isLoading} />
+        <Date dateTill={data?.endDate} isLoading={isLoading} />
       </DateWrapper>
     </WrapperStyled>
   );

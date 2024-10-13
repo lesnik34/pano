@@ -5,14 +5,14 @@ import { IoSaveOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { NewTaskI, TaskI } from '@api/types';
+import { NewTaskI } from '@api/types';
 import { useCreateTaskMutation } from '@api/query/tasks';
 import { PAGE_TASKS } from '@constants/pages';
 import { Button } from '@nextui-org/react';
 import { Wrapper } from './controls.styled';
 
 interface ControlsI {
-  data?: TaskI | NewTaskI;
+  data?: NewTaskI;
 }
 
 const Controls: React.FC<ControlsI> = ({ data }) => {
@@ -35,7 +35,7 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
     }
 
     if (result.error) {
-      toast.error(t('default.error.page.title'));
+      toast.error(t('default.error.page.description'));
     }
   }, [data, getValues, createTask, t, navigate]);
 

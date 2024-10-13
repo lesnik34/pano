@@ -9,7 +9,7 @@ import slices from '@store/slices';
 export interface TaskParamsComponentI {
   params: {
     page: number;
-    status: Array<string>;
+    statuses: Array<string>;
   };
   totalPages?: number;
 }
@@ -28,11 +28,11 @@ const withTaskParams = (Component: React.ComponentType<TaskParamsComponentI>) =>
       },
       {
         name: TASK_PARAMS.status,
-        sliceValue: tasksStoreParams.status,
+        sliceValue: tasksStoreParams.statuses,
         changeStore: slices.tasks.setStatus,
       },
     ],
-    [tasksStoreParams.page, tasksStoreParams.status],
+    [tasksStoreParams.page, tasksStoreParams.statuses],
   );
 
   const syncQueryStore = useCallback(

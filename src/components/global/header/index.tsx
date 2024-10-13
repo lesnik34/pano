@@ -14,21 +14,14 @@ interface HeaderI {
 const Header: React.FC<HeaderI> = ({ navHidden }) => {
   const userId = useAppSelector(selectors.auth.userId);
   const { data, isError, isFetching } = query.useGetUserByIdQuery(userId);
-  const { firstName, lastName, appointment, avatarUrl } = data || {};
+  const { firstName, lastName } = data || {};
 
   return (
     <HeaderStyled>
       <WrapperUserStyled>
         <Notifications />
 
-        <UserBar
-          firstName={firstName}
-          lastName={lastName}
-          description={appointment}
-          avatarUrl={avatarUrl}
-          isLoading={isFetching}
-          isError={isError}
-        />
+        <UserBar firstName={firstName} lastName={lastName} isLoading={isFetching} isError={isError} />
       </WrapperUserStyled>
 
       {!navHidden && (

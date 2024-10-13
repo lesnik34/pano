@@ -42,6 +42,8 @@ const StatusButton: React.FC<StatusButtonI> = ({ status, availableStatuses, isLo
             color={currentProperties.color}
             variant="solid"
             className="text-white fill-white"
+            disableRipple
+            disableAnimation
           >
             {currentProperties.text}
           </Button>

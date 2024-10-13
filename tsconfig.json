@@ -1,5 +1,19 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@pages/*": ["./pages/*"],
+      "@store/*": ["./__data__/*"],
+      "@api/*": ["./api/*"],
+      "@context/*": ["./context/*"],
+      "@styles/*": ["./styles/*"],
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@assets/*": ["./assets/*"],
+      "@constants/*": ["./constants/*"],
+      "@/*": ["./*"]
+    },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "typeRoots": ["./node_modules/telegram-webapps"],
@@ -16,6 +30,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "extends": "./tsconfig.paths.json",
-  "include": ["src", "types/*", "*.config.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types/*", "*.config.ts"]
 }

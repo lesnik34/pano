@@ -58,3 +58,14 @@ export const isDateSoon = (date?: string): boolean => {
 
   return timeDiff < MIN_DATE_DIFF;
 };
+
+export const parseInitData = (initData: string) => {
+  const q = new URLSearchParams(initData);
+  const hash = q.get('hash');
+  q.delete('hash');
+  const v = Array.from(q.entries());
+  v.sort(([aN], [bN]) => aN.localeCompare(bN));
+  const dataCheck = v.map(([n, n1]) => `${n}=${n1}`).join('\n');
+
+  return { hash, dataCheck };
+};

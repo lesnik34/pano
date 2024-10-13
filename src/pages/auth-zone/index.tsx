@@ -36,11 +36,10 @@ const AuthZone = () => {
         slices.auth.authAsync({
           initData: telegram?.initData,
           user: String(telegram?.initDataUnsafe.user?.id),
-          hash: telegram?.initDataUnsafe.hash,
         }),
       );
     }
-  }, [dispatch, isAuth, t, telegram?.initData, telegram?.initDataUnsafe.hash, telegram?.initDataUnsafe.user?.id]);
+  }, [dispatch, isAuth, t, telegram?.initData, telegram?.initDataUnsafe.user?.id]);
 
   useEffect(() => {
     if (!isAuth && !authError) {

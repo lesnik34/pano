@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@nextui-org/react';
 import { MdEdit } from 'react-icons/md';
 
-import { useUpdateTaskMutation } from '@api/query/tasks';
+import { useUpdateTaskStatusMutation } from '@api/query/tasks';
 import StatusButton from '@components/status-button';
 import { TASK_STATUSES } from '@constants/common';
 import { TaskI, TaskStatus } from '@api/types';
@@ -15,7 +15,7 @@ interface ViewI {
 
 const View: React.FC<ViewI> = ({ data, setEditMode }) => {
   const { t } = useTranslation();
-  const [updateTask, { isLoading }] = useUpdateTaskMutation();
+  const [updateTask, { isLoading }] = useUpdateTaskStatusMutation();
   const availableStatuses = useMemo(() => TASK_STATUSES.filter((el) => el !== data?.status), [data?.status]);
 
   const onEditClick = useCallback(() => {
@@ -28,7 +28,7 @@ const View: React.FC<ViewI> = ({ data, setEditMode }) => {
         return;
       }
 
-      updateTask({ ...data, status });
+      updateTask({ status, id: data.id });
     },
     [data, updateTask],
   );

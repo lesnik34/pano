@@ -19,13 +19,13 @@ const Task: React.FC<TaskI> = ({ data, isLoading, isEditMode, title }) => (
     ) : (
       <View
         isLoading={isLoading}
-        creatorId={data?.creator}
-        executorId={data?.executor}
+        creatorId={data?.creator.id}
+        executorId={data?.executor.id}
         title={data?.title}
         description={data?.description}
         status={data?.status || TaskStatus.toDo}
-        dateFrom={data?.date_start}
-        dateTill={data?.date_end}
+        dateFrom={data?.createdDate}
+        dateTill={data?.endDate}
       />
     )}
   </WrapperStyled>

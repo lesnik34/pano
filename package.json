@@ -7,7 +7,6 @@
     "@nextui-org/react": "^2.4.6",
     "@nextui-org/theme": "^2.2.9",
     "@reduxjs/toolkit": "2.2.7",
-    "@types/node": "22.0.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -29,21 +28,20 @@
     "styled-components": "^6.1.12",
     "tailwindcss": "^3.4.7",
     "twin.macro": "^3.4.1",
-    "typescript": "^4.9.5",
     "uuid": "^10.0.0",
     "vite": "^5.3.5",
     "vite-tsconfig-paths": "^4.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run dev\" \"npm run stub\"",
+    "start": "concurrently \"npm run dev:host\" \"npm run stub\"",
     "build": "ENV_MODE=prod tsc && vite build",
     "preview": "vite preview",
     "dev": "ENV_MODE=dev vite",
     "dev:host": "ENV_MODE=dev vite --host",
     "lint": "eslint . --ext .ts,.tsx",
     "stub": "concurrently \"npm run database\" \"npm run server\"",
-    "server": "node ./stub/index.js",
+    "server": "tsx watch ./stub/index.ts",
     "database": "json-server -w stub/database/db.json -p 3001"
   },
   "browserslist": {
@@ -64,6 +62,9 @@
     }
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
     "@types/react-gtm-module": "^2.0.3",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
@@ -85,6 +86,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "globals": "^15.8.0",
     "json-server": "0.17.4",
+    "nodemon": "^3.1.7",
     "postcss": "^8.4.40",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.3.3",
@@ -93,6 +95,9 @@
     "stylelint-config-standard": "29.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.0.0",
-    "telegram-webapps": "^7.7.0"
+    "telegram-webapps": "^7.7.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
+    "typescript": "^4.9.5"
   }
 }

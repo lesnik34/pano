@@ -17,7 +17,7 @@ import Router from './router';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const { initOptions, telegram } = useTelegram();
+  const { initOptions } = useTelegram();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const App = () => {
         <NextUIProvider locale="ru-RU" navigate={navigate}>
           <GlobalStyle />
           <BaseStyles />
-          <ToastContainer theme={telegram?.colorScheme} position="top-center" />
+          <ToastContainer theme="dark" position="top-center" />
 
           <Router />
         </NextUIProvider>

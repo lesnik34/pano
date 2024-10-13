@@ -27,6 +27,7 @@
     "not.found.text": "Не найден",
     "save.text": "Сохранить",
     "cancel.text": "Отменить",
+    "delete.text": "Удалить",
     "input.title.label": "Заголовок",
     "input.executor.label": "Исполнитель",
     "input.description.label": "Описание",
@@ -34,6 +35,10 @@
     "edit.task.headline": "Редактирование задачи",
     "create.task.headline": "Создание задачи",
     "task.description.placeholder": "Описание задачи",
-    "edit.success.message": "Сохранено"
+    "edit.success.message": "Сохранено",
+    "delete.task.modal.button.delete": "Удалить",
+    "delete.task.modal.title": "Удаление задачи",
+    "delete.task.modal.description": "Вы действительно хотите удалить эту задачу?",
+    "delete.task.success": "Успешно удалено"
   }
 }

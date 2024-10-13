@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
+import { MIN_LENGTH_INPUT } from '@constants/common';
 import { Textarea } from '@nextui-org/react';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,10 @@ const Description: React.FC<DescriptionI> = ({ value, isLoading }) => {
       <Controller
         name="description"
         control={control}
-        defaultValue={value}
+        defaultValue={value || ''}
+        rules={{
+          minLength: MIN_LENGTH_INPUT,
+        }}
         render={({ field }) => <Textarea {...field} isDisabled={isLoading} label={t('input.description.label')} />}
       />
     </WrapperStyled>

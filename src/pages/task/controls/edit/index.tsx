@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { TaskI } from '@api/types';
+import { EditTaskI } from '@api/types';
 import { useUpdateTaskMutation } from '@api/query/tasks';
 import { Button } from '@nextui-org/react';
+import Delete from './delete';
 
 interface EditI {
-  data?: TaskI;
+  data?: EditTaskI;
   setEditMode: (value: boolean) => void;
 }
 
@@ -31,7 +32,7 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
     }
 
     if (result.error) {
-      toast.error(t('default.error.page.title'));
+      toast.error(t('default.error.page.description'));
     }
   }, [data, getValues, setEditMode, t, updateTask]);
 
@@ -41,12 +42,13 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
 
   return (
     <>
+      <Delete id={data?.id} isDisabled={isLoading} />
+
       <Button
         onClick={onCancelClick}
-        className="mb-2.5"
+        className="mb-2.5 mt-2.5"
         isDisabled={isLoading}
-        color="primary"
-        variant="light"
+        variant="bordered"
         fullWidth
         size="lg"
       >

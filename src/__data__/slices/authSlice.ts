@@ -14,7 +14,6 @@ export interface AuthState {
 interface AuthParamI {
   initData?: string;
   user?: string;
-  hash?: string;
 }
 
 const initialState: AuthState = {
@@ -26,7 +25,7 @@ const initialState: AuthState = {
 };
 
 export const authAsync = createAsyncThunk('auth/authUser', async (params: AuthParamI, { rejectWithValue }) => {
-  const data = await common.authUser(params.initData, params.user, params.hash);
+  const data = await common.authUser(params.initData, params.user);
   if (data.status) {
     return data.body;
   }

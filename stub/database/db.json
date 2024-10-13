@@ -3,163 +3,58 @@
     {
       "id": "5000496962",
       "username": "lesnik343",
-      "avatarUrl": "",
-      "appointment": "Работяга",
       "firstName": "Nikita",
       "lastName": "Lesnyak"
+    },
+    {
+      "id": "1145810815",
+      "username": "lesnik3431",
+      "firstName": "Nikita1",
+      "lastName": "Lesnyak1"
     }
   ],
   "tasks": [
     {
-      "id": "1000",
-      "status": "IN_PROGRESS",
-      "title": "Длинное название задачи 1 фыв фыафыпфыдпл фылаофоы фылаотфьы фылаотфоылд фыаьтьфыа фыьабт фыьатьбф фыаьт",
-      "description": "Длинное описание задачи фыаотфоыл фылоапифы фылоаофлыа фылаофлоыа фылоаолфыа фылаотлфыота флоытаолтфы флыоатфылоат флоыалфоыаит флыоалофыта флоыаофлыт флоыаолаыфи фылатфыти фыл",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-15T20:52:29.134Z"
+      "id": "4b9dc18b-4b91-4ec8-a9e0-4be80741652f",
+      "title": "Никит",
+      "executor": {
+        "id": "5000496962",
+        "username": "lesnik343",
+        "avatarUrl": "",
+        "appointment": "Работяга",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "creator": {
+        "id": "5000496962",
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "description": "Апрппав",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "endDate": null,
+      "status": "DONE"
     },
     {
-      "id": "1001",
-      "status": "DONE",
-      "title": "Короткий заголовок",
-      "description": "Длинное описание задачи фыаотфоыл фылоапифы фылоаофлыа фылаофлоыа фылоаолфыа фылаотлфыота флоытаолтфы флыоатфылоат флоыалфоыаит флыоалофыта флоыаофлыт флоыаолаыфи фылатфыти фылоалофыа",
-      "executor": "11458108151",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-12T17:52:29.134Z"
-    },
-    {
-      "id": "1002",
-      "status": "IN_PROGRESS",
-      "title": "Длинное название задачи фыв фыафыпфыдпл фылаофоы фылаотфьы фылаотфоылд фыаьтьфыа фыьабт фыьатьбф фыаьт",
-      "description": "Короткое описание",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "1003",
-      "status": "CANCELED",
-      "title": "Короткий заголовок",
-      "description": "Короткое описание",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z"
-    },
-    {
-      "id": "1004",
-      "status": "IN_PROGRESS",
-      "title": "Пустое описание",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "description": ""
-    },
-    {
-      "id": "1005",
-      "status": "DONE",
-      "title": "Задача 6",
-      "description": "Описание 6",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "1006",
-      "status": "CANCELED",
-      "title": "Задача 7",
-      "description": "Описание 7",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "1007",
-      "status": "DONE",
-      "title": "Задача 8",
-      "description": "Описание 8",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "1008",
-      "status": "DONE",
-      "title": "Задача 9",
-      "description": "Описание 9",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "1009",
-      "status": "DONE",
-      "title": "Задача 10",
-      "description": "Описание 10",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-10T20:52:29.134Z"
-    },
-    {
-      "id": "5Df36WW",
-      "status": "TO_DO",
-      "title": "Длинное название задачи 2 фыв фыафыпфыдпл фылаофоы фылаотфьы фылаотфоылд фыаьтьфыа фыьабт фыьатьбф фыаьт",
-      "description": "Длинное описание задачи фыаотфоыл фылоапифы фылоаофлыа фылаофлоыа фылоаолфыа фылаотлфыота флоытаолтфы флыоатфылоат флоыалфоыаит флыоалофыта флоыаофлыт флоыаолаыфи фылатфыти фылоалофыа",
-      "executor": "1145810815",
-      "creator": "1145810815",
-      "date_start": "2024-08-04T20:52:29.134Z",
-      "date_end": "2024-08-15T20:52:29.134Z"
-    },
-    {
-      "status": "TO_DO",
       "title": "123",
-      "description": "",
-      "executor": "",
-      "creator": "",
-      "date_start": "",
-      "date_end": "",
-      "id": "KqzWn58"
-    },
-    {
-      "status": "TO_DO",
-      "title": "123",
-      "description": "",
-      "executor": "",
-      "date_start": "",
-      "date_end": "",
-      "id": "k7nOyEZ"
-    },
-    {
-      "status": "TO_DO",
-      "title": "New",
-      "creator": "",
-      "date_start": "",
-      "date_end": "",
-      "id": "FlJ7BWQ"
-    },
-    {
-      "status": "TO_DO",
-      "title": "New12",
-      "creator": "",
-      "date_start": "",
-      "date_end": "",
-      "id": "Dn6I4Ad"
-    },
-    {
-      "status": "TO_DO",
-      "title": "Заголовок",
-      "description": "Описание",
-      "creator": "",
-      "date_start": "",
-      "date_end": "",
-      "id": "WiX7Vpy"
+      "executor": {
+        "id": "5000496962",
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "creator": {
+        "id": "5000496962",
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "description": "123",
+      "endDate": "2024-10-13T00:00:00.000+03:00",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "DONE",
+      "id": "uke6K-3"
     }
   ]
 }

@@ -20,7 +20,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
   const setSearchParams = useSearchParams()[1];
 
   const tasksStoreParams = useAppSelector(selectors.tasks.params);
-  const [currentStatus, setCurrentStatus] = useState(tasksStoreParams.status);
+  const [currentStatus, setCurrentStatus] = useState(tasksStoreParams.statuses);
 
   const onSubmit = useCallback(() => {
     setSearchParams((params) => {

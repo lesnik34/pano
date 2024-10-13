@@ -1,4 +1,5 @@
 import { PagesSortI } from './common';
+import { UserI } from './users';
 
 export interface TasksListResI {
   content: ShortTaskI[];
@@ -23,7 +24,10 @@ export interface TasksListResI {
 
 export interface TasksListQueryI {
   page?: number;
-  status?: Array<string>;
+  statuses?: Array<string>;
+  size?: number;
+  executor?: string;
+  creator?: string;
 }
 
 export interface TaskI {
@@ -31,19 +35,26 @@ export interface TaskI {
   status: TaskStatus;
   title?: string;
   description?: string;
-  executor: string;
-  creator: string;
-  date_start?: string;
-  date_end?: string;
+  executor: UserI;
+  creator: UserI;
+  createdDate?: string;
+  endDate?: string;
 }
 
-export interface NewTaskI extends Omit<TaskI, 'id'> {}
+export interface NewTaskI {
+  title: string;
+  executor: string;
+  description: string;
+  creator: string;
+  endDate?: string;
+}
 export interface EditTaskI {
-  title?: string;
+  id: string;
+  title: string;
   description?: string;
   executor?: string;
-  date_start?: string;
-  date_end?: string;
+  creator: string;
+  endDate?: string;
 }
 
 export interface ShortTaskI {
@@ -51,10 +62,10 @@ export interface ShortTaskI {
   status: TaskStatus;
   title?: string;
   description?: string;
-  creator: string;
-  executor: string;
-  date_start?: string;
-  date_end?: string;
+  creator: UserI;
+  executor: UserI;
+  createdDate?: string;
+  endDate?: string;
 }
 
 export enum TaskStatus {

@@ -22,7 +22,7 @@ const Status: React.FC<StatusI> = ({ setCurrentStatus }) => {
   );
 
   return (
-    <CheckboxGroup label={t('filter.status.text')} defaultValue={tasksStoreParams.status} onChange={onChange}>
+    <CheckboxGroup label={t('filter.status.text')} defaultValue={tasksStoreParams.statuses} onChange={onChange}>
       <Checkbox value={TaskStatus.done}>{t('task.status.done')}</Checkbox>
 
       <Checkbox value={TaskStatus.toDo}>{t('task.status.to.do')}</Checkbox>

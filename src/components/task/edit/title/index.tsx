@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import { Input } from '@nextui-org/react';
 import { useTranslation } from 'react-i18next';
+import { MIN_LENGTH_INPUT } from '@constants/common';
 
 import { WrapperStyled } from './title.styled';
 
@@ -12,12 +13,7 @@ interface TitleI {
 
 const Title: React.FC<TitleI> = ({ value, isLoading }) => {
   const { t } = useTranslation();
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
-
-  console.log(errors);
+  const { control } = useFormContext();
 
   return (
     <WrapperStyled>
@@ -27,8 +23,9 @@ const Title: React.FC<TitleI> = ({ value, isLoading }) => {
         defaultValue={value}
         rules={{
           required: true,
+          minLength: MIN_LENGTH_INPUT,
         }}
-        render={({ field }) => <Input {...field} isDisabled={isLoading} label={t('input.title.label')} />}
+        render={({ field }) => <Input {...field} isRequired isDisabled={isLoading} label={t('input.title.label')} />}
       />
     </WrapperStyled>
   );
