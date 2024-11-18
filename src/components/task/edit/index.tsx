@@ -45,7 +45,7 @@ const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
       </DescriptionWrapper>
 
       <ExecutorWrapper>
-        <Executor value={data?.executor.id} isLoading={isLoading} />
+        <Executor user={data?.executor} isLoading={isLoading} />
       </ExecutorWrapper>
 
       <DateWrapper>

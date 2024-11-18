@@ -26,8 +26,8 @@ export interface TasksListQueryI {
   page?: number;
   statuses?: Array<string>;
   size?: number;
-  executor?: string;
-  creator?: string;
+  executor?: number;
+  creator?: number;
 }
 
 export interface TaskI {
@@ -43,17 +43,17 @@ export interface TaskI {
 
 export interface NewTaskI {
   title: string;
-  executor: string;
+  executor?: number;
   description: string;
-  creator: string;
+  creator?: number;
   endDate?: string;
 }
 export interface EditTaskI {
   id: string;
   title: string;
   description?: string;
-  executor?: string;
-  creator: string;
+  executor?: number;
+  creator?: number;
   endDate?: string;
 }
 

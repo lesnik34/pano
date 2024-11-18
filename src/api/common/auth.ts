@@ -7,11 +7,11 @@ import { BaseResponseI, BaseSuccessI } from '../types';
 const api = Http.Public();
 
 interface ResponseI {
-  userId: string;
+  userId?: number;
   token: string;
 }
 
-export const authUser = async (initData?: string, id?: string): Promise<BaseResponseI<ResponseI>> => {
+export const authUser = async (initData?: string, id?: number): Promise<BaseResponseI<ResponseI>> => {
   const authLocal = localStorage.getItem(LOCAL_KEYS.AUTH);
 
   if (!initData) {
@@ -38,7 +38,7 @@ export const authUser = async (initData?: string, id?: string): Promise<BaseResp
   }
 
   if (data.status) {
-    return { ...data, body: { token: data.body, userId: id ?? '' } };
+    return { ...data, body: { token: data.body, userId: id } };
   }
 
   return data;

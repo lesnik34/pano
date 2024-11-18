@@ -1,29 +1,23 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import query from '@api/query';
+import { UserI } from '@api/types';
 
 import { ContentStyled, LabelStyled, WrapperStyled } from './executor.styled';
 
 interface ExecutorI {
-  userId: string;
+  user?: UserI;
 }
 
-const Executor: React.FC<ExecutorI> = ({ userId }) => {
+const Executor: React.FC<ExecutorI> = ({ user }) => {
   const { t } = useTranslation();
-  const { data, isError } = query.useGetUserByIdQuery(userId);
-  const { firstName, lastName } = data || {};
 
   const textContent = useMemo(() => {
-    if (isError) {
-      return t('not.found.text');
+    if (user?.firstName || user?.lastName) {
+      return `${user.firstName || ''} ${user.lastName || ''}`.trim();
     }
 
-    if (firstName || lastName) {
-      return `${firstName || ''} ${lastName || ''}`.trim();
-    }
-
-    return '';
-  }, [firstName, isError, lastName, t]);
+    return t('not.exist');
+  }, [t, user?.firstName, user?.lastName]);
 
   return (
     <WrapperStyled>

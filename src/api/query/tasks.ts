@@ -11,12 +11,12 @@ export const tasksApi = createApi({
   baseQuery: customBaseQuery({ baseUrl: import.meta.env.VITE_RES_URL }),
   endpoints: (builder) => ({
     getTasks: builder.query<TasksListResI, TasksListQueryI>({
-      query: ({ page, statuses, executor, creator }) => ({
+      query: ({ page, statuses, executor, creator, size = TASKS_LIST_LENGTH }) => ({
         url: `${API_URLS.TASKS}`,
         params: {
           page: page ? page - 1 : undefined,
           statuses: statuses?.join(','),
-          size: TASKS_LIST_LENGTH,
+          size,
           executor,
           creator,
         },

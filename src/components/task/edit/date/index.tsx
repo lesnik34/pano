@@ -18,6 +18,7 @@ const fieldId = 'endDate';
 const DateComponent: React.FC<DateI> = ({ dateTill, isLoading }) => {
   const { t } = useTranslation();
   const { register, setValue } = useFormContext();
+  register(fieldId);
 
   const endDate = useMemo(() => getCurrentGlobalDate(dateTill), [dateTill]);
 
@@ -35,12 +36,12 @@ const DateComponent: React.FC<DateI> = ({ dateTill, isLoading }) => {
   return (
     <WrapperStyled>
       <DatePicker
-        {...register(fieldId)}
         isDisabled={isLoading}
         label={t('input.date.label')}
         defaultValue={endDate ? parseDate(endDate) : null}
         minValue={now(getLocalTimeZone())}
         onChange={onChange}
+        isInvalid={false}
       />
     </WrapperStyled>
   );

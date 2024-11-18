@@ -21,9 +21,6 @@ const Description: React.FC<DescriptionI> = ({ value, isLoading }) => {
         name="description"
         control={control}
         defaultValue={value || ''}
-        rules={{
-          minLength: MIN_LENGTH_INPUT,
-        }}
         render={({ field }) => <Textarea {...field} isDisabled={isLoading} label={t('input.description.label')} />}
       />
     </WrapperStyled>

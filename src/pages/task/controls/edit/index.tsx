@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
+import { FieldValues, useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import { EditTaskI } from '@api/types';
@@ -9,32 +9,30 @@ import { Button } from '@nextui-org/react';
 import Delete from './delete';
 
 interface EditI {
-  data?: EditTaskI;
+  data: EditTaskI;
   setEditMode: (value: boolean) => void;
 }
 
 const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
   const { t } = useTranslation();
-  const { getValues } = useFormContext();
+  const { handleSubmit } = useFormContext();
   const [updateTask, { isLoading }] = useUpdateTaskMutation();
 
-  const onTaskSave = useCallback(async () => {
-    if (!data) {
-      return;
-    }
+  const onTaskSave = useCallback(
+    async (editedData: FieldValues) => {
+      const result = await updateTask({ ...data, ...editedData });
 
-    const editedData = getValues();
-    const result = await updateTask({ ...data, ...editedData });
+      if (result.data) {
+        toast.success(t('edit.success.message'));
+        setEditMode(false);
+      }
 
-    if (result.data) {
-      toast.success(t('edit.success.message'));
-      setEditMode(false);
-    }
-
-    if (result.error) {
-      toast.error(t('default.error.page.description'));
-    }
-  }, [data, getValues, setEditMode, t, updateTask]);
+      if (result.error) {
+        toast.error(t('default.error.page.description'));
+      }
+    },
+    [data, setEditMode, t, updateTask],
+  );
 
   const onCancelClick = useCallback(() => {
     setEditMode(false);
@@ -57,7 +55,7 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
 
       <Button
         className="text-white"
-        onClick={onTaskSave}
+        onClick={handleSubmit(onTaskSave)}
         isDisabled={isLoading}
         color="success"
         variant="solid"

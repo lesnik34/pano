@@ -4,8 +4,8 @@ import common from '@api/common';
 import { BaseErrorI } from '@api/types';
 
 export interface AuthState {
-  userId: string;
-  token: string | null;
+  userId?: number;
+  token?: string;
   isAuth: boolean;
   isLoading: boolean;
   error: BaseErrorI['error'] | null;
@@ -13,12 +13,12 @@ export interface AuthState {
 
 interface AuthParamI {
   initData?: string;
-  user?: string;
+  user?: number;
 }
 
 const initialState: AuthState = {
-  userId: '',
-  token: null,
+  userId: undefined,
+  token: undefined,
   isAuth: false,
   isLoading: false,
   error: null,
@@ -40,8 +40,8 @@ export const authSlice = createSlice({
     clearAuthUser: (state) => {
       localStorage.removeItem(LOCAL_KEYS.AUTH);
 
-      state.userId = '';
-      state.token = null;
+      state.userId = undefined;
+      state.token = undefined;
       state.isAuth = false;
     },
     setError: (state, action: PayloadAction<BaseErrorI['error'] | null>) => {

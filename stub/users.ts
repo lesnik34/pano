@@ -17,7 +17,7 @@ router.get('/api/v1/users', wait(INIT_TIMEOUT), async (req, res) => {
 
     const dataFromIndex = currentPage * itemsPerPage - itemsPerPage;
     const dataTillIndex = currentPage * itemsPerPage;
-    const currentContent = data.slice(dataFromIndex, dataTillIndex);
+    const currentContent = data.slice(dataFromIndex + 1, dataTillIndex);
 
     const totalPages = Math.ceil(Number(data.length) / itemsPerPage);
     const last = totalPages === currentPage;

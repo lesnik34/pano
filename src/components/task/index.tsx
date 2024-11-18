@@ -19,8 +19,8 @@ const Task: React.FC<TaskI> = ({ data, isLoading, isEditMode, title }) => (
     ) : (
       <View
         isLoading={isLoading}
-        creatorId={data?.creator.id}
-        executorId={data?.executor.id}
+        creator={data?.creator}
+        executor={data?.executor}
         title={data?.title}
         description={data?.description}
         status={data?.status || TaskStatus.toDo}

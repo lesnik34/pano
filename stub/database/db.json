@@ -1,39 +1,54 @@
 {
   "users": [
     {
-      "id": "5000496962",
+      "id": 5000496962,
       "username": "lesnik343",
       "firstName": "Nikita",
       "lastName": "Lesnyak"
     },
     {
-      "id": "1145810815",
-      "username": "lesnik3431",
-      "firstName": "Nikita1",
-      "lastName": "Lesnyak1"
+      "id": 1145810815,
+      "username": "erk123",
+      "firstName": "Vlad",
+      "lastName": "Trip"
+    },
+    {
+      "id": 1212512124,
+      "username": "gas321",
+      "firstName": "Pier",
+      "lastName": "Dun"
+    },
+    {
+      "id": 1241251215,
+      "username": "fasf123",
+      "firstName": "Erik",
+      "lastName": "Dan"
+    },
+    {
+      "id": 1249012412,
+      "username": "fas1234",
+      "firstName": "Jhon",
+      "lastName": "Doh"
     }
   ],
   "tasks": [
     {
       "id": "4b9dc18b-4b91-4ec8-a9e0-4be80741652f",
-      "title": "Никит",
+      "title": "Заголовок",
       "executor": {
-        "id": "5000496962",
-        "username": "lesnik343",
-        "avatarUrl": "",
-        "appointment": "Работяга",
-        "firstName": "Nikita",
-        "lastName": "Lesnyak"
+        "id": 1249012412,
+        "username": "fas1234",
+        "firstName": "Jhon",
+        "lastName": "Doh"
       },
       "creator": {
-        "id": "5000496962",
+        "id": 5000496962,
         "username": "lesnik343",
         "firstName": "Nikita",
         "lastName": "Lesnyak"
       },
       "description": "Апрппав",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "endDate": null,
       "status": "DONE"
     },
     {
@@ -51,7 +66,6 @@
         "lastName": "Lesnyak"
       },
       "description": "123",
-      "endDate": "2024-10-13",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
       "id": "uke6K-3"

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
+import { FieldValues, useFormContext } from 'react-hook-form';
 import { IoSaveOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -12,38 +12,36 @@ import { Button } from '@nextui-org/react';
 import { Wrapper } from './controls.styled';
 
 interface ControlsI {
-  data?: NewTaskI;
+  data: NewTaskI;
 }
 
 const Controls: React.FC<ControlsI> = ({ data }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { getValues } = useFormContext();
+  const { handleSubmit } = useFormContext();
   const [createTask, { isLoading }] = useCreateTaskMutation();
 
-  const onTaskSave = useCallback(async () => {
-    if (!data) {
-      return;
-    }
+  const onTaskSave = useCallback(
+    async (editedData: FieldValues) => {
+      const result = await createTask({ ...data, ...editedData });
 
-    const editedData = getValues();
-    const result = await createTask({ ...data, ...editedData });
+      if (result.data) {
+        toast.success(t('edit.success.message'));
+        navigate(`${PAGE_TASKS}/${result.data.id}`);
+      }
 
-    if (result.data) {
-      toast.success(t('edit.success.message'));
-      navigate(`${PAGE_TASKS}/${result.data.id}`);
-    }
-
-    if (result.error) {
-      toast.error(t('default.error.page.description'));
-    }
-  }, [data, getValues, createTask, t, navigate]);
+      if (result.error) {
+        toast.error(t('default.error.page.description'));
+      }
+    },
+    [data, createTask, t, navigate],
+  );
 
   return (
     <Wrapper>
       <Button
         className="text-white"
-        onClick={onTaskSave}
+        onClick={handleSubmit(onTaskSave)}
         endContent={<IoSaveOutline />}
         isDisabled={isLoading}
         color="success"

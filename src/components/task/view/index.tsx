@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Divider } from '@nextui-org/react';
-import { TaskStatus } from '@api/types';
+import { TaskStatus, UserI } from '@api/types';
 import SkeletonTask from '@components/skeleton/task';
 
 import {
@@ -22,23 +22,14 @@ interface ItemI {
   isLoading?: boolean;
   title?: string;
   description?: string;
-  executorId?: string;
-  creatorId?: string;
+  executor?: UserI;
+  creator?: UserI;
   status: TaskStatus;
   dateFrom?: string;
   dateTill?: string;
 }
 
-const Item: React.FC<ItemI> = ({
-  title,
-  description,
-  executorId,
-  creatorId,
-  status,
-  dateFrom,
-  dateTill,
-  isLoading,
-}) => {
+const Item: React.FC<ItemI> = ({ title, description, executor, creator, status, dateFrom, dateTill, isLoading }) => {
   const isTaskDone = useMemo(() => status === TaskStatus.done || status === TaskStatus.canceled, [status]);
 
   return isLoading ? (
@@ -50,7 +41,7 @@ const Item: React.FC<ItemI> = ({
 
         <WrapperContent>
           <ExecutorWrapper>
-            <Executor userId={executorId ?? ''} />
+            <Executor user={executor} />
           </ExecutorWrapper>
 
           <DateWrapper>
@@ -66,7 +57,7 @@ const Item: React.FC<ItemI> = ({
       <Divider />
 
       <CreatorWrapper>
-        <Creator userId={creatorId ?? ''} />
+        <Creator user={creator} />
       </CreatorWrapper>
     </WrapperStyled>
   );

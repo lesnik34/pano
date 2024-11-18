@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import query from '@api/query';
+import { UserI } from '@api/types';
 
 import { ContentStyled, LabelStyled, WrapperStyled } from './creator.styled';
 
 interface CreatorI {
-  userId: string;
+  user?: UserI;
 }
 
-const Creator: React.FC<CreatorI> = ({ userId }) => {
+const Creator: React.FC<CreatorI> = ({ user }) => {
   const { t } = useTranslation();
-  const { data } = query.useGetUserByIdQuery(userId ?? '');
-  const { firstName, lastName } = data || {};
+
+  const textContent = useMemo(() => {
+    if (user?.firstName || user?.lastName) {
+      return `${user.firstName || ''} ${user.lastName || ''}`.trim();
+    }
+
+    return t('not.exist');
+  }, [t, user?.firstName, user?.lastName]);
 
   return (
     <WrapperStyled>
       <LabelStyled>{t('task.creator.label')}</LabelStyled>
 
-      <ContentStyled>{`${firstName || ''} ${lastName || ''}`}</ContentStyled>
+      <ContentStyled>{textContent}</ContentStyled>
     </WrapperStyled>
   );
 };

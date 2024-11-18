@@ -11,21 +11,39 @@ interface TitleI {
   isLoading?: boolean;
 }
 
+const formName = 'title';
+
 const Title: React.FC<TitleI> = ({ value, isLoading }) => {
   const { t } = useTranslation();
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+  const formError = errors[formName];
 
   return (
     <WrapperStyled>
       <Controller
-        name="title"
+        name={formName}
         control={control}
         defaultValue={value}
         rules={{
-          required: true,
-          minLength: MIN_LENGTH_INPUT,
+          required: t('required.message'),
+          minLength: {
+            value: MIN_LENGTH_INPUT,
+            message: t('title.min.length.message'),
+          },
         }}
-        render={({ field }) => <Input {...field} isRequired isDisabled={isLoading} label={t('input.title.label')} />}
+        render={({ field }) => (
+          <Input
+            {...field}
+            isInvalid={Boolean(formError)}
+            errorMessage={formError?.message as string | undefined}
+            isRequired
+            isDisabled={isLoading}
+            label={t('input.title.label')}
+          />
+        )}
       />
     </WrapperStyled>
   );

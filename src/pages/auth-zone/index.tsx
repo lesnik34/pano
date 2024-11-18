@@ -35,7 +35,7 @@ const AuthZone = () => {
       dispatch(
         slices.auth.authAsync({
           initData: telegram?.initData,
-          user: String(telegram?.initDataUnsafe.user?.id),
+          user: telegram?.initDataUnsafe.user?.id,
         }),
       );
     }

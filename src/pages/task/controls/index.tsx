@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { EditTaskI, TaskI } from '@api/types';
+import { TaskI } from '@api/types';
 
 import { Wrapper } from './controls.styled';
 import View from './view';
@@ -19,7 +19,7 @@ const Controls: React.FC<ControlsI> = ({ data, isEditMode, setEditMode }) => {
       title: data?.title || '',
       description: data?.description,
       executor: data?.executor.id,
-      creator: data?.creator.id || '',
+      creator: data?.creator.id,
       endDate: data?.endDate,
     }),
     [data?.creator.id, data?.description, data?.endDate, data?.executor.id, data?.id, data?.title],

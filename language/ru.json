@@ -25,6 +25,7 @@
     "edit.button.text": "Редактировать",
     "empty.symbol": "—",
     "not.found.text": "Не найден",
+    "not.exist": "Отсутствует",
     "save.text": "Сохранить",
     "cancel.text": "Отменить",
     "delete.text": "Удалить",
@@ -39,6 +40,10 @@
     "delete.task.modal.button.delete": "Удалить",
     "delete.task.modal.title": "Удаление задачи",
     "delete.task.modal.description": "Вы действительно хотите удалить эту задачу?",
-    "delete.task.success": "Успешно удалено"
+    "delete.task.success": "Успешно удалено",
+    "async.input.placeholder": "Введите фамилию или имя",
+    "async.input.required.error": "Для добавления пользователя выберете из списка",
+    "required.message": "Обязательно для заполнения",
+    "title.min.length.message": "Слишком короткий заголовок"
   }
 }
