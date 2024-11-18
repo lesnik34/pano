@@ -44,6 +44,8 @@
     "async.input.placeholder": "Введите фамилию или имя",
     "async.input.required.error": "Для добавления пользователя выберете из списка",
     "required.message": "Обязательно для заполнения",
-    "title.min.length.message": "Слишком короткий заголовок"
+    "title.min.length.message": "Слишком короткий заголовок",
+    "created.tasks": "Созданные",
+    "appointed.tasks": "Назначенные"
   }
 }

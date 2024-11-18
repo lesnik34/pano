@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import Layout from '@components/global/layout';
 import TaskList from '@components/task-list';
 import Error from '@components/error';
@@ -10,17 +10,22 @@ import { useAppSelector } from '@store/store';
 import Header from './header';
 import withTaskParams, { TaskParamsComponentI } from './hoc/with-task-params';
 import { ErrorWrapperStyled, WrapperStyled } from './tasks.styled';
+import Target from './target';
 
 interface TasksI extends TaskParamsComponentI {}
 
 const Tasks: React.FC<TasksI> = ({ params }) => {
   const userId = useAppSelector(selectors.auth.userId);
+  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ executor: userId });
   const { data, isFetching, isError, refetch } = useGetTasksQuery({
     page: params.page,
     statuses: params.statuses,
-    executor: userId,
+    executor: target.executor,
+    creator: target.creator,
   });
   const { content, totalPages } = data || {};
+
+  console.log(target);
 
   const isErrorVisible = isError;
   const isTaskListVisible = !isError;
@@ -34,6 +39,8 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
     <Layout>
       {isTaskListVisible && (
         <WrapperStyled>
+          <Target userId={userId} setTarget={setTarget} />
+
           <Header isLoading={isFetching} />
 
           <TaskList items={content} isLoading={isFetching} />
