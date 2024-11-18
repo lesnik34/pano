@@ -39,7 +39,7 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
     <Layout>
       {isTaskListVisible && (
         <WrapperStyled>
-          <Target userId={userId} setTarget={setTarget} />
+          <Target isLoading={isFetching} userId={userId} setTarget={setTarget} />
 
           <Header isLoading={isFetching} />
 

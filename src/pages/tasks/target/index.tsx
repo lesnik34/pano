@@ -3,11 +3,12 @@ import React, { Key, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface TargetI {
+  isLoading?: boolean;
   userId?: number;
   setTarget: (target: { executor?: number; creator?: number }) => void;
 }
 
-const Target: React.FC<TargetI> = ({ setTarget, userId }) => {
+const Target: React.FC<TargetI> = ({ setTarget, userId, isLoading }) => {
   const { t } = useTranslation();
 
   const onTabClick = useCallback(
@@ -19,7 +20,15 @@ const Target: React.FC<TargetI> = ({ setTarget, userId }) => {
 
   return (
     <div className="mb-4">
-      <Tabs onSelectionChange={onTabClick} variant="solid" size="lg" fullWidth color="primary" radius="lg">
+      <Tabs
+        isDisabled={isLoading}
+        onSelectionChange={onTabClick}
+        variant="solid"
+        size="lg"
+        fullWidth
+        color="primary"
+        radius="lg"
+      >
         <Tab key="executor" title={t('appointed.tasks')} />
         <Tab key="creator" title={t('created.tasks')} />
       </Tabs>
