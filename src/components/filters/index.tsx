@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
+import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import { FiFilter } from 'react-icons/fi';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +21,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
 
   const tasksStoreParams = useAppSelector(selectors.tasks.params);
   const [currentStatus, setCurrentStatus] = useState(tasksStoreParams.statuses);
+  const activeLength = tasksStoreParams.statuses.length;
 
   const onSubmit = useCallback(() => {
     setSearchParams((params) => {
@@ -33,10 +34,18 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
   }, [currentStatus, setSearchParams]);
 
   return (
-    <Popover placement="bottom-start" isOpen={isPopoverVisible} onOpenChange={setPopoverVision}>
-      <PopoverTrigger>
-        <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
-      </PopoverTrigger>
+    <Popover
+      placement="bottom-start"
+      onOpenChange={setPopoverVision}
+      shouldCloseOnScroll={false}
+      isOpen={isPopoverVisible}
+      shouldBlockScroll
+    >
+      <Badge color="primary" content={activeLength}>
+        <PopoverTrigger>
+          <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
+        </PopoverTrigger>
+      </Badge>
 
       <PopoverContent>
         <PopoverWrapper>
@@ -44,7 +53,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
             <Status setCurrentStatus={setCurrentStatus} />
           </SectionStyled>
 
-          <Button onClick={onSubmit} className="mt-3" color="primary" fullWidth>
+          <Button onPress={onSubmit} className="mt-3" color="primary" fullWidth>
             {t('submit.text')}
           </Button>
         </PopoverWrapper>

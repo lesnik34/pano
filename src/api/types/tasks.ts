@@ -28,6 +28,7 @@ export interface TasksListQueryI {
   size?: number;
   executor?: number;
   creator?: number;
+  search?: string;
 }
 
 export interface TaskI {

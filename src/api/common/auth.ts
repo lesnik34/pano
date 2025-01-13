@@ -19,9 +19,11 @@ export const authUser = async (initData?: string, id?: number): Promise<BaseResp
   }
 
   if (authLocal) {
+    const localData = JSON.parse(authLocal) as ResponseI;
+
     return {
       status: true,
-      body: JSON.parse(authLocal) as ResponseI,
+      body: { ...localData, userId: Number(localData.userId) },
     } as BaseSuccessI<ResponseI>;
   }
 

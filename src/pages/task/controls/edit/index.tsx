@@ -22,6 +22,8 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
     async (editedData: FieldValues) => {
       const result = await updateTask({ ...data, ...editedData });
 
+      console.log(data, editedData);
+
       if (result.data) {
         toast.success(t('edit.success.message'));
         setEditMode(false);
@@ -43,7 +45,7 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
       <Delete id={data?.id} isDisabled={isLoading} />
 
       <Button
-        onClick={onCancelClick}
+        onPress={onCancelClick}
         className="mb-2.5 mt-2.5"
         isDisabled={isLoading}
         variant="bordered"
@@ -55,7 +57,7 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
 
       <Button
         className="text-white"
-        onClick={handleSubmit(onTaskSave)}
+        onPress={(e) => handleSubmit(onTaskSave)(e as unknown as React.BaseSyntheticEvent)}
         isDisabled={isLoading}
         color="success"
         variant="solid"

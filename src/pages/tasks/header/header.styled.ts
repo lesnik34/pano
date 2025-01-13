@@ -6,3 +6,7 @@ export const WrapperStyled = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const SideWrapperStyled = styled.div`
+  display: flex;
+`;

@@ -5,13 +5,14 @@ import { ContentStyled, DescriptionStyled, TitleStyled, WrapperStyled } from './
 
 interface ErrorI {
   title?: string;
+  isFullScreen?: boolean;
   description?: string;
   buttonText?: string;
+  hideButton?: boolean;
   onClick?: () => void;
-  isFullScreen?: boolean;
 }
 
-const Error: React.FC<ErrorI> = ({ title, description, buttonText, isFullScreen, onClick = () => {} }) => {
+const Error: React.FC<ErrorI> = ({ title, description, buttonText, isFullScreen, hideButton, onClick = () => {} }) => {
   const { t } = useTranslation();
 
   return (
@@ -21,9 +22,11 @@ const Error: React.FC<ErrorI> = ({ title, description, buttonText, isFullScreen,
 
         <DescriptionStyled>{description || t('default.error.page.description')}</DescriptionStyled>
 
-        <Button color="primary" onClick={onClick}>
-          {t('default.error.page.button.title') || buttonText}
-        </Button>
+        {!hideButton && (
+          <Button color="primary" onPress={onClick}>
+            {t('default.error.page.button.title') || buttonText}
+          </Button>
+        )}
       </ContentStyled>
     </WrapperStyled>
   );

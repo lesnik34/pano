@@ -69,3 +69,15 @@ export const parseInitData = (initData: string) => {
 
   return { hash, dataCheck };
 };
+
+export const getDebounce = (timeout = 2000) => {
+  let timeoutId: NodeJS.Timeout;
+
+  return (callback: () => void) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      callback();
+    }, timeout);
+  };
+};

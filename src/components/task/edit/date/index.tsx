@@ -42,6 +42,9 @@ const DateComponent: React.FC<DateI> = ({ dateTill, isLoading }) => {
         minValue={now(getLocalTimeZone())}
         onChange={onChange}
         isInvalid={false}
+        popoverProps={{
+          shouldBlockScroll: true,
+        }}
       />
     </WrapperStyled>
   );

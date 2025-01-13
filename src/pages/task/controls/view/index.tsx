@@ -36,7 +36,7 @@ const View: React.FC<ViewI> = ({ data, setEditMode }) => {
   return (
     <>
       <Button
-        onClick={onEditClick}
+        onPress={onEditClick}
         className="mb-2.5"
         endContent={<MdEdit />}
         isDisabled={isLoading}

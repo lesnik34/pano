@@ -32,7 +32,7 @@ const Item: React.FC<ItemI> = ({ title, url, icon }) => {
   return (
     <ButtonWrapperStyled ref={wrapperRef} $isActive={isPathMatch}>
       <ButtonStyled
-        onClick={onClick}
+        onPress={onClick}
         variant="flat"
         color={isPathMatch ? 'primary' : 'default'}
         startContent={

@@ -36,7 +36,7 @@ const TaskItem: React.FC<TaskItemI> = ({ id, title, description, status, dateFro
   }, [id, navigate]);
 
   return (
-    <ButtonWrapperStyled onClick={onClick} fullWidth variant="flat">
+    <ButtonWrapperStyled onPress={onClick} fullWidth variant="flat">
       <HeaderStyled>{title && <TitleStyled>{title}</TitleStyled>}</HeaderStyled>
 
       <DescriptionStyled>{description}</DescriptionStyled>

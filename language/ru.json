@@ -46,6 +46,11 @@
     "required.message": "Обязательно для заполнения",
     "title.min.length.message": "Слишком короткий заголовок",
     "created.tasks": "Созданные",
-    "appointed.tasks": "Назначенные"
+    "appointed.tasks": "Назначенные",
+    "empty.tasks.title": "Пока нет задач",
+    "empty.tasks.description": "Возможно они появятся позже",
+    "search.tasks.title": "Поиск задач",
+    "search.tasks.placeholder": "Начните вводить...",
+    "search.tasks.loader.label": "Ищем..."
   }
 }

@@ -25,11 +25,8 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
   });
   const { content, totalPages } = data || {};
 
-  console.log(target);
-
   const isErrorVisible = isError;
   const isTaskListVisible = !isError;
-  const isPaginationVisible = totalPages && params.page >= 0 && totalPages > 1;
 
   const errorHandler = useCallback(() => {
     refetch();
@@ -45,7 +42,7 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
 
           <TaskList items={content} isLoading={isFetching} />
 
-          {isPaginationVisible && <Pagination totalPages={totalPages} currentPage={params.page} />}
+          <Pagination totalPages={totalPages} currentPage={params.page} />
         </WrapperStyled>
       )}
 

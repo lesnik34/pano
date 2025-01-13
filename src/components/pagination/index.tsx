@@ -4,11 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 import { TASK_PARAMS } from '@/constants/pages';
 
 interface PaginationI {
-  totalPages: number;
+  totalPages?: number;
   currentPage: number;
 }
 
-const Pagination: React.FC<PaginationI> = ({ totalPages, currentPage }) => {
+const Pagination: React.FC<PaginationI> = ({ totalPages = 0, currentPage }) => {
   const searchParams = useSearchParams();
   const setSearchParams = searchParams[1];
 

@@ -39,7 +39,7 @@ const Delete: React.FC<DeleteI> = ({ isDisabled, id }) => {
   return (
     <WrapperStyled>
       <Button
-        onClick={onDeleteClick}
+        onPress={onDeleteClick}
         className="mb-2.5"
         isDisabled={isDisabled}
         color="danger"

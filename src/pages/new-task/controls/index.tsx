@@ -25,6 +25,8 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
     async (editedData: FieldValues) => {
       const result = await createTask({ ...data, ...editedData });
 
+      console.log(data, editedData);
+
       if (result.data) {
         toast.success(t('edit.success.message'));
         navigate(`${PAGE_TASKS}/${result.data.id}`);
@@ -41,7 +43,7 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
     <Wrapper>
       <Button
         className="text-white"
-        onClick={handleSubmit(onTaskSave)}
+        onPress={(e) => handleSubmit(onTaskSave)(e as unknown as React.BaseSyntheticEvent)}
         endContent={<IoSaveOutline />}
         isDisabled={isLoading}
         color="success"

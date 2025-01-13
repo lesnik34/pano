@@ -11,7 +11,7 @@ export interface TasksState {
 const initialState: TasksState = {
   params: {
     page: 1,
-    statuses: [TaskStatus.done, TaskStatus.inProgress, TaskStatus.toDo, TaskStatus.canceled],
+    statuses: [TaskStatus.canceled, TaskStatus.done, TaskStatus.inProgress, TaskStatus.toDo],
   },
 };
 
@@ -24,7 +24,6 @@ export const tasksSlice = createSlice({
     },
     setStatus: (state, action: PayloadAction<unknown>) => {
       const values = String(action.payload).split(',');
-
       state.params.statuses = values;
     },
   },

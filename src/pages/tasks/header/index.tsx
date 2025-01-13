@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { PAGE_NEW_TASK } from '@constants/pages';
 import Filters from '@components/filters';
-import { WrapperStyled } from './header.styled';
+import Search from '@components/search';
+import { SideWrapperStyled, WrapperStyled } from './header.styled';
 
 interface HeaderI {
   isLoading?: boolean;
@@ -20,11 +21,17 @@ const Header: React.FC<HeaderI> = ({ isLoading }) => {
 
   return (
     <WrapperStyled>
-      <Filters isLoading={isLoading} />
+      <SideWrapperStyled>
+        <Filters isLoading={isLoading} />
+
+        <div className="ml-2">
+          <Search isLoading={isLoading} />
+        </div>
+      </SideWrapperStyled>
 
       <Button
         className="w-16"
-        onClick={onAddClick}
+        onPress={onAddClick}
         isIconOnly
         isDisabled={isLoading}
         variant="flat"

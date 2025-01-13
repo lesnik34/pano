@@ -16,7 +16,7 @@ const Status: React.FC<StatusI> = ({ setCurrentStatus }) => {
 
   const onChange = useCallback(
     (statuses: Array<string>) => {
-      setCurrentStatus(statuses);
+      setCurrentStatus(statuses.sort());
     },
     [setCurrentStatus],
   );

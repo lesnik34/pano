@@ -52,7 +52,7 @@ const StatusButton: React.FC<StatusButtonI> = ({ status, availableStatuses, isLo
             {availableStatuses?.map((element) => (
               <StatusWrapper key={element}>
                 <Button
-                  onClick={onPopoverClick(element)}
+                  onPress={onPopoverClick(element)}
                   className="text-white"
                   fullWidth
                   color={getCurrentProperties(element).color}

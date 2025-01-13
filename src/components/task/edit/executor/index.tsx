@@ -82,6 +82,9 @@ const Executor: React.FC<ExecutorI> = ({ user, isLoading }) => {
         isInvalid={Boolean(formError)}
         errorMessage={formError?.message as string | undefined}
         isClearable={false}
+        popoverProps={{
+          shouldBlockScroll: true,
+        }}
         isRequired
       >
         {(possibleUser) => {

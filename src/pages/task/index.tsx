@@ -37,7 +37,7 @@ const Task: React.FC<TaskI> = () => {
   return (
     <Layout navHidden>
       <FormProvider {...formMethods}>
-        <Button onClick={onBackClick} startContent={<IoIosArrowBack />} variant="light">
+        <Button onPress={onBackClick} startContent={<IoIosArrowBack />} variant="light">
           {t('move.to.tasks')}
         </Button>
 
