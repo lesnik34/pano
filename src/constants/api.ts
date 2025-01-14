@@ -7,6 +7,7 @@ export const API_URLS = {
   AUTH_USER: `${API_PREFIX}/v1/auth/login`,
   USER: `${API_PREFIX}/v1/users`,
   TASKS: `${API_PREFIX}/v1/tasks`,
+  DEPARTMENTS: `${API_PREFIX}/v1/departments`,
 };
 
 export const DEFAULT_ERROR_RESPONSE: BaseErrorI = {

@@ -8,12 +8,14 @@ import Executor from './executor';
 import Date from './date';
 import {
   DateWrapper,
+  DepartmentWrapper,
   DescriptionWrapper,
   ExecutorWrapper,
   TitleStyled,
   TitleWrapper,
   WrapperStyled,
 } from './edit.styled';
+import Department from './department';
 
 interface EditI {
   title?: string;
@@ -22,7 +24,8 @@ interface EditI {
 }
 
 const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
-  const { reset } = useFormContext();
+  const { reset, watch } = useFormContext();
+  const formData = watch();
 
   useEffect(
     () => () => {
@@ -44,9 +47,15 @@ const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
         <Description value={data?.description} isLoading={isLoading} />
       </DescriptionWrapper>
 
-      <ExecutorWrapper>
-        <Executor user={data?.executor} isLoading={isLoading} />
-      </ExecutorWrapper>
+      <DepartmentWrapper>
+        <Department department={data?.department} isLoading={isLoading} />
+      </DepartmentWrapper>
+
+      {formData?.department && (
+        <ExecutorWrapper>
+          <Executor user={data?.executor} department={formData?.department} isLoading={isLoading} />
+        </ExecutorWrapper>
+      )}
 
       <DateWrapper>
         <Date dateTill={data?.endDate} isLoading={isLoading} />

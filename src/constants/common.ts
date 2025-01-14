@@ -12,6 +12,8 @@ export const MIN_LENGTH_INPUT = 3;
 
 export const TASKS_LIST_LENGTH = 5;
 
+export const DEPARTMENTS_LIST_LENGTH = 5;
+
 export const USERS_LIST_LENGTH = 5;
 
 export const DEBOUNCE_TIME = 1500;

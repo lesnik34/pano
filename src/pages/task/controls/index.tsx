@@ -21,8 +21,17 @@ const Controls: React.FC<ControlsI> = ({ data, isEditMode, setEditMode }) => {
       executor: data?.executor.id,
       creator: data?.creator.id,
       endDate: data?.endDate,
+      department: data?.department?.id,
     }),
-    [data?.creator.id, data?.description, data?.endDate, data?.executor.id, data?.id, data?.title],
+    [
+      data?.creator.id,
+      data?.department?.id,
+      data?.description,
+      data?.endDate,
+      data?.executor.id,
+      data?.id,
+      data?.title,
+    ],
   );
 
   return (

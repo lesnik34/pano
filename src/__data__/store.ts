@@ -12,10 +12,11 @@ export const store = configureStore({
     tasks: tasksReducer,
     [query.usersApi.reducerPath]: query.usersApi.reducer,
     [query.tasksApi.reducerPath]: query.tasksApi.reducer,
+    [query.departmentsApi.reducerPath]: query.departmentsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat([query.usersApi.middleware, query.tasksApi.middleware])
+      .concat([query.usersApi.middleware, query.tasksApi.middleware, query.departmentsApi.middleware])
       .prepend(authMiddleware.middleware),
 });
 

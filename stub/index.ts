@@ -4,6 +4,7 @@ import { SELF_PORT, SUCCESS_CODE } from './utils/constants';
 import usersRouter from './users';
 import tasksRouter from './tasks';
 import authRouter from './auth';
+import departmentsRouter from './departments';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use(usersRouter);
 app.use(tasksRouter);
 app.use(authRouter);
+app.use(departmentsRouter);
 
 app.listen(SELF_PORT, () => {
   console.log(`Mock api server starts at ${SELF_PORT}`);

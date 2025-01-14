@@ -15,13 +15,14 @@ export const usersApi = createApi({
         url: `${API_URLS.USER}/${id}`,
       }),
     }),
-    getUsers: builder.query<UsersListI, { search?: string; page?: number; size?: number }>({
-      query: ({ search, page, size = USERS_LIST_LENGTH }) => ({
+    getUsers: builder.query<UsersListI, { search?: string; page?: number; size?: number; department?: string }>({
+      query: ({ search, page, size = USERS_LIST_LENGTH, department }) => ({
         url: API_URLS.USER,
         params: {
           page: page ? page - 1 : undefined,
           size,
           search,
+          department,
         },
       }),
     }),

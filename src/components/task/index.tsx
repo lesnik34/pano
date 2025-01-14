@@ -21,6 +21,7 @@ const Task: React.FC<TaskI> = ({ data, isLoading, isEditMode, title }) => (
         isLoading={isLoading}
         creator={data?.creator}
         executor={data?.executor}
+        department={data?.department}
         title={data?.title}
         description={data?.description}
         status={data?.status || TaskStatus.toDo}

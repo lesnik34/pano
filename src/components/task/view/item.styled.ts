@@ -30,6 +30,12 @@ export const WrapperContent = styled.div`
   align-items: start;
 `;
 
+export const ExtraWrapperContent = styled.div`
+  margin-top: 20px;
+  display: flex;
+  align-items: start;
+`;
+
 export const ExecutorWrapper = styled.div`
   margin-right: 40px;
 `;

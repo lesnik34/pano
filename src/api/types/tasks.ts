@@ -1,26 +1,8 @@
-import { PagesSortI } from './common';
+import { BaseListWrapperI } from './common';
+import { DepartmentI } from './departments';
 import { UserI } from './users';
 
-export interface TasksListResI {
-  content: ShortTaskI[];
-  pageable: {
-    pageNumber: number;
-    pageSize: number;
-    sort: PagesSortI;
-    offset: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
-  last: boolean;
-  totalPages: number;
-  totalElements: number;
-  number: number;
-  first: boolean;
-  sort: PagesSortI;
-  size: number;
-  numberOfElements: number;
-  empty: boolean;
-}
+export type TasksListResI = BaseListWrapperI<ShortTaskI>;
 
 export interface TasksListQueryI {
   page?: number;
@@ -36,6 +18,7 @@ export interface TaskI {
   status: TaskStatus;
   title?: string;
   description?: string;
+  department?: DepartmentI;
   executor: UserI;
   creator: UserI;
   createdDate?: string;
@@ -44,8 +27,9 @@ export interface TaskI {
 
 export interface NewTaskI {
   title: string;
-  executor?: number;
   description: string;
+  department?: string;
+  executor?: number;
   creator?: number;
   endDate?: string;
 }
@@ -53,6 +37,7 @@ export interface EditTaskI {
   id: string;
   title: string;
   description?: string;
+  department?: string;
   executor?: number;
   creator?: number;
   endDate?: string;
@@ -63,6 +48,7 @@ export interface ShortTaskI {
   status: TaskStatus;
   title?: string;
   description?: string;
+  department?: DepartmentI;
   creator: UserI;
   executor: UserI;
   createdDate?: string;

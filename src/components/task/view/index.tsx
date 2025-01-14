@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Divider } from '@nextui-org/react';
-import { TaskStatus, UserI } from '@api/types';
+import { DepartmentI, TaskStatus, UserI } from '@api/types';
 import SkeletonTask from '@components/skeleton/task';
 
 import {
@@ -11,12 +11,14 @@ import {
   WrapperContent,
   WrapperStyled,
   DescriptionWrapper,
+  ExtraWrapperContent,
 } from './item.styled';
 import Executor from './executor';
 import Title from './title';
 import Date from './date';
 import Creator from './creator';
 import Description from './description';
+import Department from './department';
 
 interface ItemI {
   isLoading?: boolean;
@@ -24,12 +26,23 @@ interface ItemI {
   description?: string;
   executor?: UserI;
   creator?: UserI;
+  department?: DepartmentI;
   status: TaskStatus;
   dateFrom?: string;
   dateTill?: string;
 }
 
-const Item: React.FC<ItemI> = ({ title, description, executor, creator, status, dateFrom, dateTill, isLoading }) => {
+const Item: React.FC<ItemI> = ({
+  title,
+  description,
+  executor,
+  creator,
+  status,
+  dateFrom,
+  dateTill,
+  department,
+  isLoading,
+}) => {
   const isTaskDone = useMemo(() => status === TaskStatus.done || status === TaskStatus.canceled, [status]);
 
   return isLoading ? (
@@ -48,6 +61,10 @@ const Item: React.FC<ItemI> = ({ title, description, executor, creator, status, 
             <Date isDone={isTaskDone} dateFrom={dateFrom} dateTill={dateTill} />
           </DateWrapper>
         </WrapperContent>
+
+        <ExtraWrapperContent>
+          <Department department={department} />
+        </ExtraWrapperContent>
       </HeaderWrapper>
 
       <DescriptionWrapper>

@@ -7,10 +7,10 @@ const INIT_TIMEOUT = 1000;
 
 const router = Router();
 
-router.get('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
+router.get('/api/v1/departments', wait(INIT_TIMEOUT), async (req, res) => {
   try {
     const { page, size = '5' } = req.query;
-    const { data } = await axios.get(`${DB_URL}/tasks`);
+    const { data } = await axios.get(`${DB_URL}/departments`);
 
     const itemsPerPage = Number(size);
     const currentPage = Number(page) + 1;
@@ -59,10 +59,10 @@ router.get('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
   }
 });
 
-router.get('/api/v1/tasks/:id', wait(INIT_TIMEOUT), async (req, res) => {
+router.get('/api/v1/departments/:id', wait(INIT_TIMEOUT), async (req, res) => {
   try {
     const { id } = req.params;
-    const { data } = await axios.get(`${DB_URL}/tasks/${id}`);
+    const { data } = await axios.get(`${DB_URL}/departments/${id}`);
 
     if (data) {
       res.send(resConstructor.success(data));
@@ -72,59 +72,32 @@ router.get('/api/v1/tasks/:id', wait(INIT_TIMEOUT), async (req, res) => {
   }
 });
 
-router.post('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
+router.post('/api/v1/departments', wait(INIT_TIMEOUT), async (req, res) => {
   try {
-    const { id, title, executor, creator, department, description, endDate } = req.body || {};
-    const { data: executorData } = await axios.get(`${DB_URL}/users/${executor}`);
-    const { data: creatorData } = await axios.get(`${DB_URL}/users/${creator}`);
-    const { data: departmentData } = await axios.get(`${DB_URL}/departments/${department}`);
-    const taskToUpdate = {
-      id,
-      title,
-      executor: executorData,
-      creator: creatorData,
-      department: departmentData,
-      description,
-      endDate,
-    };
-    let newTask;
+    const { id, ...department } = req.body || {};
+    let newDepartment;
 
     if (id) {
-      const { data: oldTask } = await axios.get(`${DB_URL}/tasks/${id}`);
-      const { data } = await axios.put(`${DB_URL}/tasks/${id}`, { ...oldTask, ...taskToUpdate });
-      newTask = data;
+      const { data: oldDepartment } = await axios.get(`${DB_URL}/departments/${id}`);
+      const { data } = await axios.put(`${DB_URL}/departments/${id}`, { ...oldDepartment, ...department });
+      newDepartment = data;
     } else {
       const { data } = await axios.post(`${DB_URL}/tasks`, {
-        ...taskToUpdate,
+        ...department,
         createdDate: '2024-09-20T15:40:45.417588Z',
-        status: 'TO_DO',
       });
-      newTask = data;
+      newDepartment = data;
     }
 
-    if (newTask) {
-      res.send(resConstructor.success(newTask));
+    if (newDepartment) {
+      res.send(resConstructor.success(newDepartment));
     }
   } catch (error) {
     res.sendStatus(404);
   }
 });
 
-router.patch('/api/v1/tasks/:id', wait(INIT_TIMEOUT), async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { status } = req.body || {};
-
-    const { data: oldTask } = await axios.get(`${DB_URL}/tasks/${id}`);
-    const { data: newTask } = await axios.put(`${DB_URL}/tasks/${id}`, { ...oldTask, status });
-
-    res.send(resConstructor.success(newTask));
-  } catch (error) {
-    res.sendStatus(404);
-  }
-});
-
-router.delete('/api/v1/tasks/:id', wait(INIT_TIMEOUT), async (req, res) => {
+router.delete('/api/v1/departments/:id', wait(INIT_TIMEOUT), async (req, res) => {
   try {
     const { id } = req.params;
 

@@ -1,28 +1,27 @@
 import React, { Key, useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Autocomplete, AutocompleteItem, User } from '@nextui-org/react';
-import { useGetUsersQuery } from '@api/query/users';
+import { Autocomplete, AutocompleteItem } from '@nextui-org/react';
+import { useGetDepartmentsQuery } from '@api/query/departments';
 import { DEBOUNCE_TIME } from '@constants/common';
-import { DepartmentI, UserI } from '@api/types';
+import { DepartmentI } from '@api/types';
 
-import { WrapperStyled } from './executor.styled';
+import { WrapperStyled } from './department.styled';
 
-interface ExecutorI {
-  user?: UserI;
+interface DepartmentComponentI {
   department?: DepartmentI;
   isLoading?: boolean;
 }
 
-const fieldId = 'executor';
+const fieldId = 'department';
 
-const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
+const Department: React.FC<DepartmentComponentI> = ({ department, isLoading }) => {
   const { t } = useTranslation();
   const timeoutRef = useRef<NodeJS.Timeout | null>();
-  const [selectedUser, setSelectedUser] = useState(user);
-  const [inputValue, setInputValue] = useState(user ? `${user.firstName} ${user.lastName}` : '');
+  const [selectedDepartment, setSelectedDepartment] = useState(department);
+  const [inputValue, setInputValue] = useState(department?.title || '');
   const [search, setSearch] = useState('');
-  const { data, isFetching } = useGetUsersQuery({ search, page: 1, department: department?.id });
+  const { data, isFetching } = useGetDepartmentsQuery({ search, page: 1 });
   const {
     register,
     setValue,
@@ -38,24 +37,24 @@ const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
       const selected = data?.content.find((item) => String(item.id) === String(key));
 
       if (key && selected) {
-        setSelectedUser(selected);
-        setInputValue(`${selected.firstName} ${selected.lastName}`);
+        setSelectedDepartment(selected);
+        setInputValue(selected.title);
         return;
       }
 
-      setSelectedUser(undefined);
+      setSelectedDepartment(undefined);
     },
     [data?.content],
   );
 
   useEffect(() => {
-    setValue(fieldId, selectedUser);
+    setValue(fieldId, selectedDepartment);
 
-    if (selectedUser && formError) {
+    if (selectedDepartment && formError) {
       clearErrors(fieldId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedUser]);
+  }, [selectedDepartment]);
 
   useEffect(() => {
     if (timeoutRef.current) {
@@ -70,15 +69,15 @@ const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
   return (
     <WrapperStyled>
       <Autocomplete
-        placeholder={t('async.input.user.placeholder')}
+        placeholder={t('async.input.department.placeholder')}
         isLoading={isFetching || isLoading}
-        label={t('input.executor.label')}
+        label={t('input.department.label')}
         items={data?.content}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        defaultSelectedKey={user?.id}
-        defaultItems={user ? [user] : []}
-        selectedKey={selectedUser?.id}
+        defaultSelectedKey={department?.id}
+        defaultItems={department ? [department] : []}
+        selectedKey={department?.id}
         onSelectionChange={onSelectionChange}
         isInvalid={Boolean(formError)}
         errorMessage={formError?.message as string | undefined}
@@ -86,19 +85,17 @@ const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
         popoverProps={{
           shouldBlockScroll: true,
         }}
+        listboxProps={{
+          emptyContent: t('async.input.empty.message'),
+        }}
         isRequired
       >
-        {(possibleUser) => {
-          const name = `${possibleUser.firstName} ${possibleUser.lastName}`;
-          return (
-            <AutocompleteItem textValue={name} key={possibleUser.id}>
-              <User name={name} description={possibleUser.username} />
-            </AutocompleteItem>
-          );
-        }}
+        {(possibleDepartment) => (
+          <AutocompleteItem key={possibleDepartment.id}>{possibleDepartment.title}</AutocompleteItem>
+        )}
       </Autocomplete>
     </WrapperStyled>
   );
 };
 
-export default Executor;
+export default Department;

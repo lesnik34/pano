@@ -39,7 +39,7 @@ export const tasksApi = createApi({
         method: 'POST',
         data: task,
       }),
-      invalidatesTags: () => ['AllTasks'],
+      invalidatesTags: (result) => [{ type: 'Task', id: result?.id }],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
@@ -55,7 +55,7 @@ export const tasksApi = createApi({
         method: 'PATCH',
         data: { status },
       }),
-      invalidatesTags: () => ['AllTasks'],
+      invalidatesTags: (result) => [{ type: 'Task', id: result?.id }],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(

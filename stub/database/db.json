@@ -31,6 +31,22 @@
       "lastName": "Doh"
     }
   ],
+  "departments": [
+    {
+      "id": 123,
+      "title": "Грузчики",
+      "description": ""
+    },
+    {
+      "id": 124,
+      "title": "Весовая",
+      "description": "Описание"
+    },
+    {
+      "id": 125,
+      "title": "Водители"
+    }
+  ],
   "tasks": [
     {
       "title": "Текст123",
@@ -48,8 +64,13 @@
       },
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
-      "id": 1
+      "status": "DONE",
+      "id": 1,
+      "department": {
+        "id": 123,
+        "title": "Грузчики",
+        "description": ""
+      }
     },
     {
       "title": "123",
@@ -202,6 +223,53 @@
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
       "id": 9
+    },
+    {
+      "title": "Тектст",
+      "executor": {
+        "id": 1241251215,
+        "username": "fasf123",
+        "firstName": "Erik",
+        "lastName": "Dan"
+      },
+      "creator": {
+        "id": 5000496962,
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "department": {
+        "id": 124,
+        "title": "Весовая",
+        "description": "Описание"
+      },
+      "description": "",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "TO_DO",
+      "id": 10
+    },
+    {
+      "title": "ТТТТТ",
+      "executor": {
+        "id": 1212512124,
+        "username": "gas321",
+        "firstName": "Pier",
+        "lastName": "Dun"
+      },
+      "creator": {
+        "id": 5000496962,
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "department": {
+        "id": 125,
+        "title": "Водители"
+      },
+      "description": "",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "TO_DO",
+      "id": 11
     }
   ]
 }

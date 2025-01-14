@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { EditTaskI } from '@api/types';
+import { parseTaskData } from '@pages/task/utils/common';
 import { useUpdateTaskMutation } from '@api/query/tasks';
 import { Button } from '@nextui-org/react';
+import { EditTaskI } from '@api/types';
 import Delete from './delete';
 
 interface EditI {
@@ -20,9 +21,7 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
 
   const onTaskSave = useCallback(
     async (editedData: FieldValues) => {
-      const result = await updateTask({ ...data, ...editedData });
-
-      console.log(data, editedData);
+      const result = await updateTask({ ...data, ...parseTaskData(editedData) });
 
       if (result.data) {
         toast.success(t('edit.success.message'));

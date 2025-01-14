@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { NewTaskI } from '@api/types';
+import { parseTaskData } from '@pages/task/utils/common';
 import { useCreateTaskMutation } from '@api/query/tasks';
 import { PAGE_TASKS } from '@constants/pages';
 import { Button } from '@nextui-org/react';
@@ -23,9 +24,7 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
 
   const onTaskSave = useCallback(
     async (editedData: FieldValues) => {
-      const result = await createTask({ ...data, ...editedData });
-
-      console.log(data, editedData);
+      const result = await createTask({ ...data, ...parseTaskData(editedData) });
 
       if (result.data) {
         toast.success(t('edit.success.message'));
