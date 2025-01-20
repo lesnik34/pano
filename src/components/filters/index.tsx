@@ -50,7 +50,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
       <PopoverContent>
         <PopoverWrapper>
           <SectionStyled>
-            <Status setCurrentStatus={setCurrentStatus} />
+            <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
           </SectionStyled>
 
           <Button onPress={onSubmit} className="mt-3" color="primary" fullWidth>

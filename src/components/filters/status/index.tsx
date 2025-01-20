@@ -8,21 +8,29 @@ import selectors from '@store/selectors';
 
 interface StatusI {
   setCurrentStatus: (argument: Array<string>) => void;
+  currentStatus: string[];
 }
 
-const Status: React.FC<StatusI> = ({ setCurrentStatus }) => {
+const Status: React.FC<StatusI> = ({ setCurrentStatus, currentStatus }) => {
   const { t } = useTranslation();
   const tasksStoreParams = useAppSelector(selectors.tasks.params);
 
   const onChange = useCallback(
     (statuses: Array<string>) => {
-      setCurrentStatus(statuses.sort());
+      if (statuses.length !== 0) {
+        setCurrentStatus(statuses.sort());
+      }
     },
     [setCurrentStatus],
   );
 
   return (
-    <CheckboxGroup label={t('filter.status.text')} defaultValue={tasksStoreParams.statuses} onChange={onChange}>
+    <CheckboxGroup
+      label={t('filter.status.text')}
+      defaultValue={tasksStoreParams.statuses}
+      onValueChange={onChange}
+      value={currentStatus}
+    >
       <Checkbox value={TaskStatus.done}>{t('task.status.done')}</Checkbox>
 
       <Checkbox value={TaskStatus.toDo}>{t('task.status.to.do')}</Checkbox>
