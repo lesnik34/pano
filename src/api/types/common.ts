@@ -9,7 +9,6 @@ export interface BaseErrorI {
   status: false;
   error: {
     code?: string;
-    title?: string;
     message?: string;
   };
 }
