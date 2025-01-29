@@ -1,6 +1,6 @@
 import { TaskI } from '@api/types';
 import { getTaskStatusProperties } from '@styles/utils/common';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 

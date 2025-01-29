@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Pagination as PaginationNext } from '@nextui-org/react';
+import { Pagination as PaginationNext } from "@heroui/react";
 import { useSearchParams } from 'react-router-dom';
 import { TASK_PARAMS } from '@/constants/pages';
 

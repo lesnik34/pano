@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Checkbox, CheckboxGroup } from '@nextui-org/react';
+import { Checkbox, CheckboxGroup } from "@heroui/react";
 import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from '@store/store';

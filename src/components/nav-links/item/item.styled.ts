@@ -1,5 +1,5 @@
 import tw from 'twin.macro';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import styled, { css } from 'styled-components';
 
 export const ButtonWrapperStyled = styled.div<{ $isActive: boolean }>(() => css``);

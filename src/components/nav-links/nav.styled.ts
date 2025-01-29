@@ -1,4 +1,4 @@
-import { ScrollShadow } from '@nextui-org/react';
+import { ScrollShadow } from "@heroui/react";
 import styled from 'styled-components';
 
 export const ScrollWrapperStyled = styled(ScrollShadow)`

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
-import { Input } from '@nextui-org/react';
+import { Input } from "@heroui/react";
 import { useTranslation } from 'react-i18next';
 import { MIN_LENGTH_INPUT } from '@constants/common';
 

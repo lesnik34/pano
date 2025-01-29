@@ -1,7 +1,7 @@
 import React, { Key, useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Autocomplete, AutocompleteItem } from '@nextui-org/react';
+import { Autocomplete, AutocompleteItem } from "@heroui/react";
 import { useGetDepartmentsQuery } from '@api/query/departments';
 import { DEBOUNCE_TIME } from '@constants/common';
 import { DepartmentI } from '@api/types';

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { parseTaskData } from '@pages/task/utils/common';
 import { useUpdateTaskMutation } from '@api/query/tasks';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { EditTaskI } from '@api/types';
 import Delete from './delete';
 

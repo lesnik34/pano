@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { MdEdit } from 'react-icons/md';
 
 import { useUpdateTaskStatusMutation } from '@api/query/tasks';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import { MIN_LENGTH_INPUT } from '@constants/common';
-import { Textarea } from '@nextui-org/react';
+import { Textarea } from "@heroui/react";
 import { useTranslation } from 'react-i18next';
 
 import { WrapperStyled } from './title.styled';

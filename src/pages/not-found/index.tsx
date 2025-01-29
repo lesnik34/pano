@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from '@nextui-org/react';
+import { Link } from "@heroui/react";
 import { ContainerStyled } from '@styles/container';
 import { PAGE_BASE } from '@constants/pages';
 

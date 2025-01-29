@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { IoIosArrowBack } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import Layout from '@components/global/layout';

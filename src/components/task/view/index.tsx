@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@heroui/react";
 import { DepartmentI, TaskStatus, UserI } from '@api/types';
 import SkeletonTask from '@components/skeleton/task';
 

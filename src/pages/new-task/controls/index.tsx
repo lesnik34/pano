@@ -9,7 +9,7 @@ import { NewTaskI } from '@api/types';
 import { parseTaskData } from '@pages/task/utils/common';
 import { useCreateTaskMutation } from '@api/query/tasks';
 import { PAGE_TASKS } from '@constants/pages';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { Wrapper } from './controls.styled';
 
 interface ControlsI {

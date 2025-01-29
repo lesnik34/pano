@@ -1,4 +1,4 @@
-import { User } from '@nextui-org/react';
+import { User } from "@heroui/react";
 import SkeletonUser from '@components/skeleton/user';
 
 interface UserBarI {

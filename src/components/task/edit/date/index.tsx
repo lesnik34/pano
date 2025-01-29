@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DatePicker, DateValue } from '@nextui-org/react';
+import { DatePicker, DateValue } from "@heroui/react";
 import { useFormContext } from 'react-hook-form';
 import { parseDate, now, getLocalTimeZone } from '@internationalized/date';
 import { getCurrentGlobalDate } from '@utils/common';

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 

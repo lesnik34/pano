@@ -4,7 +4,7 @@ import { PAGE_TASKS } from '@constants/pages';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeleteTaskMutation } from '@api/query/tasks';
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/react";
 
 import { WrapperStyled } from './delete.styled';
 

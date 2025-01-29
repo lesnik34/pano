@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Layout from '@components/global/layout';
 import TaskComponent from '@components/task';
 import { EMPTY_TASK } from '@constants/common';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 import { IoIosArrowBack } from 'react-icons/io';
 import { PAGE_TASKS } from '@constants/pages';
 import { useNavigate } from 'react-router-dom';

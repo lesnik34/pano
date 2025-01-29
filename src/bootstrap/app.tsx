@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NextUIProvider } from '@nextui-org/react';
+import { HeroUIProvider } from "@heroui/react";
 import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -27,13 +27,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <NextUIProvider locale="ru-RU" navigate={navigate} disableAnimation disableRipple>
+        <HeroUIProvider locale="ru-RU" navigate={navigate} disableAnimation disableRipple>
           <GlobalStyle />
           <BaseStyles />
           <ToastContainer theme="dark" position="top-center" />
 
           <Router />
-        </NextUIProvider>
+        </HeroUIProvider>
       </ThemeProvider>
     </Provider>
   );
