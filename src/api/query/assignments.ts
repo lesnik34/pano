@@ -1,22 +1,28 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { API_URLS } from '@constants/api';
-import { TASKS_LIST_LENGTH } from '@constants/common';
-import type { EditTaskI, NewTaskI, TaskI, TasksListQueryI, TasksListResI } from '../types';
+import { ASSIGNMENTS_LIST_LENGTH } from '@constants/common';
+import type {
+  AssignmentI,
+  AssignmentsListQueryI,
+  AssignmentsListResI,
+  EditAssignmentI,
+  NewAssignmentI,
+} from '../types';
 import { customBaseQuery } from '../base-query/custom';
 
 const TAGS = {
-  ONE: 'task',
-  ALL: 'all_tasks',
+  ONE: 'assignment',
+  ALL: 'all_assignments',
 };
 
-export const tasksApi = createApi({
-  reducerPath: 'tasksApi',
+export const assignmentsApi = createApi({
+  reducerPath: 'assignmentsApi',
   tagTypes: [TAGS.ONE, TAGS.ALL],
   baseQuery: customBaseQuery({ baseUrl: import.meta.env.VITE_RES_URL }),
   endpoints: (builder) => ({
-    getTasks: builder.query<TasksListResI, TasksListQueryI>({
-      query: ({ page, statuses, search, executor, creator, size = TASKS_LIST_LENGTH }) => ({
-        url: `${API_URLS.TASKS}`,
+    getAssignments: builder.query<AssignmentsListResI, AssignmentsListQueryI>({
+      query: ({ page, statuses, search, executor, creator, size = ASSIGNMENTS_LIST_LENGTH }) => ({
+        url: `${API_URLS.ASSIGNMENTS}`,
         params: {
           page: page ? page - 1 : undefined,
           statuses: statuses?.join(','),
@@ -31,31 +37,31 @@ export const tasksApi = createApi({
           ? [...result.content.map(({ id }) => ({ type: TAGS.ONE, id })), TAGS.ONE, TAGS.ALL]
           : [TAGS.ONE, TAGS.ALL],
     }),
-    getTask: builder.query<TaskI, { taskId?: string }>({
-      query: ({ taskId }) => ({
-        url: `${API_URLS.TASKS}/${taskId}`,
+    getAssignment: builder.query<AssignmentI, { assignmentId?: string }>({
+      query: ({ assignmentId }) => ({
+        url: `${API_URLS.ASSIGNMENTS}/${assignmentId}`,
       }),
       providesTags: (result) => (result ? [{ type: TAGS.ONE, id: result.id }, TAGS.ONE] : [TAGS.ONE]),
     }),
-    updateTask: builder.mutation<TaskI, EditTaskI>({
-      query: (task) => ({
-        url: API_URLS.TASKS,
+    updateAssignment: builder.mutation<AssignmentI, EditAssignmentI>({
+      query: (assignment) => ({
+        url: API_URLS.ASSIGNMENTS,
         method: 'POST',
-        data: task,
+        data: assignment,
       }),
       invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
-          tasksApi.util.updateQueryData('getTask', { taskId: id }, (draft) => {
+          assignmentsApi.util.updateQueryData('getAssignment', { assignmentId: id }, (draft) => {
             Object.assign(draft, data);
           }),
         );
       },
     }),
-    updateTaskStatus: builder.mutation<TaskI, { id: string; status: TaskI['status'] }>({
+    updateAssignmentStatus: builder.mutation<AssignmentI, { id: string; status: AssignmentI['status'] }>({
       query: ({ status, id }) => ({
-        url: `${API_URLS.TASKS}/${id}`,
+        url: `${API_URLS.ASSIGNMENTS}/${id}`,
         method: 'PATCH',
         data: { status },
       }),
@@ -63,23 +69,23 @@ export const tasksApi = createApi({
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
-          tasksApi.util.updateQueryData('getTask', { taskId: id }, (draft) => {
+          assignmentsApi.util.updateQueryData('getAssignment', { assignmentId: id }, (draft) => {
             Object.assign(draft, data);
           }),
         );
       },
     }),
-    createTask: builder.mutation<TaskI, NewTaskI>({
-      query: (task) => ({
-        url: API_URLS.TASKS,
+    createAssignment: builder.mutation<AssignmentI, NewAssignmentI>({
+      query: (assignment) => ({
+        url: API_URLS.ASSIGNMENTS,
         method: 'POST',
-        data: task,
+        data: assignment,
       }),
       invalidatesTags: () => [TAGS.ONE],
     }),
-    deleteTask: builder.mutation<TaskI, { id: string }>({
+    deleteAssignment: builder.mutation<AssignmentI, { id: string }>({
       query: ({ id }) => ({
-        url: `${API_URLS.TASKS}/${id}`,
+        url: `${API_URLS.ASSIGNMENTS}/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: () => [TAGS.ONE],
@@ -88,10 +94,10 @@ export const tasksApi = createApi({
 });
 
 export const {
-  useGetTasksQuery,
-  useGetTaskQuery,
-  useUpdateTaskMutation,
-  useCreateTaskMutation,
-  useUpdateTaskStatusMutation,
-  useDeleteTaskMutation,
-} = tasksApi;
+  useCreateAssignmentMutation,
+  useDeleteAssignmentMutation,
+  useGetAssignmentQuery,
+  useGetAssignmentsQuery,
+  useUpdateAssignmentMutation,
+  useUpdateAssignmentStatusMutation,
+} = assignmentsApi;

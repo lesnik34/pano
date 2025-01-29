@@ -8,6 +8,7 @@ export const API_URLS = {
   USER: `${API_PREFIX}/v1/users`,
   TASKS: `${API_PREFIX}/v1/tasks`,
   DEPARTMENTS: `${API_PREFIX}/v1/departments`,
+  ASSIGNMENTS: `${API_PREFIX}/v1/assignments`,
 };
 
 export const DEFAULT_ERROR_RESPONSE: BaseErrorI = {

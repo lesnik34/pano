@@ -5,6 +5,7 @@ import usersRouter from './users';
 import tasksRouter from './tasks';
 import authRouter from './auth';
 import departmentsRouter from './departments';
+import assignmentsRouter from './assignments';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(usersRouter);
 app.use(tasksRouter);
 app.use(authRouter);
 app.use(departmentsRouter);
+app.use(assignmentsRouter);
 
 app.listen(SELF_PORT, () => {
   console.log(`Mock api server starts at ${SELF_PORT}`);

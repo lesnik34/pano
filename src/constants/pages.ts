@@ -9,7 +9,7 @@ export const PAGE_TASKS = '/dashboard/tasks';
 
 export const PAGE_NEW_TASK = '/dashboard/tasks/new-task';
 
-export const PAGE_PROPOSALS = '/dashboard/proposals';
+export const PAGE_ASSIGNMENTS = '/dashboard/assignments';
 
 export const NAV_LINKS = [
   {
@@ -19,7 +19,7 @@ export const NAV_LINKS = [
   },
   {
     title: 'Заявки',
-    url: '/dashboard/proposals',
+    url: '/dashboard/assignments',
     icon: AiOutlineAudit,
   },
   {

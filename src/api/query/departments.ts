@@ -1,4 +1,3 @@
-// Need to use the React-specific entry point to allow generating React hooks
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { API_URLS } from '@constants/api';
 import { DEPARTMENTS_LIST_LENGTH } from '@constants/common';
@@ -11,9 +10,14 @@ import type {
   NewDepartmentI,
 } from '../types';
 
+const TAGS = {
+  ONE: 'department',
+  ALL: 'all_departments',
+};
+
 export const departmentsApi = createApi({
   reducerPath: 'departmentsApi',
-  tagTypes: ['Department', 'AllDepartments'],
+  tagTypes: [TAGS.ONE, TAGS.ALL],
   baseQuery: customBaseQuery({ baseUrl: import.meta.env.VITE_RES_URL }),
   endpoints: (builder) => ({
     getDepartments: builder.query<DepartmentsListResI, DepartmentsListQueryI>({
@@ -27,14 +31,14 @@ export const departmentsApi = createApi({
       }),
       providesTags: (result) =>
         result
-          ? [...result.content.map(({ id }) => ({ type: 'Department' as const, id })), 'Department', 'AllDepartments']
-          : ['Department', 'AllDepartments'],
+          ? [...result.content.map(({ id }) => ({ type: TAGS.ONE, id })), TAGS.ONE, TAGS.ALL]
+          : [TAGS.ONE, TAGS.ALL],
     }),
     getDepartment: builder.query<DepartmentI, { departmentId?: string }>({
       query: ({ departmentId }) => ({
         url: `${API_URLS.DEPARTMENTS}/${departmentId}`,
       }),
-      providesTags: (result) => (result ? [{ type: 'Department', id: result.id }, 'Department'] : ['Department']),
+      providesTags: (result) => (result ? [{ type: TAGS.ONE, id: result.id }, TAGS.ONE] : [TAGS.ONE]),
     }),
     updateDepartment: builder.mutation<DepartmentI, EditDepartmentI>({
       query: (department) => ({
@@ -42,7 +46,7 @@ export const departmentsApi = createApi({
         method: 'POST',
         data: department,
       }),
-      invalidatesTags: () => ['AllDepartments'],
+      invalidatesTags: () => [TAGS.ALL],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
@@ -58,14 +62,14 @@ export const departmentsApi = createApi({
         method: 'POST',
         data: department,
       }),
-      invalidatesTags: () => ['Department'],
+      invalidatesTags: () => [TAGS.ONE],
     }),
     deleteDepartments: builder.mutation<DepartmentI, { id: string }>({
       query: ({ id }) => ({
         url: `${API_URLS.DEPARTMENTS}/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: () => ['Department'],
+      invalidatesTags: () => [TAGS.ONE],
     }),
   }),
 });

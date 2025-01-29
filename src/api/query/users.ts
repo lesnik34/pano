@@ -1,4 +1,3 @@
-// Need to use the React-specific entry point to allow generating React hooks
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { API_URLS } from '@constants/api';
 import { USERS_LIST_LENGTH } from '@constants/common';

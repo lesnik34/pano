@@ -14,6 +14,8 @@ export const TASKS_LIST_LENGTH = 5;
 
 export const DEPARTMENTS_LIST_LENGTH = 5;
 
+export const ASSIGNMENTS_LIST_LENGTH = 5;
+
 export const USERS_LIST_LENGTH = 5;
 
 export const DEBOUNCE_TIME = 1500;
