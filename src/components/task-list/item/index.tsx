@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TaskStatus } from '@api/types';
 import { getDateRange, isDateSoon } from '@utils/common';
-import { getTaskStatusProperties } from '@styles/utils/common';
+import { getStatusProperties } from '@styles/utils/common';
 import { PAGE_TASKS } from '@constants/pages';
 
 import {
@@ -27,7 +27,7 @@ interface TaskItemI {
 
 const TaskItem: React.FC<TaskItemI> = ({ id, title, description, status, dateFrom, dateTill }) => {
   const navigate = useNavigate();
-  const statusText = useMemo(() => getTaskStatusProperties(status).text, [status]);
+  const statusText = useMemo(() => getStatusProperties(status).text, [status]);
   const dateRange = useMemo(() => getDateRange(dateFrom, dateTill), [dateFrom, dateTill]);
   const isDeadline = useMemo(() => isDateSoon(dateTill), [dateTill]);
 

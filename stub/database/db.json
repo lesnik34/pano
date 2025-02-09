@@ -271,7 +271,80 @@
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
       "id": 11
+    },
+    {
+      "title": "Новая заявка",
+      "executor": {
+        "id": 1241251215,
+        "username": "fasf123",
+        "firstName": "Erik",
+        "lastName": "Dan"
+      },
+      "creator": {
+        "id": 5000496962,
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "department": {
+        "id": 124,
+        "title": "Весовая",
+        "description": "Описание"
+      },
+      "description": "",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "TO_DO",
+      "id": 12
     }
   ],
-  "assignments": []
+  "assignments": [
+    {
+      "title": "Текст123",
+      "executor": {
+        "id": 1249012412,
+        "username": "fas1234",
+        "firstName": "Jhon",
+        "lastName": "Doh"
+      },
+      "creator": {
+        "id": 1145810815,
+        "username": "erk123",
+        "firstName": "Vlad",
+        "lastName": "Trip"
+      },
+      "description": "",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "DONE",
+      "id": 1,
+      "department": {
+        "id": 123,
+        "title": "Грузчики",
+        "description": ""
+      }
+    },
+    {
+      "title": "Заявка",
+      "executor": {
+        "id": 1241251215,
+        "username": "fasf123",
+        "firstName": "Erik",
+        "lastName": "Dan"
+      },
+      "creator": {
+        "id": 5000496962,
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak"
+      },
+      "department": {
+        "id": 123,
+        "title": "Грузчики",
+        "description": ""
+      },
+      "description": "",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "DONE",
+      "id": 2
+    }
+  ]
 }

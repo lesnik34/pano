@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "@heroui/react";
+import { Tab, Tabs } from '@heroui/react';
 import React, { Key, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,14 +24,15 @@ const Target: React.FC<TargetI> = ({ setTarget, userId, isLoading, target }) => 
       <Tabs
         isDisabled={isLoading}
         onSelectionChange={onTabClick}
+        selectedKey={target.creator ? 'creator' : 'executor'}
         variant="solid"
         size="lg"
         fullWidth
         color="primary"
         radius="lg"
       >
-        <Tab key="executor" title={t('appointed.tasks')} />
-        <Tab key="creator" title={t('created.tasks')} />
+        <Tab key="executor" title={t('appointed.assignments')} />
+        <Tab key="creator" title={t('created.assignments')} />
       </Tabs>
     </div>
   );

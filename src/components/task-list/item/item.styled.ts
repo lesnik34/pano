@@ -1,6 +1,6 @@
 import { TaskI } from '@api/types';
-import { getTaskStatusProperties } from '@styles/utils/common';
-import { Button } from "@heroui/react";
+import { getStatusProperties } from '@styles/utils/common';
+import { Button } from '@heroui/react';
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 
@@ -19,7 +19,7 @@ export const ButtonWrapperStyled = styled(Button)`
 
 export const StatusLineStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
   ({ $taskStatus }) => css`
-    ${getTaskStatusProperties($taskStatus).style}
+    ${getStatusProperties($taskStatus).style}
     position: absolute;
     left: 0;
     top: 0;
@@ -69,7 +69,7 @@ export const FooterStyled = styled.div`
 
 export const StatusStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
   ({ $taskStatus }) => css`
-    ${getTaskStatusProperties($taskStatus).style}
+    ${getStatusProperties($taskStatus).style}
     ${tw`text-xs text-white font-medium`}
     min-width: 105px;
     padding: 7px 14px;

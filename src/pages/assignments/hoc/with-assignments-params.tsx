@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { TASK_PARAMS } from '@constants/pages';
+import { ASSIGNMENTS_PARAMS } from '@constants/pages';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import selectors from '@store/selectors';
 import slices from '@store/slices';
@@ -22,12 +22,12 @@ const withAssignmentsParams = (Component: React.ComponentType<AssignmentsParamsC
   const queryList = useMemo(
     () => [
       {
-        name: TASK_PARAMS.page,
+        name: ASSIGNMENTS_PARAMS.page,
         sliceValue: assignmentsStoreParams.page,
         changeStore: slices.assignments.setPage,
       },
       {
-        name: TASK_PARAMS.status,
+        name: ASSIGNMENTS_PARAMS.status,
         sliceValue: assignmentsStoreParams.statuses,
         changeStore: slices.assignments.setStatus,
       },

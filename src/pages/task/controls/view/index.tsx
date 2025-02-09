@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from "@heroui/react";
+import { Button } from '@heroui/react';
 import { MdEdit } from 'react-icons/md';
 
 import { useUpdateTaskStatusMutation } from '@api/query/tasks';
@@ -31,7 +31,7 @@ const View: React.FC<ViewI> = ({ data, setEditMode }) => {
       updateTask({ status, id: data.id });
     },
     [data, updateTask],
-  );
+  ) as (status: string) => void;
 
   return (
     <>

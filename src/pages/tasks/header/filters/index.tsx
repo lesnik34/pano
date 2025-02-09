@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from "@heroui/react";
+import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
 import { FiFilter } from 'react-icons/fi';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

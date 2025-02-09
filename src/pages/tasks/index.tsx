@@ -11,6 +11,7 @@ import Header from './header';
 import withTaskParams, { TaskParamsComponentI } from './hoc/with-task-params';
 import { ErrorWrapperStyled, WrapperStyled } from './tasks.styled';
 import Target from './target';
+import Elevation from './elevation';
 
 interface TasksI extends TaskParamsComponentI {}
 
@@ -41,6 +42,8 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
           <Header isLoading={isFetching} />
 
           <TaskList items={content} isLoading={isFetching} />
+
+          <Elevation isLoading={isFetching} />
 
           <Pagination totalPages={totalPages} currentPage={params.page} />
         </WrapperStyled>

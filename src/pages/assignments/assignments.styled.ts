@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const WrapperStyled = styled.div`
-  padding-bottom: 20px;
+  padding-bottom: 100px;
 `;
 
 export const ErrorWrapperStyled = styled.div`

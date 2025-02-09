@@ -1,21 +1,24 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@heroui/react";
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
 import { IoIosArrowUp } from 'react-icons/io';
 
-import { TaskStatus } from '@api/types';
-import { getTaskStatusProperties } from '@styles/utils/common';
+import { AssignmentStatus, TaskStatus } from '@api/types';
+import { getStatusProperties } from '@styles/utils/common';
 import { Wrapper, StatusesWrapper, StatusWrapper } from './status.styled';
 
 interface StatusButtonI {
-  status?: TaskStatus;
-  availableStatuses?: Array<TaskStatus>;
+  status?: string;
+  availableStatuses?: Array<string>;
   isLoading?: boolean;
-  onClick?: (status: TaskStatus) => void;
+  onClick?: (status: string) => void;
 }
 
 const StatusButton: React.FC<StatusButtonI> = ({ status, availableStatuses, isLoading, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const getCurrentProperties = useCallback((currentStatus?: TaskStatus) => getTaskStatusProperties(currentStatus), []);
+  const getCurrentProperties = useCallback(
+    (currentStatus?: string) => getStatusProperties(currentStatus as TaskStatus | AssignmentStatus),
+    [],
+  );
   const currentProperties = getCurrentProperties(status);
 
   const onOpenChange = useCallback((popoverStatus: boolean) => {
@@ -23,7 +26,7 @@ const StatusButton: React.FC<StatusButtonI> = ({ status, availableStatuses, isLo
   }, []);
 
   const onPopoverClick = useCallback(
-    (taskStatus: TaskStatus) => () => {
+    (taskStatus: string) => () => {
       setIsOpen(false);
       onClick?.(taskStatus);
     },

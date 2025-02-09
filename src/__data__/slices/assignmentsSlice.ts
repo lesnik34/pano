@@ -11,7 +11,7 @@ export interface AssignmentsState {
 const initialState: AssignmentsState = {
   params: {
     page: 1,
-    statuses: [AssignmentStatus.canceled, AssignmentStatus.done, AssignmentStatus.inProgress, AssignmentStatus.toDo],
+    statuses: [AssignmentStatus.inProgress, AssignmentStatus.toDo],
   },
 };
 

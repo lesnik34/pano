@@ -1,4 +1,4 @@
-import { NewTaskI } from '@api/types';
+import { NewTaskI, NewAssignmentI } from '@api/types';
 
 export const DEFAULT_ERROR_CODE = '0000';
 
@@ -22,7 +22,14 @@ export const DEBOUNCE_TIME = 1500;
 
 export const TASK_STATUSES = ['DONE', 'IN_PROGRESS', 'TO_DO', 'CANCELED'];
 
+export const ASSIGNMENT_STATUSES = ['DONE', 'IN_PROGRESS', 'TO_DO', 'CANCELED'];
+
 export const EMPTY_TASK: NewTaskI = {
+  title: '',
+  description: '',
+};
+
+export const EMPTY_ASSIGNMENT: NewAssignmentI = {
   title: '',
   description: '',
 };

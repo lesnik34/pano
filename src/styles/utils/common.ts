@@ -1,8 +1,8 @@
 import tw, { TwStyle } from 'twin.macro';
-import { TaskStatus } from '@api/types';
+import { TaskStatus, AssignmentStatus } from '@api/types';
 import i18n from '@utils/i18next';
 
-export const getTaskStatusProperties = (status?: TaskStatus) => {
+export const getStatusProperties = (status?: TaskStatus | AssignmentStatus) => {
   let style: TwStyle = tw``;
   let color: 'default' | 'primary' | 'success' | 'warning' = 'default';
   let text = '';

@@ -89,11 +89,11 @@ router.post('/api/v1/assignments', wait(INIT_TIMEOUT), async (req, res) => {
     let newAssignment;
 
     if (id) {
-      const { data: oldAssignment } = await axios.get(`${DB_URL}/tasks/${id}`);
-      const { data } = await axios.put(`${DB_URL}/tasks/${id}`, { ...oldAssignment, ...assignmentToUpdate });
+      const { data: oldAssignment } = await axios.get(`${DB_URL}/assignments/${id}`);
+      const { data } = await axios.put(`${DB_URL}/assignments/${id}`, { ...oldAssignment, ...assignmentToUpdate });
       newAssignment = data;
     } else {
-      const { data } = await axios.post(`${DB_URL}/tasks`, {
+      const { data } = await axios.post(`${DB_URL}/assignments`, {
         ...assignmentToUpdate,
         createdDate: '2024-09-20T15:40:45.417588Z',
         status: 'TO_DO',
