@@ -56,7 +56,7 @@
     "delete.assignment.success": "Успешно удалено",
     "async.input.empty.message": "Ничего не найдено",
     "async.input.user.placeholder": "Введите фамилию или имя",
-    "async.input.department.placeholder": "Введите название отдела",
+    "async.input.department.placeholder": "Введите отдел",
     "required.message": "Обязательно для заполнения",
     "title.min.length.message": "Слишком короткий заголовок",
     "created.tasks": "Созданные",
@@ -76,6 +76,8 @@
     "tasks.status.archive": "Архив",
     "assignments.button.new": "Новая заявка",
     "tasks.button.new": "Новая задача",
-    "marks.dummy.message": "Пока тут пусто"
+    "marks.dummy.message": "Пока тут пусто",
+    "department.search.title": "Поиск отдела",
+    "executor.search.title": "Поиск исполнителя"
   }
 }

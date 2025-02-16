@@ -1,9 +1,10 @@
-import React, { Key, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Input, useDisclosure } from '@heroui/react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Autocomplete, AutocompleteItem } from "@heroui/react";
+
 import { useGetDepartmentsQuery } from '@api/query/departments';
-import { DEBOUNCE_TIME } from '@constants/common';
+import AsyncInputDrawer from '@components/async-input-drawer';
 import { DepartmentI } from '@api/types';
 
 import { WrapperStyled } from './department.styled';
@@ -17,10 +18,12 @@ const fieldId = 'department';
 
 const Department: React.FC<DepartmentComponentI> = ({ department, isLoading }) => {
   const { t } = useTranslation();
-  const timeoutRef = useRef<NodeJS.Timeout | null>();
+  const departmentInputRef = useRef<HTMLInputElement | null>(null);
+
+  const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onOpenChange: onDrawerOpenChange } = useDisclosure();
   const [selectedDepartment, setSelectedDepartment] = useState(department);
-  const [inputValue, setInputValue] = useState(department?.title || '');
   const [search, setSearch] = useState('');
+
   const { data, isFetching } = useGetDepartmentsQuery({ search, page: 1 });
   const {
     register,
@@ -28,24 +31,22 @@ const Department: React.FC<DepartmentComponentI> = ({ department, isLoading }) =
     clearErrors,
     formState: { errors },
   } = useFormContext();
-  const formError = errors[fieldId];
 
+  const formError = errors[fieldId];
   register(fieldId, { required: t('required.message') });
 
-  const onSelectionChange = useCallback(
-    (key: Key | null) => {
-      const selected = data?.content.find((item) => String(item.id) === String(key));
-
-      if (key && selected) {
-        setSelectedDepartment(selected);
-        setInputValue(selected.title);
-        return;
-      }
-
-      setSelectedDepartment(undefined);
+  const onDepartmentClick = useCallback(
+    (item: DepartmentI) => () => {
+      onDrawerOpenChange();
+      setSelectedDepartment(item);
     },
-    [data?.content],
+    [onDrawerOpenChange],
   );
+
+  const onFocusInput = useCallback(() => {
+    onDrawerOpen();
+    departmentInputRef.current?.blur();
+  }, [onDrawerOpen]);
 
   useEffect(() => {
     setValue(fieldId, selectedDepartment);
@@ -56,44 +57,29 @@ const Department: React.FC<DepartmentComponentI> = ({ department, isLoading }) =
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDepartment]);
 
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setSearch(inputValue);
-    }, DEBOUNCE_TIME);
-  }, [inputValue]);
-
   return (
     <WrapperStyled>
-      <Autocomplete
-        placeholder={t('async.input.department.placeholder')}
-        isLoading={isFetching || isLoading}
+      <Input
+        ref={departmentInputRef}
         label={t('input.department.label')}
-        items={data?.content}
-        inputValue={inputValue}
-        onInputChange={setInputValue}
-        defaultSelectedKey={department?.id}
-        defaultItems={department ? [department] : []}
-        selectedKey={department?.id}
-        onSelectionChange={onSelectionChange}
-        isInvalid={Boolean(formError)}
         errorMessage={formError?.message as string | undefined}
-        isClearable={false}
-        popoverProps={{
-          shouldBlockScroll: true,
-        }}
-        listboxProps={{
-          emptyContent: t('async.input.empty.message'),
-        }}
+        onClick={onDrawerOpen}
+        onFocus={onFocusInput}
+        value={selectedDepartment?.title}
+        isInvalid={Boolean(formError)}
         isRequired
-      >
-        {(possibleDepartment) => (
-          <AutocompleteItem key={possibleDepartment.id}>{possibleDepartment.title}</AutocompleteItem>
-        )}
-      </Autocomplete>
+      />
+
+      <AsyncInputDrawer
+        isOpen={isDrawerOpen}
+        onOpenChange={onDrawerOpenChange}
+        title={t('department.search.title')}
+        inputPlaceholder={t('async.input.department.placeholder')}
+        isLoading={isLoading || isFetching}
+        searchedItems={data?.content}
+        onItemClick={onDepartmentClick}
+        setSearch={setSearch}
+      />
     </WrapperStyled>
   );
 };
