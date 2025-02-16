@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/react";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@heroui/react';
 import { FiSearch } from 'react-icons/fi';
 import { ModalBodyWrapperStyled, ModalTitleStyled } from './search.styled';
 import Items from './items';
@@ -71,6 +71,8 @@ const Search: React.FC<SearchI> = ({ isLoading }) => {
                   variant="underlined"
                   isClearable
                   autoComplete="off"
+                  autoCorrect="off"
+                  spellCheck={false}
                   onFocus={onFocus}
                 />
               </ModalHeader>

@@ -68,6 +68,7 @@ const AsyncInputDrawer: React.FC<AsyncInputDrawerI> = ({
                 placeholder={inputPlaceholder}
                 onValueChange={setInputValue}
                 autoComplete="off"
+                autoCorrect="off"
                 spellCheck={false}
               />
 

@@ -33,11 +33,11 @@ export const filterTasks = (tasks, params) => {
       flag = false;
     }
 
-    if (!currentStatuses.includes(task?.status)) {
+    if (!currentStatuses?.includes(task?.status)) {
       flag = false;
     }
 
-    if (search && !task?.title?.toLowerCase()?.includes(search)) {
+    if (search && !task?.title?.toLowerCase?.()?.includes(search)) {
       flag = false;
     }
 
