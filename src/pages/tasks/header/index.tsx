@@ -2,6 +2,7 @@ import React from 'react';
 
 import Search from '@components/search';
 import Filters from './filters';
+import Status from './status';
 import { SideWrapperStyled, WrapperStyled } from './header.styled';
 
 interface HeaderI {
@@ -17,6 +18,8 @@ const Header: React.FC<HeaderI> = ({ isLoading }) => (
         <Search isLoading={isLoading} />
       </div>
     </SideWrapperStyled>
+
+    <Status isLoading={isLoading} />
   </WrapperStyled>
 );
 

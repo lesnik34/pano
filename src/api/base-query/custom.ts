@@ -41,6 +41,8 @@ export const customBaseQuery = (
       const result = await axios(reqConfig);
 
       if (result.data?.status) {
+        attempts = 0;
+
         return { data: result.data.body || true };
       }
 

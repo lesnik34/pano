@@ -1,10 +1,14 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
-import { FiFilter } from 'react-icons/fi';
+import { Badge, Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { FiFilter } from 'react-icons/fi';
 
+import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { useAppSelector } from '@store/store';
+import selectors from '@store/selectors';
+
+import Status from './status';
 import { PopoverWrapper, SectionStyled } from './parameters.styled';
 
 interface ParametersI {
@@ -16,14 +20,18 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
   const [isPopoverVisible, setPopoverVision] = useState(false);
   const setSearchParams = useSearchParams()[1];
 
+  const assignmentsStoreParams = useAppSelector(selectors.assignments.params);
+  const [currentStatus, setCurrentStatus] = useState(assignmentsStoreParams.statuses);
+
   const onSubmit = useCallback(() => {
     setSearchParams((params) => {
       params.set(ASSIGNMENTS_PARAMS.page, '1');
+      params.set(ASSIGNMENTS_PARAMS.status, String(currentStatus));
       return params;
     });
 
     setPopoverVision(false);
-  }, [setSearchParams]);
+  }, [currentStatus, setSearchParams]);
 
   return (
     <Popover
@@ -33,13 +41,17 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
       isOpen={isPopoverVisible}
       shouldBlockScroll
     >
-      <PopoverTrigger>
-        <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
-      </PopoverTrigger>
+      <Badge color="primary" content={assignmentsStoreParams.statuses.length}>
+        <PopoverTrigger>
+          <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
+        </PopoverTrigger>
+      </Badge>
 
       <PopoverContent>
         <PopoverWrapper>
-          <SectionStyled />
+          <SectionStyled>
+            <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} />
+          </SectionStyled>
 
           <Button onPress={onSubmit} className="mt-3" color="primary" fullWidth>
             {t('submit.text')}

@@ -19,4 +19,4 @@ export const DEFAULT_ERROR_RESPONSE: BaseErrorI = {
   },
 };
 
-export const MAX_ATTEMPTS_403 = 1;
+export const MAX_ATTEMPTS_403 = 3;

@@ -1,4 +1,5 @@
-import { AssignmentStatus } from '@/api/types';
+import { AssignmentStatus } from '@api/types';
+import { ASSIGNMENTS_PARAMS } from '@constants/pages';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AssignmentsState {

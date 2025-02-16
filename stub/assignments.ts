@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import axios from 'axios';
-import { wait, resConstructor } from './utils/common';
+import { wait, resConstructor, filterTasks } from './utils/common';
 import { DB_URL } from './utils/constants';
 
 const INIT_TIMEOUT = 1000;
@@ -9,7 +9,7 @@ const router = Router();
 
 router.get('/api/v1/assignments', wait(INIT_TIMEOUT), async (req, res) => {
   try {
-    const { page, size = '5' } = req.query;
+    const { page, size = '5', ...params } = req.query;
     const { data } = await axios.get(`${DB_URL}/assignments`);
 
     const itemsPerPage = Number(size);
@@ -17,12 +17,14 @@ router.get('/api/v1/assignments', wait(INIT_TIMEOUT), async (req, res) => {
 
     const dataFromIndex = currentPage * itemsPerPage - itemsPerPage;
     const dataTillIndex = currentPage * itemsPerPage;
-    const currentContent = data.slice(dataFromIndex, dataTillIndex);
 
-    const totalPages = Math.ceil(Number(data.length) / itemsPerPage);
+    const filteredContent = filterTasks(data, params);
+    const currentContent = filteredContent.slice(dataFromIndex, dataTillIndex);
+
+    const totalPages = Math.ceil(Number(filteredContent.length) / itemsPerPage);
     const last = totalPages === currentPage;
 
-    if (data) {
+    if (filteredContent) {
       res.send(
         resConstructor.success({
           content: currentContent,
@@ -40,7 +42,7 @@ router.get('/api/v1/assignments', wait(INIT_TIMEOUT), async (req, res) => {
           },
           last,
           totalPages,
-          totalElements: data.length,
+          totalElements: filteredContent.length,
           number: 0,
           first: false,
           sort: {

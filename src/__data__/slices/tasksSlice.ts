@@ -11,7 +11,7 @@ export interface TasksState {
 const initialState: TasksState = {
   params: {
     page: 1,
-    statuses: [TaskStatus.canceled, TaskStatus.done, TaskStatus.inProgress, TaskStatus.toDo],
+    statuses: [TaskStatus.inProgress, TaskStatus.toDo],
   },
 };
 

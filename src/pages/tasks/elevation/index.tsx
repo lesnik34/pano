@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
 import { Button } from '@heroui/react';
@@ -12,7 +11,6 @@ interface ElevationI {
 }
 
 const Elevation: React.FC<ElevationI> = ({ isLoading }) => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const onButtonClick = useCallback(() => {
@@ -30,9 +28,7 @@ const Elevation: React.FC<ElevationI> = ({ isLoading }) => {
         onPress={onButtonClick}
         isLoading={isLoading}
         startContent={isLoading ? null : <IoMdAdd />}
-      >
-        {t('tasks.button.new')}
-      </Button>
+      />
     </WrapperStyled>
   );
 };

@@ -13,7 +13,7 @@ interface StatusI {
 
 const Status: React.FC<StatusI> = ({ setCurrentStatus, currentStatus }) => {
   const { t } = useTranslation();
-  const tasksStoreParams = useAppSelector(selectors.tasks.params);
+  const assignmentsStoreParams = useAppSelector(selectors.assignments.params);
 
   const onChange = useCallback(
     (statuses: Array<string>) => {
@@ -25,10 +25,10 @@ const Status: React.FC<StatusI> = ({ setCurrentStatus, currentStatus }) => {
   );
 
   useEffect(() => {
-    setCurrentStatus(tasksStoreParams.statuses);
+    setCurrentStatus(assignmentsStoreParams.statuses);
 
     return () => {
-      setCurrentStatus(tasksStoreParams.statuses);
+      setCurrentStatus(assignmentsStoreParams.statuses);
     };
   }, []);
 

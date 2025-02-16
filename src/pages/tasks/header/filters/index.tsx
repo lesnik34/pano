@@ -21,7 +21,6 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
 
   const tasksStoreParams = useAppSelector(selectors.tasks.params);
   const [currentStatus, setCurrentStatus] = useState(tasksStoreParams.statuses);
-  const activeLength = tasksStoreParams.statuses.length;
 
   const onSubmit = useCallback(() => {
     setSearchParams((params) => {
@@ -41,7 +40,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
       isOpen={isPopoverVisible}
       shouldBlockScroll
     >
-      <Badge color="primary" content={activeLength}>
+      <Badge color="primary" content={tasksStoreParams.statuses.length}>
         <PopoverTrigger>
           <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
         </PopoverTrigger>

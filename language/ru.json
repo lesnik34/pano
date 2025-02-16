@@ -72,6 +72,8 @@
     "search.tasks.loader.label": "Ищем...",
     "assignments.status.active": "Активные",
     "assignments.status.archive": "Архив",
+    "tasks.status.active": "Активные",
+    "tasks.status.archive": "Архив",
     "assignments.button.new": "Новая заявка",
     "tasks.button.new": "Новая задача",
     "marks.dummy.message": "Пока тут пусто"
