@@ -17,7 +17,10 @@ interface TasksI extends TaskParamsComponentI {}
 
 const Tasks: React.FC<TasksI> = ({ params }) => {
   const userId = useAppSelector(selectors.auth.userId);
-  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ executor: userId });
+  const viewedUserId = useAppSelector(selectors.tasks.viewedUser)?.id;
+  const currentUserId = viewedUserId || userId;
+
+  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ executor: currentUserId });
   const { data, isFetching, isError, refetch } = useGetTasksQuery({
     page: params.page,
     statuses: params.statuses,
@@ -37,7 +40,7 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
     <Layout>
       {isTaskListVisible && (
         <WrapperStyled>
-          <Target isLoading={isFetching} userId={userId} setTarget={setTarget} />
+          <Target isLoading={isFetching} userId={currentUserId} setTarget={setTarget} />
 
           <Header isLoading={isFetching} />
 

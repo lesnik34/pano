@@ -17,7 +17,10 @@ interface AssignmentsI extends AssignmentsParamsComponentI {}
 
 const Assignments: React.FC<AssignmentsI> = ({ params }) => {
   const userId = useAppSelector(selectors.auth.userId);
-  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ creator: userId });
+  const viewedUserId = useAppSelector(selectors.assignments.viewedUser)?.id;
+  const currentUserId = viewedUserId || userId;
+
+  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ creator: currentUserId });
   const { data, isFetching, isError, refetch } = useGetAssignmentsQuery({
     page: params.page,
     statuses: params.statuses,
@@ -37,7 +40,7 @@ const Assignments: React.FC<AssignmentsI> = ({ params }) => {
     <Layout>
       {isAssignmentListVisible && (
         <WrapperStyled>
-          <Target isLoading={isFetching} userId={userId} setTarget={setTarget} target={target} />
+          <Target isLoading={isFetching} userId={currentUserId} setTarget={setTarget} target={target} />
 
           <Header isLoading={isFetching} />
 
