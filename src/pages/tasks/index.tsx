@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Layout from '@components/global/layout';
 import TaskList from '@components/task-list';
 import Error from '@components/error';
@@ -35,6 +35,15 @@ const Tasks: React.FC<TasksI> = ({ params }) => {
   const errorHandler = useCallback(() => {
     refetch();
   }, [refetch]);
+
+  useEffect(() => {
+    setTarget((state) => {
+      if (state.creator) {
+        return { creator: currentUserId };
+      }
+      return { executor: currentUserId };
+    });
+  }, [currentUserId]);
 
   return (
     <Layout>

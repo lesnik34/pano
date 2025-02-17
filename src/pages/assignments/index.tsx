@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Layout from '@components/global/layout';
 import Error from '@components/error';
 import Pagination from '@components/pagination';
@@ -35,6 +35,15 @@ const Assignments: React.FC<AssignmentsI> = ({ params }) => {
   const errorHandler = useCallback(() => {
     refetch();
   }, [refetch]);
+
+  useEffect(() => {
+    setTarget((state) => {
+      if (state.creator) {
+        return { creator: currentUserId };
+      }
+      return { executor: currentUserId };
+    });
+  }, [currentUserId]);
 
   return (
     <Layout>
