@@ -1,26 +1,38 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Search from '@components/search';
-import Filters from './filters';
 import { SideWrapperStyled, WrapperStyled } from './header.styled';
+import SearchItems from './search-items';
+import Filters from './filters';
 import Status from './status';
 
 interface HeaderI {
   isLoading?: boolean;
 }
 
-const Header: React.FC<HeaderI> = ({ isLoading }) => (
-  <WrapperStyled>
-    <SideWrapperStyled>
-      <Filters isLoading={isLoading} />
+const Header: React.FC<HeaderI> = ({ isLoading }) => {
+  const { t } = useTranslation();
 
-      <div className="ml-2">
-        <Search isLoading={isLoading} />
-      </div>
-    </SideWrapperStyled>
+  return (
+    <WrapperStyled>
+      <SideWrapperStyled>
+        <Filters isLoading={isLoading} />
 
-    <Status isLoading={isLoading} />
-  </WrapperStyled>
-);
+        <div className="ml-2">
+          <Search
+            title={t('search.assignments.title')}
+            placeholder={t('search.assignments.placeholder')}
+            isLoading={isLoading}
+          >
+            {(search: string) => <SearchItems search={search} />}
+          </Search>
+        </div>
+      </SideWrapperStyled>
+
+      <Status isLoading={isLoading} />
+    </WrapperStyled>
+  );
+};
 
 export default Header;

@@ -1,5 +1,4 @@
-import { AssignmentStatus } from '@api/types';
-import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { AssignmentStatus, UserI } from '@api/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AssignmentsState {
@@ -7,6 +6,7 @@ export interface AssignmentsState {
     page: number;
     statuses: Array<string>;
   };
+  viewedUser?: UserI;
 }
 
 const initialState: AssignmentsState = {
@@ -27,9 +27,12 @@ export const assignmentsSlice = createSlice({
       const values = String(action.payload).split(',');
       state.params.statuses = values;
     },
+    setViewedUser: (state, action: PayloadAction<UserI | undefined>) => {
+      state.viewedUser = action.payload;
+    },
   },
 });
 
-export const { setPage, setStatus } = assignmentsSlice.actions;
+export const { setPage, setStatus, setViewedUser } = assignmentsSlice.actions;
 
 export default assignmentsSlice.reducer;

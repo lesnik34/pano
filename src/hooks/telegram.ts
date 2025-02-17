@@ -19,7 +19,7 @@ const useTelegram = () => {
       telegram.expand?.();
     }
 
-    document.body.classList.add('dark', 'text-foreground', 'bg-background');
+    document.documentElement.classList.add('dark', 'text-foreground', 'bg-background');
     telegram.setBackgroundColor?.(theme.dark.colors.background);
     telegram.setHeaderColor?.(theme.dark.colors.header);
     telegram.disableVerticalSwipes?.();

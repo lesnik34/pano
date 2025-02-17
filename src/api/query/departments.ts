@@ -46,7 +46,7 @@ export const departmentsApi = createApi({
         method: 'POST',
         data: department,
       }),
-      invalidatesTags: () => [TAGS.ALL],
+      invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }, TAGS.ALL],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
@@ -62,14 +62,14 @@ export const departmentsApi = createApi({
         method: 'POST',
         data: department,
       }),
-      invalidatesTags: () => [TAGS.ONE],
+      invalidatesTags: () => [TAGS.ALL],
     }),
     deleteDepartments: builder.mutation<DepartmentI, { id: string }>({
       query: ({ id }) => ({
         url: `${API_URLS.DEPARTMENTS}/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: () => [TAGS.ONE],
+      invalidatesTags: () => [TAGS.ALL],
     }),
   }),
 });

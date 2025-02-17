@@ -43,7 +43,7 @@ export const tasksApi = createApi({
         method: 'POST',
         data: task,
       }),
-      invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }],
+      invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }, TAGS.ALL],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
@@ -59,7 +59,7 @@ export const tasksApi = createApi({
         method: 'PATCH',
         data: { status },
       }),
-      invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }],
+      invalidatesTags: (result) => [{ type: TAGS.ONE, id: result?.id }, TAGS.ALL],
       async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         dispatch(
@@ -75,14 +75,14 @@ export const tasksApi = createApi({
         method: 'POST',
         data: task,
       }),
-      invalidatesTags: () => [TAGS.ONE],
+      invalidatesTags: () => [TAGS.ALL],
     }),
     deleteTask: builder.mutation<TaskI, { id: string }>({
       query: ({ id }) => ({
         url: `${API_URLS.TASKS}/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: () => [TAGS.ONE],
+      invalidatesTags: () => [TAGS.ALL],
     }),
   }),
 });

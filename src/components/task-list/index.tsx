@@ -24,7 +24,7 @@ const TaskList: React.FC<TaskListI> = ({ items, isLoading, isColumn }) => {
       {isLoading && <SkeletonTaskList />}
 
       {isEmptyItems && (
-        <div className="mt-12 w-full">
+        <div className="mt-12 mb-12 w-full">
           <Error title={t('empty.tasks.title')} description={t('empty.tasks.description')} hideButton />
         </div>
       )}

@@ -3,6 +3,7 @@
     "default.error.message": "Что-то пошло не так...",
     "default.loader.label": "Загрузка...",
     "submit.text": "Применить",
+    "choose.text": "Выбрать",
     "no.auth.page.title": "403",
     "error.page.title": "Error",
     "not.found.page.title": "404",
@@ -19,6 +20,7 @@
     "task.status.canceled": "Отменено",
     "filter.text": "Фильтры",
     "filter.status.text": "Статус задачи",
+    "filter.user.text": "Пользователь",
     "text.back": "Назад",
     "task.department.label": "Отдел",
     "assignment.department.label": "Отдел",
@@ -68,7 +70,10 @@
     "empty.assignments.title": "Пока нет заявок",
     "empty.assignments.description": "Возможно они появятся позже",
     "search.tasks.title": "Поиск задач",
+    "search.user": "Поиск пользователя",
     "search.tasks.placeholder": "Начните вводить...",
+    "search.assignments.title": "Поиск заявок",
+    "search.assignments.placeholder": "Начните вводить...",
     "search.tasks.loader.label": "Ищем...",
     "assignments.status.active": "Активные",
     "assignments.status.archive": "Архив",
@@ -78,6 +83,8 @@
     "tasks.button.new": "Новая задача",
     "marks.dummy.message": "Пока тут пусто",
     "department.search.title": "Поиск отдела",
-    "executor.search.title": "Поиск исполнителя"
+    "executor.search.title": "Поиск исполнителя",
+    "need.more.text.title": "Продолжайте вводить...",
+    "need.more.text.description": "Необходимо минимум 3 символа"
   }
 }

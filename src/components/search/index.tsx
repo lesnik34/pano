@@ -1,5 +1,4 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@heroui/react';
 import { FiSearch } from 'react-icons/fi';
 import { ModalBodyWrapperStyled, ModalTitleStyled } from './search.styled';
@@ -7,10 +6,12 @@ import Items from './items';
 
 interface SearchI {
   isLoading?: boolean;
+  title?: string;
+  placeholder?: string;
+  children: (search: string) => React.ReactNode;
 }
 
-const Search: React.FC<SearchI> = ({ isLoading }) => {
-  const { t } = useTranslation();
+const Search: React.FC<SearchI> = ({ isLoading, title, placeholder, children }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [search, setSearch] = useState('');
   const headerRef = useRef<HTMLDivElement>(null);
@@ -61,12 +62,12 @@ const Search: React.FC<SearchI> = ({ isLoading }) => {
           {() => (
             <>
               <ModalHeader className="flex-col relative">
-                <ModalTitleStyled>{t('search.tasks.title')}</ModalTitleStyled>
+                <ModalTitleStyled>{title}</ModalTitleStyled>
 
                 <Input
                   size="md"
                   onChange={onInputChange}
-                  placeholder={t('search.tasks.placeholder')}
+                  placeholder={placeholder}
                   startContent={<FiSearch />}
                   variant="underlined"
                   isClearable
@@ -79,7 +80,8 @@ const Search: React.FC<SearchI> = ({ isLoading }) => {
 
               <ModalBody>
                 <ModalBodyWrapperStyled>
-                  <Items search={search} />
+                  {children(search)}
+                  {/* <Items search={search} /> */}
                 </ModalBodyWrapperStyled>
               </ModalBody>
             </>

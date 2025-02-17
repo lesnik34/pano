@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle(
 
     body {
       ${tw`antialiased min-h-svh`}
+
+      & > div {
+        z-index: 50 !important;
+      }
     }
 
     a {

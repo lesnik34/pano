@@ -5,7 +5,7 @@ import { DEBOUNCE_TIME } from '@constants/common';
 import useWindowSize from '@hooks/widow-size';
 import theme from '@styles/theme';
 
-import { DepartmentListStyled, DepartmentWrapperStyled, DrawerWrapperStyled } from './input.styled';
+import { ListStyled, WrapperStyled, DrawerWrapperStyled } from './input.styled';
 
 interface AsyncInputDrawerI {
   isOpen: boolean;
@@ -76,15 +76,15 @@ const AsyncInputDrawer: React.FC<AsyncInputDrawerI> = ({
                 <Spinner className="mt-8" />
               ) : (
                 <ScrollShadow className="w-full h-full max-h-[30vh] mt-6">
-                  <DepartmentListStyled>
+                  <ListStyled>
                     {searchedItems?.map((element) => (
-                      <DepartmentWrapperStyled>
-                        <Button key={element.id} fullWidth variant="flat" onPress={onItemClick(element)}>
+                      <WrapperStyled key={element.id}>
+                        <Button fullWidth variant="flat" onPress={onItemClick(element)}>
                           {element.title}
                         </Button>
-                      </DepartmentWrapperStyled>
+                      </WrapperStyled>
                     ))}
-                  </DepartmentListStyled>
+                  </ListStyled>
                 </ScrollShadow>
               )}
             </DrawerBody>

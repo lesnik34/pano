@@ -1,11 +1,12 @@
-import { TaskStatus } from '@/api/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TaskStatus, UserI } from '@api/types';
 
 export interface TasksState {
   params: {
     page: number;
     statuses: Array<string>;
   };
+  viewedUser?: UserI;
 }
 
 const initialState: TasksState = {
@@ -26,9 +27,12 @@ export const tasksSlice = createSlice({
       const values = String(action.payload).split(',');
       state.params.statuses = values;
     },
+    setViewedUser: (state, action: PayloadAction<UserI | undefined>) => {
+      state.viewedUser = action.payload;
+    },
   },
 });
 
-export const { setPage, setStatus } = tasksSlice.actions;
+export const { setPage, setStatus, setViewedUser } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
