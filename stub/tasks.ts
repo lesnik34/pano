@@ -57,7 +57,6 @@ router.get('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
       );
     }
   } catch (error) {
-    console.log(error);
     res.sendStatus(404);
   }
 });

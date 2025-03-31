@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useFormContext } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { Button } from '@heroui/react';
+import { addToast, Button } from '@heroui/react';
 
 import { parseAssignmentData } from '@pages/assignment/utils/common';
 import { useUpdateAssignmentMutation } from '@api/query/assignments';
@@ -24,12 +23,18 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
       const result = await updateAssignment({ ...data, ...parseAssignmentData(editedData) });
 
       if (result.data) {
-        toast.success(t('edit.success.message'));
+        addToast({
+          description: t('edit.success.message'),
+          color: 'success',
+        });
         setEditMode(false);
       }
 
       if (result.error) {
-        toast.error(t('default.error.page.description'));
+        addToast({
+          description: t('default.error.page.description'),
+          color: 'danger',
+        });
       }
     },
     [data, setEditMode, t, updateAssignment],

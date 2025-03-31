@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import { IoSaveOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { Button } from '@heroui/react';
+import { addToast, Button } from '@heroui/react';
 
 import { NewAssignmentI } from '@api/types';
 import { parseAssignmentData } from '@pages/assignment/utils/common';
@@ -27,12 +26,18 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
       const result = await createAssignment({ ...data, ...parseAssignmentData(editedData) });
 
       if (result.data) {
-        toast.success(t('edit.success.message'));
+        addToast({
+          description: t('edit.success.message'),
+          color: 'success',
+        });
         navigate(`${PAGE_ASSIGNMENTS}/${result.data.id}`);
       }
 
       if (result.error) {
-        toast.error(t('default.error.page.description'));
+        addToast({
+          description: t('default.error.page.description'),
+          color: 'danger',
+        });
       }
     },
     [data, createAssignment, t, navigate],

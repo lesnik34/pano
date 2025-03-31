@@ -44,7 +44,6 @@ const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
   const onExecutorClick = useCallback(
     (item: { id: string }) => () => {
       const currentExecutor = data?.content.find((el) => String(el.id) === item.id);
-      console.log(item, currentExecutor);
 
       onDrawerOpenChange();
       setSelectedUser(currentExecutor);

@@ -49,7 +49,7 @@
   ],
   "tasks": [
     {
-      "title": "Текст123",
+      "title": "Отремонтировать трактор",
       "executor": {
         "id": 1249012412,
         "username": "fas1234",
@@ -62,7 +62,7 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "",
+      "description": "Необходимо произвести ремонт трактора",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
       "id": 1,
@@ -74,7 +74,7 @@
       "endDate": "2025-01-25T00:00:00.000+03:00"
     },
     {
-      "title": "123",
+      "title": "Убрать на складе",
       "executor": {
         "id": 1212512124,
         "username": "gas321",
@@ -87,13 +87,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "123",
+      "description": "На складе собралось много мусора, его надо вынести",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
       "id": 2
     },
     {
-      "title": "12332",
+      "title": "Заказать гаечный ключ",
       "executor": {
         "id": 1212512124,
         "username": "gas321",
@@ -106,13 +106,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "123321",
+      "description": "Ключ на 10 износился, пора заказать новый",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "DONE",
       "id": 3
     },
     {
-      "title": "Ask",
+      "title": "Разгрузить машину",
       "executor": {
         "id": 1249012412,
         "username": "fas1234",
@@ -125,13 +125,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "Asdfas",
+      "description": "На склад привезли товар, необзодимо разгрузить",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "IN_PROGRESS",
       "id": 4
     },
     {
-      "title": "1345",
+      "title": "Починить микроволновку",
       "executor": {
         "id": 1212512124,
         "username": "gas321",
@@ -144,13 +144,13 @@
         "firstName": "Nikita",
         "lastName": "Lesnyak"
       },
-      "description": "Gah",
+      "description": "Стоит на кухне",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
       "id": 5
     },
     {
-      "title": "123213",
+      "title": "Проверить оборудование",
       "executor": {
         "id": 1212512124,
         "username": "gas321",
@@ -163,13 +163,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "321",
+      "description": "Проверить оборудование на наличие неисправностей",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
       "id": 6
     },
     {
-      "title": "132wsfa",
+      "title": "Закупить инструменты",
       "executor": {
         "id": 1241251215,
         "username": "fasf123",
@@ -182,13 +182,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "Asdsaf",
+      "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "CANCELED",
       "id": 7
     },
     {
-      "title": "asvasf",
+      "title": "Найти сотрудников",
       "executor": {
         "id": 1241251215,
         "username": "fasf123",
@@ -201,13 +201,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "Asd",
+      "description": "Не хватает сотрудниов в новый отдел",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "DONE",
       "id": 8
     },
     {
-      "title": "vxafds",
+      "title": "Обучить персонал",
       "executor": {
         "id": 1241251215,
         "username": "fasf123",
@@ -220,13 +220,13 @@
         "firstName": "Vlad",
         "lastName": "Trip"
       },
-      "description": "Ascasf",
+      "description": "Новые сотрудники не обучены",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
       "id": 9
     },
     {
-      "title": "Тектст",
+      "title": "Прибрать на складе",
       "executor": {
         "id": 1241251215,
         "username": "fasf123",
@@ -246,11 +246,11 @@
       },
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "CANCELED",
       "id": 10
     },
     {
-      "title": "ТТТТТ",
+      "title": "Купить инструменты",
       "executor": {
         "id": 1212512124,
         "username": "gas321",
@@ -269,11 +269,11 @@
       },
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "IN_PROGRESS",
       "id": 11
     },
     {
-      "title": "Новая заявка",
+      "title": "Отвезти машину на ТО",
       "executor": {
         "id": 1241251215,
         "username": "fasf123",

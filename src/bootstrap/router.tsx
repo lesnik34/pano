@@ -10,6 +10,7 @@ import Main from '@pages/main';
 import NewTask from '@pages/new-task';
 import NewAssignment from '@pages/new-assignment';
 import Marks from '@pages/marks';
+import Structure from '@pages/structure';
 
 import {
   DASH_PAGE,
@@ -19,6 +20,7 @@ import {
   PAGE_TASKS,
   PAGE_NEW_ASSIGNMENT,
   PAGE_MARKS,
+  PAGE_STRUCTURE,
 } from '@constants/pages';
 
 const Router = () => (
@@ -31,6 +33,7 @@ const Router = () => (
       <Route path={PAGE_ASSIGNMENTS} element={<Assignments />} />
       <Route path={PAGE_NEW_ASSIGNMENT} element={<NewAssignment />} />
       <Route path={`${PAGE_ASSIGNMENTS}/:id`} element={<Assignment />} />
+      <Route path={PAGE_STRUCTURE} element={<Structure />} />
       <Route path={PAGE_MARKS} element={<Marks />} />
     </Route>
     <Route path="*" element={<NotFound />} />

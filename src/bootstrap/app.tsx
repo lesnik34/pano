@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
-import { HeroUIProvider } from "@heroui/react";
+import { store } from '@store/store';
 import { Provider } from 'react-redux';
+import useTelegram from '@hooks/telegram';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { store } from '@store/store';
-import useTelegram from '@hooks/telegram';
-import { ToastContainer } from 'react-toastify';
 import { GlobalStyles as BaseStyles } from 'twin.macro';
+import { HeroUIProvider, ToastProvider } from '@heroui/react';
 
-import theme from '@styles/theme';
 import GlobalStyle from '@styles/global';
+import theme from '@styles/theme';
 import '@utils/i18next';
 import '@styles/index.css';
 
 import Router from './router';
-import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const { initOptions } = useTelegram();
@@ -28,9 +26,9 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <HeroUIProvider locale="ru-RU" navigate={navigate} disableAnimation disableRipple>
+          <ToastProvider placement="top-center" toastOffset={10} />
           <GlobalStyle />
           <BaseStyles />
-          <ToastContainer theme="dark" position="top-center" />
 
           <Router />
         </HeroUIProvider>

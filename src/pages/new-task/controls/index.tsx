@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import { IoSaveOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { addToast, Button } from '@heroui/react';
 
 import { NewTaskI } from '@api/types';
 import { parseTaskData } from '@pages/task/utils/common';
 import { useCreateTaskMutation } from '@api/query/tasks';
 import { PAGE_TASKS } from '@constants/pages';
-import { Button } from "@heroui/react";
 import { Wrapper } from './controls.styled';
 
 interface ControlsI {
@@ -27,12 +26,18 @@ const Controls: React.FC<ControlsI> = ({ data }) => {
       const result = await createTask({ ...data, ...parseTaskData(editedData) });
 
       if (result.data) {
-        toast.success(t('edit.success.message'));
+        addToast({
+          description: t('edit.success.message'),
+          color: 'success',
+        });
         navigate(`${PAGE_TASKS}/${result.data.id}`);
       }
 
       if (result.error) {
-        toast.error(t('default.error.page.description'));
+        addToast({
+          description: t('default.error.page.description'),
+          color: 'danger',
+        });
       }
     },
     [data, createTask, t, navigate],

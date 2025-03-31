@@ -1,4 +1,5 @@
 import { AiOutlineAppstore, AiOutlineAudit } from 'react-icons/ai';
+import { VscOrganization } from 'react-icons/vsc';
 import { BiTrophy } from 'react-icons/bi';
 
 export const PAGE_BASE = '/';
@@ -15,6 +16,10 @@ export const PAGE_NEW_ASSIGNMENT = '/dashboard/assignments/new';
 
 export const PAGE_MARKS = '/dashboard/marks';
 
+export const PAGE_STRUCTURE = '/dashboard/structure';
+
+export const PAGE_NEW_DEPARTMENT = '/dashboard/structure/new';
+
 export const NAV_LINKS = [
   {
     title: 'Задачи',
@@ -25,6 +30,11 @@ export const NAV_LINKS = [
     title: 'Заявки',
     url: '/dashboard/assignments',
     icon: AiOutlineAudit,
+  },
+  {
+    title: 'Структура',
+    url: '/dashboard/structure',
+    icon: VscOrganization,
   },
   {
     title: 'Оценки',

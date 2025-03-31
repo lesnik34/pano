@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { addToast, Button } from '@heroui/react';
 import { FieldValues, useFormContext } from 'react-hook-form';
-import { toast } from 'react-toastify';
 
 import { parseTaskData } from '@pages/task/utils/common';
 import { useUpdateTaskMutation } from '@api/query/tasks';
-import { Button } from "@heroui/react";
 import { EditTaskI } from '@api/types';
 import Delete from './delete';
 
@@ -24,12 +23,18 @@ const Edit: React.FC<EditI> = ({ data, setEditMode }) => {
       const result = await updateTask({ ...data, ...parseTaskData(editedData) });
 
       if (result.data) {
-        toast.success(t('edit.success.message'));
+        addToast({
+          description: t('edit.success.message'),
+          color: 'success',
+        });
         setEditMode(false);
       }
 
       if (result.error) {
-        toast.error(t('default.error.page.description'));
+        addToast({
+          description: t('default.error.page.description'),
+          color: 'danger',
+        });
       }
     },
     [data, setEditMode, t, updateTask],

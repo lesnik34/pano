@@ -25,7 +25,18 @@ export const usersApi = createApi({
         },
       }),
     }),
+    getHeads: builder.query<UsersListI, { search?: string; page?: number; size?: number; department?: string }>({
+      query: ({ search, page, size = USERS_LIST_LENGTH, department }) => ({
+        url: `${API_URLS.USER}/heads`,
+        params: {
+          page: page ? page - 1 : undefined,
+          size,
+          search,
+          department,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetUserByIdQuery, useGetUsersQuery } = usersApi;
+export const { useGetUserByIdQuery, useGetUsersQuery, useGetHeadsQuery } = usersApi;

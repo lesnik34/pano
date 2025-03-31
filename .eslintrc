@@ -14,14 +14,16 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
-    "prettier"
+    "prettier",
+    "plugin:styled-components-a11y/recommended"
   ],
   "plugins": [
     "@typescript-eslint",
     "jsx-a11y",
     "react-hooks",
     "import",
-    "prettier"
+    "prettier",
+    "styled-components-a11y"
   ],
   "settings": {
     "import/resolver": {

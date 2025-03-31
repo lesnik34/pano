@@ -1,10 +1,18 @@
 import React, { useCallback } from 'react';
-import { toast } from 'react-toastify';
 import { PAGE_ASSIGNMENTS } from '@constants/pages';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@heroui/react';
 import { useDeleteAssignmentMutation } from '@api/query/assignments';
+import {
+  addToast,
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from '@heroui/react';
 
 import { WrapperStyled } from './delete.styled';
 
@@ -28,12 +36,17 @@ const Delete: React.FC<DeleteI> = ({ isDisabled, id }) => {
     const { data } = await deleteAssignment({ id: id || '' });
     if (data) {
       navigate(PAGE_ASSIGNMENTS);
-      toast.success(t('delete.assignment.success'));
-
+      addToast({
+        description: t('delete.assignment.success'),
+        color: 'success',
+      });
       return;
     }
 
-    toast.error(t('default.error.page.description'));
+    addToast({
+      description: t('default.error.page.description'),
+      color: 'danger',
+    });
   }, [deleteAssignment, id, navigate, t]);
 
   return (
