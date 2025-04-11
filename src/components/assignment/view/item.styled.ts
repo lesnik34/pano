@@ -6,7 +6,7 @@ export const WrapperStyled = styled.div`
   padding-top: 10px;
 `;
 
-export const HeaderWrapper = styled.div<{ $status: AssignmentStatus }>(
+export const HeaderWrapperStyled = styled.div<{ $status: AssignmentStatus }>(
   ({ theme, $status }) => css`
     ${tw`bg-content4`}
     ${$status === AssignmentStatus.inProgress && tw`bg-gradient-to-r from-blue-600 to-blue-900`}
@@ -25,28 +25,23 @@ export const HeaderWrapper = styled.div<{ $status: AssignmentStatus }>(
   `,
 );
 
-export const WrapperContent = styled.div`
-  display: flex;
+export const WrapperContentStyled = styled.div`
+  display: grid;
   align-items: start;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
-export const ExtraWrapperContent = styled.div`
-  margin-top: 20px;
-  display: flex;
-  align-items: start;
-`;
-
-export const ExecutorWrapper = styled.div`
-  margin-right: 40px;
-`;
-
-export const DateWrapper = styled.div``;
-
-export const CreatorWrapper = styled.div`
+export const CreatorWrapperStyled = styled.div`
   margin-top: 20px;
 `;
 
-export const DescriptionWrapper = styled.div`
+export const DescriptionWrapperStyled = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;

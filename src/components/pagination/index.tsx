@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
-import { Pagination as PaginationNext } from "@heroui/react";
+import { Pagination as PaginationNext } from '@heroui/react';
 import { useSearchParams } from 'react-router-dom';
-import { TASK_PARAMS } from '@/constants/pages';
+
+import { TASK_PARAMS } from '@constants/pages';
 
 interface PaginationI {
   totalPages?: number;

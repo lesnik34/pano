@@ -8,9 +8,10 @@ interface StubI {
     actual: string;
     archive: string;
   };
+  isLoading?: boolean;
 }
 
-const Stub: React.FC<StubI> = ({ setCurrentStatus, statusKeys }) => {
+const Stub: React.FC<StubI> = ({ setCurrentStatus, statusKeys, isLoading }) => {
   const { t } = useTranslation();
 
   const onStatusClick = useCallback(
@@ -29,6 +30,7 @@ const Stub: React.FC<StubI> = ({ setCurrentStatus, statusKeys }) => {
         color="primary"
         variant="light"
         onPress={onStatusClick(statusKeys.actual)}
+        isDisabled={isLoading}
       >
         {t('assignments.status.active')}
       </Button>
@@ -40,6 +42,7 @@ const Stub: React.FC<StubI> = ({ setCurrentStatus, statusKeys }) => {
         color="primary"
         variant="light"
         onPress={onStatusClick(statusKeys.archive)}
+        isDisabled={isLoading}
       >
         {t('assignments.status.archive')}
       </Button>

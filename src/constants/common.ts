@@ -1,4 +1,4 @@
-import { NewTaskI, NewAssignmentI } from '@api/types';
+import { NewTaskI, NewAssignmentI, PriorityEnum } from '@api/types';
 
 export const DEFAULT_ERROR_CODE = '0000';
 
@@ -27,9 +27,15 @@ export const ASSIGNMENT_STATUSES = ['DONE', 'IN_PROGRESS', 'TO_DO', 'CANCELED'];
 export const EMPTY_TASK: NewTaskI = {
   title: '',
   description: '',
+  complexity: 1,
+  priority: PriorityEnum.medium,
 };
 
 export const EMPTY_ASSIGNMENT: NewAssignmentI = {
   title: '',
   description: '',
+  complexity: 1,
+  priority: PriorityEnum.medium,
 };
+
+export const TELEGRAM_PROFILE_LINK = 'https://t.me';

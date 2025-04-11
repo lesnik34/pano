@@ -27,4 +27,8 @@ export const ExecutorWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
+export const ComplexityWrapper = styled.div`
+  margin-bottom: 25px;
+`;
+
 export const DateWrapper = styled.div``;

@@ -39,3 +39,16 @@ export interface BaseListWrapperI<T> {
   numberOfElements: number;
   empty: boolean;
 }
+
+export type ComplexityType = 1 | 2 | 3;
+
+export enum PriorityEnum {
+  low = 'LOW',
+  medium = 'MEDIUM',
+  high = 'HIGH',
+}
+
+export enum ViewQueryEnum {
+  creator = 'creator',
+  executor = 'executor',
+}

@@ -1,15 +1,19 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { TASK_PARAMS } from '@constants/pages';
+import { useSearchParams } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '@store/store';
+import { TASK_PARAMS } from '@constants/pages';
+import { ViewQueryEnum } from '@api/types';
 import selectors from '@store/selectors';
 import slices from '@store/slices';
 
 export interface TaskParamsComponentI {
   params: {
-    page: number;
     statuses: Array<string>;
+    view: ViewQueryEnum;
+    user?: string;
+    page: number;
   };
   totalPages?: number;
 }
@@ -31,21 +35,33 @@ const withTaskParams = (Component: React.ComponentType<TaskParamsComponentI>) =>
         sliceValue: tasksStoreParams.statuses,
         changeStore: slices.tasks.setStatus,
       },
+      {
+        name: TASK_PARAMS.view,
+        sliceValue: tasksStoreParams.view,
+        changeStore: slices.tasks.setView,
+      },
+      {
+        name: TASK_PARAMS.user,
+        sliceValue: tasksStoreParams.user,
+        changeStore: slices.tasks.setUser,
+      },
     ],
-    [tasksStoreParams.page, tasksStoreParams.statuses],
+    [tasksStoreParams.page, tasksStoreParams.statuses, tasksStoreParams.user, tasksStoreParams.view],
   );
 
   const syncQueryStore = useCallback(
-    (name: string, sliceValue: unknown, changeValue: ActionCreatorWithPayload<unknown>) => {
+    (name: string, sliceValue: unknown, changeValue: ActionCreatorWithPayload<any>) => {
       const paramValue = searchParams.get(name);
 
+      // Ставим в квери значение из стора в случае если квери нет
       if (!paramValue) {
         setSearchParams((params) => {
-          params.set(name, String(sliceValue));
+          params.set(name, String(sliceValue || ''));
           return params;
         });
       }
 
+      // Обновляем стор из квери в случае если: квери не пустое && квери не равно стору
       if (paramValue && paramValue !== String(sliceValue)) {
         dispatch(changeValue(paramValue));
       }

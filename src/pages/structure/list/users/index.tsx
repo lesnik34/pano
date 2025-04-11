@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react';
-import { Button, User } from '@heroui/react';
+import React, { useCallback, useMemo } from 'react';
+import { Link, User } from '@heroui/react';
 
 import { useGetUsersQuery } from '@api/query/users';
+import { ROLE_RESTRICTIONS } from '@constants/restrictions';
 import SkeletonUserList from '@components/skeleton/user-list';
 
-import { ListItemStyled, ListStyled, WrapperStyled } from './users.styled';
+import { TELEGRAM_PROFILE_LINK } from '@constants/common';
+import { ButtonItemStyled, ListItemStyled, ListStyled, ManagerCheckStyled, WrapperStyled } from './users.styled';
 
 interface UsersI {
   department: string;
@@ -16,15 +18,63 @@ const Users: React.FC<UsersI> = ({ department }) => {
   const isDataVisible = !isFetching;
   const getName = useCallback((firstName?: string, lastName?: string) => `${lastName ?? ''} ${firstName ?? ''}`, []);
 
+  const managers = useMemo(
+    () =>
+      data?.content?.filter((element) => {
+        const managerElement = element.roles.find(
+          (el) => el.department.id === department && ROLE_RESTRICTIONS.structure.main.includes(el.role.name),
+        );
+
+        return Boolean(managerElement);
+      }),
+    [data?.content, department],
+  );
+
+  const commons = useMemo(
+    () =>
+      data?.content?.filter((element) => {
+        const managerElement = element.roles.find(
+          (el) => el.department.id === department && ROLE_RESTRICTIONS.structure.common.includes(el.role.name),
+        );
+
+        return Boolean(managerElement);
+      }),
+    [data?.content, department],
+  );
+
   return (
     <WrapperStyled>
       {isDataVisible && (
         <ListStyled>
-          {data?.content.map((el) => (
+          {managers?.map((el) => (
             <ListItemStyled key={el.id}>
-              <Button variant="light" radius="md" fullWidth className="py-[6px] px-[8px] h-auto justify-start">
-                <User description={el.username} name={getName(el.firstName, el.lastName)} />
-              </Button>
+              <ButtonItemStyled variant="light" radius="md" fullWidth>
+                <ManagerCheckStyled />
+
+                <User
+                  description={
+                    <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
+                      @{el.username}
+                    </Link>
+                  }
+                  name={getName(el.firstName, el.lastName)}
+                />
+              </ButtonItemStyled>
+            </ListItemStyled>
+          ))}
+
+          {commons?.map((el) => (
+            <ListItemStyled key={el.id}>
+              <ButtonItemStyled variant="light" radius="md" fullWidth>
+                <User
+                  description={
+                    <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
+                      @{el.username}
+                    </Link>
+                  }
+                  name={getName(el.firstName, el.lastName)}
+                />
+              </ButtonItemStyled>
             </ListItemStyled>
           ))}
         </ListStyled>

@@ -79,7 +79,7 @@ const Status: React.FC<StatusI> = ({ isLoading }) => {
   }, [statuses]);
 
   return inactiveTabs ? (
-    <Stub setCurrentStatus={onStubClick} statusKeys={statusKeys} />
+    <Stub setCurrentStatus={onStubClick} statusKeys={statusKeys} isLoading={isLoading} />
   ) : (
     <Tabs
       isDisabled={isLoading}

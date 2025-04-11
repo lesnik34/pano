@@ -1,14 +1,15 @@
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Button } from "@heroui/react";
-import { IoIosArrowBack } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
-import Layout from '@components/global/layout';
-import Error from '@components/error';
-import TaskComponent from '@components/task';
+import { IoIosArrowBack } from 'react-icons/io';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@heroui/react';
+
 import { useGetTaskQuery } from '@api/query/tasks';
+import Layout from '@components/global/layout';
 import { PAGE_TASKS } from '@constants/pages';
+import TaskComponent from '@components/task';
+import Error from '@components/error';
 
 import { ErrorWrapperStyled, WrapperStyled } from './task.styled';
 import Controls from './controls';
@@ -27,7 +28,11 @@ const Task: React.FC<TaskI> = () => {
   const isTaskVisible = !isError;
 
   const onBackClick = useCallback(() => {
-    navigate(PAGE_TASKS);
+    if (window.history?.length && window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(PAGE_TASKS, { replace: true });
+    }
   }, [navigate]);
 
   const errorHandler = useCallback(() => {
@@ -38,7 +43,7 @@ const Task: React.FC<TaskI> = () => {
     <Layout navHidden>
       <FormProvider {...formMethods}>
         <Button onPress={onBackClick} startContent={<IoIosArrowBack />} variant="light">
-          {t('move.to.tasks')}
+          {t('text.back')}
         </Button>
 
         {isTaskVisible && (

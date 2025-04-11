@@ -3,7 +3,7 @@ import { Checkbox, CheckboxGroup } from '@heroui/react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from '@store/store';
-import { TaskStatus } from '@api/types';
+import { AssignmentStatus } from '@api/types';
 import selectors from '@store/selectors';
 
 interface StatusI {
@@ -34,13 +34,13 @@ const Status: React.FC<StatusI> = ({ setCurrentStatus, currentStatus }) => {
 
   return (
     <CheckboxGroup label={t('filter.status.text')} onValueChange={onChange} value={currentStatus}>
-      <Checkbox value={TaskStatus.done}>{t('task.status.done')}</Checkbox>
+      <Checkbox value={AssignmentStatus.done}>{t('assignment.status.done')}</Checkbox>
 
-      <Checkbox value={TaskStatus.toDo}>{t('task.status.to.do')}</Checkbox>
+      <Checkbox value={AssignmentStatus.toDo}>{t('assignment.status.to.do')}</Checkbox>
 
-      <Checkbox value={TaskStatus.inProgress}>{t('task.status.in.progress')}</Checkbox>
+      <Checkbox value={AssignmentStatus.inProgress}>{t('assignment.status.in.progress')}</Checkbox>
 
-      <Checkbox value={TaskStatus.canceled}>{t('task.status.canceled')}</Checkbox>
+      <Checkbox value={AssignmentStatus.canceled}>{t('assignment.status.canceled')}</Checkbox>
     </CheckboxGroup>
   );
 };

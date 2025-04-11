@@ -9,17 +9,25 @@ const router = Router();
 
 router.get('/api/v1/users', wait(INIT_TIMEOUT), async (req, res) => {
   try {
-    const { size, page } = req.query;
+    const { size, page, department } = req.query;
     const { data } = await axios.get(`${DB_URL}/users`);
+    const currentData = data.filter((el) => {
+      if (department) {
+        const element = el.roles.find((role) => role.department.id === department);
+        return Boolean(element);
+      }
+
+      return true;
+    });
 
     const itemsPerPage = Number(size);
     const currentPage = Number(page) + 1;
 
     const dataFromIndex = currentPage * itemsPerPage - itemsPerPage;
     const dataTillIndex = currentPage * itemsPerPage;
-    const currentContent = data.slice(dataFromIndex + 1, dataTillIndex);
+    const currentContent = currentData.slice(dataFromIndex, dataTillIndex);
 
-    const totalPages = Math.ceil(Number(data.length) / itemsPerPage);
+    const totalPages = Math.ceil(Number(currentData.length) / itemsPerPage);
     const last = totalPages === currentPage;
 
     if (data) {
@@ -69,7 +77,7 @@ router.get('/api/v1/users/heads', wait(INIT_TIMEOUT), async (req, res) => {
 
     const dataFromIndex = currentPage * itemsPerPage - itemsPerPage;
     const dataTillIndex = currentPage * itemsPerPage;
-    const currentContent = data.slice(dataFromIndex + 1, dataTillIndex);
+    const currentContent = data.slice(dataFromIndex, dataTillIndex);
 
     const totalPages = Math.ceil(Number(data.length) / itemsPerPage);
     const last = totalPages === currentPage;

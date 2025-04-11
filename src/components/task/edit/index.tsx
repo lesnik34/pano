@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
+import { Accordion, AccordionItem } from '@heroui/react';
 
 import { TaskI } from '@api/types';
-import Title from './title';
+
 import Description from './description';
+import Department from './department';
 import Executor from './executor';
+import Title from './title';
 import Date from './date';
 import {
+  ComplexityWrapper,
   DateWrapper,
   DepartmentWrapper,
   DescriptionWrapper,
@@ -15,7 +20,8 @@ import {
   TitleWrapper,
   WrapperStyled,
 } from './edit.styled';
-import Department from './department';
+import Complexity from './complexity';
+import Priority from './priority';
 
 interface EditI {
   title?: string;
@@ -24,6 +30,7 @@ interface EditI {
 }
 
 const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
+  const { t } = useTranslation();
   const { reset, watch } = useFormContext();
   const formData = watch();
 
@@ -60,6 +67,16 @@ const Edit: React.FC<EditI> = ({ title, isLoading, data }) => {
       <DateWrapper>
         <Date dateTill={data?.endDate} isLoading={isLoading} />
       </DateWrapper>
+
+      <Accordion className="mt-5 pl-0 pr-0">
+        <AccordionItem title={t('extra.parameters')}>
+          <ComplexityWrapper>
+            <Complexity value={data?.complexity} isLoading={isLoading} />
+          </ComplexityWrapper>
+
+          <Priority value={data?.priority} isLoading={isLoading} />
+        </AccordionItem>
+      </Accordion>
     </WrapperStyled>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Search from '@components/search';
+
 import SearchItems from './search-items';
 import Filters from './filters';
 import Status from './status';

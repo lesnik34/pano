@@ -39,6 +39,8 @@ const TaskList: React.FC<TaskListI> = ({ items, isLoading, isColumn }) => {
               dateFrom={item.createdDate}
               dateTill={item.endDate}
               status={item.status}
+              priority={item.priority}
+              complexity={item.complexity}
             />
           </ItemWrapperStyled>
         ))}

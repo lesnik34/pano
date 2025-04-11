@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskI as TaskItemI, TaskStatus } from '@api/types';
+import { PriorityEnum, TaskI as TaskItemI, TaskStatus } from '@api/types';
 
 import { WrapperStyled } from './task.styled';
 import View from './view';
@@ -24,7 +24,9 @@ const Task: React.FC<TaskI> = ({ data, isLoading, isEditMode, title }) => (
         department={data?.department}
         title={data?.title}
         description={data?.description}
-        status={data?.status || TaskStatus.toDo}
+        status={data?.status ?? TaskStatus.toDo}
+        complexity={data?.complexity ?? 1}
+        priority={data?.priority ?? PriorityEnum.medium}
         dateFrom={data?.createdDate}
         dateTill={data?.endDate}
       />

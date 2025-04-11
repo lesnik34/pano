@@ -1,55 +1,50 @@
-import { useCallback, useEffect, useState } from 'react';
-import Layout from '@components/global/layout';
-import Error from '@components/error';
-import Pagination from '@components/pagination';
-import selectors from '@store/selectors';
-import { useAppSelector } from '@store/store';
+import { useCallback, useMemo } from 'react';
+
 import { useGetAssignmentsQuery } from '@api/query/assignments';
 import AssignmentsList from '@components/assignment-list';
+import Pagination from '@components/pagination';
+import Layout from '@components/global/layout';
+import { useAppSelector } from '@store/store';
+import selectors from '@store/selectors';
+import Error from '@components/error';
 
-import Header from './header';
 import withAssignmentsParams, { AssignmentsParamsComponentI } from './hoc/with-assignments-params';
-import { ErrorWrapperStyled, WrapperStyled } from './assignments.styled';
-import Target from './target';
 import Elevation from './elevation';
+import Header from './header';
+import Target from './target';
+
+import { ErrorWrapperStyled, WrapperStyled } from './assignments.styled';
 
 interface AssignmentsI extends AssignmentsParamsComponentI {}
 
 const Assignments: React.FC<AssignmentsI> = ({ params }) => {
   const userId = useAppSelector(selectors.auth.userId);
-  const viewedUserId = useAppSelector(selectors.assignments.viewedUser)?.id;
-  const currentUserId = viewedUserId || userId;
 
-  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ creator: currentUserId });
-  const { data, isFetching, isError, refetch } = useGetAssignmentsQuery({
-    page: params.page,
-    statuses: params.statuses,
-    executor: target.executor,
-    creator: target.creator,
-  });
+  const currentQueries = useMemo(() => {
+    const currentUser = params.user || userId;
+
+    return {
+      page: params.page,
+      statuses: params.statuses,
+      [params.view]: currentUser,
+    };
+  }, [params.page, params.statuses, params.user, params.view, userId]);
+
+  const { data, isFetching, isError, refetch } = useGetAssignmentsQuery(currentQueries);
   const { content, totalPages } = data || {};
 
-  const isErrorVisible = isError;
   const isAssignmentListVisible = !isError;
+  const isErrorVisible = isError;
 
   const errorHandler = useCallback(() => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    setTarget((state) => {
-      if (state.creator) {
-        return { creator: currentUserId };
-      }
-      return { executor: currentUserId };
-    });
-  }, [currentUserId]);
-
   return (
     <Layout>
       {isAssignmentListVisible && (
         <WrapperStyled>
-          <Target isLoading={isFetching} userId={currentUserId} setTarget={setTarget} target={target} />
+          <Target isLoading={isFetching} />
 
           <Header isLoading={isFetching} />
 

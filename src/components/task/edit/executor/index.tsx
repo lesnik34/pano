@@ -15,7 +15,7 @@ interface ExecutorI {
   isLoading?: boolean;
 }
 
-const fieldId = 'executor';
+export const fieldId = 'executor';
 
 const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
   const { t } = useTranslation();
@@ -64,12 +64,6 @@ const Executor: React.FC<ExecutorI> = ({ user, department, isLoading }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedUser]);
-
-  useEffect(() => {
-    setSelectedUser(undefined);
-    setValue(fieldId, undefined);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [department]);
 
   return (
     <WrapperStyled>

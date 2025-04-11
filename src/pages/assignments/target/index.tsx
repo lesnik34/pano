@@ -1,38 +1,46 @@
-import { Tab, Tabs } from '@heroui/react';
 import React, { Key, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Tab, Tabs } from '@heroui/react';
+
+import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { ViewQueryEnum } from '@api/types';
+import selectors from '@store/selectors';
 
 interface TargetI {
   isLoading?: boolean;
-  userId?: number;
-  setTarget: (target: { executor?: number; creator?: number }) => void;
-  target: { executor?: number; creator?: number };
 }
 
-const Target: React.FC<TargetI> = ({ setTarget, userId, isLoading, target }) => {
+const Target: React.FC<TargetI> = ({ isLoading }) => {
+  const view = useSelector(selectors.assignments.view);
+  const setSearchParams = useSearchParams()[1];
   const { t } = useTranslation();
 
   const onTabClick = useCallback(
     (selection: Key) => {
-      setTarget({ [selection as string]: userId });
+      setSearchParams((params) => {
+        params.set(ASSIGNMENTS_PARAMS.view, selection as ViewQueryEnum);
+        return params;
+      });
     },
-    [setTarget, userId],
+    [setSearchParams],
   );
 
   return (
     <div className="mb-4">
       <Tabs
-        isDisabled={isLoading}
         onSelectionChange={onTabClick}
-        selectedKey={target.creator ? 'creator' : 'executor'}
+        selectedKey={view}
+        isDisabled={isLoading}
         variant="solid"
-        size="lg"
-        fullWidth
         color="primary"
         radius="lg"
+        size="lg"
+        fullWidth
       >
-        <Tab key="executor" title={t('appointed.assignments')} />
-        <Tab key="creator" title={t('created.assignments')} />
+        <Tab key={ViewQueryEnum.executor} title={t('appointed.assignments')} />
+        <Tab key={ViewQueryEnum.creator} title={t('created.assignments')} />
       </Tabs>
     </div>
   );

@@ -1,10 +1,16 @@
 import { PagesSortI } from './common';
+import { DepartmentI } from './departments';
+import { RoleI } from './roles';
 
 export interface UserI {
   id: number;
   username: string;
   firstName: string;
   lastName: string;
+  roles: {
+    department: DepartmentI;
+    role: RoleI;
+  }[];
 }
 
 export interface UsersListI {

@@ -4,47 +4,176 @@
       "id": 5000496962,
       "username": "lesnik343",
       "firstName": "Nikita",
-      "lastName": "Lesnyak"
+      "lastName": "Lesnyak",
+      "roles": [
+        {
+          "department": {
+            "id": "000",
+            "title": "Тех. поддержка"
+          },
+          "role": {
+            "id": "555-555",
+            "name": "tech"
+          }
+        }
+      ]
     },
     {
       "id": 1145810815,
       "username": "veryveryveryverylong",
       "firstName": "Vladdddddddddddddddddddddddddddddddd",
-      "lastName": "Tripppppppppppppppppppppppppppppppppp"
+      "lastName": "Tripppppppppppppppppppppppppppppppppp",
+      "roles": [
+        {
+          "department": {
+            "id": "123",
+            "title": "Грузчики",
+            "description": ""
+          },
+          "role": {
+            "id": "111-111",
+            "name": "user"
+          }
+        }
+      ]
+    },
+    {
+      "id": 11458108151155678,
+      "username": "mark",
+      "firstName": "Mark",
+      "lastName": "Rich",
+      "roles": [
+        {
+          "department": {
+            "id": "123",
+            "title": "Грузчики",
+            "description": ""
+          },
+          "role": {
+            "id": "111-111",
+            "name": "user"
+          }
+        },
+        {
+          "department": {
+            "id": "124",
+            "title": "Весовая",
+            "description": "Описание"
+          },
+          "role": {
+            "id": "111-111",
+            "name": "user"
+          }
+        },
+        {
+          "department": {
+            "id": "125",
+            "title": "Водители"
+          },
+          "role": {
+            "id": "111-111",
+            "name": "user"
+          }
+        }
+      ]
     },
     {
       "id": 1212512124,
       "username": "gas321",
       "firstName": "Pier",
-      "lastName": "Dun"
+      "lastName": "Dun",
+      "roles": [
+        {
+          "department": {
+            "id": "123",
+            "title": "Грузчики",
+            "description": ""
+          },
+          "role": {
+            "id": "222-222",
+            "name": "manager"
+          }
+        }
+      ]
     },
     {
       "id": 1241251215,
       "username": "fasf123",
       "firstName": "Erik",
-      "lastName": "Dan"
+      "lastName": "Dan",
+      "roles": [
+        {
+          "department": {
+            "id": "124",
+            "title": "Весовая",
+            "description": "Описание"
+          },
+          "role": {
+            "id": "222-222",
+            "name": "manager"
+          }
+        }
+      ]
     },
     {
       "id": 1249012412,
       "username": "fas1234",
       "firstName": "Jhon",
-      "lastName": "Doh"
+      "lastName": "Doh",
+      "roles": [
+        {
+          "department": {
+            "id": "125",
+            "title": "Водители"
+          },
+          "role": {
+            "id": "222-222",
+            "name": "manager"
+          }
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "111-111",
+      "name": "user"
+    },
+    {
+      "id": "222-222",
+      "name": "manager"
+    },
+    {
+      "id": "333-333",
+      "name": "moderator"
+    },
+    {
+      "id": "444-444",
+      "name": "admin"
+    },
+    {
+      "id": "555-555",
+      "name": "tech"
     }
   ],
   "departments": [
     {
-      "id": 123,
+      "id": "123",
       "title": "Грузчики",
       "description": ""
     },
     {
-      "id": 124,
+      "id": "124",
       "title": "Весовая",
       "description": "Описание"
     },
     {
-      "id": 125,
+      "id": "125",
       "title": "Водители"
+    },
+    {
+      "id": "000",
+      "title": "Тех. поддержка"
     }
   ],
   "tasks": [
@@ -65,6 +194,8 @@
       "description": "Необходимо произвести ремонт трактора",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 1,
       "department": {
         "id": 123,
@@ -90,6 +221,8 @@
       "description": "На складе собралось много мусора, его надо вынести",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 2
     },
     {
@@ -109,6 +242,8 @@
       "description": "Ключ на 10 износился, пора заказать новый",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 3
     },
     {
@@ -128,6 +263,8 @@
       "description": "На склад привезли товар, необзодимо разгрузить",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "IN_PROGRESS",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 4
     },
     {
@@ -147,6 +284,8 @@
       "description": "Стоит на кухне",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 5
     },
     {
@@ -166,6 +305,8 @@
       "description": "Проверить оборудование на наличие неисправностей",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 6
     },
     {
@@ -185,6 +326,8 @@
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "CANCELED",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 7
     },
     {
@@ -204,6 +347,8 @@
       "description": "Не хватает сотрудниов в новый отдел",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 8
     },
     {
@@ -223,6 +368,8 @@
       "description": "Новые сотрудники не обучены",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "TO_DO",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 9
     },
     {
@@ -247,29 +394,78 @@
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "CANCELED",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 10
     },
     {
       "title": "Купить инструменты",
       "executor": {
-        "id": 1212512124,
-        "username": "gas321",
-        "firstName": "Pier",
-        "lastName": "Dun"
+        "id": 11458108151155678,
+        "username": "mark",
+        "firstName": "Mark",
+        "lastName": "Rich",
+        "roles": [
+          {
+            "department": {
+              "id": "123",
+              "title": "Грузчики",
+              "description": ""
+            },
+            "role": {
+              "id": "111-111",
+              "name": "user"
+            }
+          },
+          {
+            "department": {
+              "id": "124",
+              "title": "Весовая",
+              "description": "Описание"
+            },
+            "role": {
+              "id": "111-111",
+              "name": "user"
+            }
+          },
+          {
+            "department": {
+              "id": "125",
+              "title": "Водители"
+            },
+            "role": {
+              "id": "111-111",
+              "name": "user"
+            }
+          }
+        ]
       },
       "creator": {
         "id": 5000496962,
         "username": "lesnik343",
         "firstName": "Nikita",
-        "lastName": "Lesnyak"
+        "lastName": "Lesnyak",
+        "roles": [
+          {
+            "department": {
+              "id": "000",
+              "title": "Тех. поддержка"
+            },
+            "role": {
+              "id": "555-555",
+              "name": "tech"
+            }
+          }
+        ]
       },
       "department": {
-        "id": 125,
+        "id": "125",
         "title": "Водители"
       },
-      "description": "",
+      "description": "авыфвы",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "IN_PROGRESS",
+      "complexity": 1,
       "id": 11
     },
     {
@@ -293,8 +489,61 @@
       },
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
+      "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 12
+    },
+    {
+      "title": "csad",
+      "executor": {
+        "id": 1249012412,
+        "username": "fas1234",
+        "firstName": "Jhon",
+        "lastName": "Doh",
+        "roles": [
+          {
+            "department": {
+              "id": "125",
+              "title": "Водители"
+            },
+            "role": {
+              "id": "222-222",
+              "name": "manager"
+            }
+          }
+        ]
+      },
+      "creator": {
+        "id": 5000496962,
+        "username": "lesnik343",
+        "firstName": "Nikita",
+        "lastName": "Lesnyak",
+        "roles": [
+          {
+            "department": {
+              "id": "000",
+              "title": "Тех. поддержка"
+            },
+            "role": {
+              "id": "555-555",
+              "name": "tech"
+            }
+          }
+        ]
+      },
+      "department": {
+        "id": "125",
+        "title": "Водители"
+      },
+      "description": "",
+      "complexity": [
+        2
+      ],
+      "priority": "MEDIUM",
+      "createdDate": "2024-09-20T15:40:45.417588Z",
+      "status": "TO_DO",
+      "id": 14
     }
   ],
   "assignments": [
@@ -316,6 +565,8 @@
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
       "id": 1,
+      "complexity": 1,
+      "priority": "MEDIUM",
       "department": {
         "id": 123,
         "title": "Грузчики",
@@ -344,6 +595,8 @@
       "description": "",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "DONE",
+      "complexity": 1,
+      "priority": "MEDIUM",
       "id": 2
     }
   ]

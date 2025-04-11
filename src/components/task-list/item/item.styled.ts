@@ -1,4 +1,4 @@
-import { TaskI } from '@api/types';
+import { PriorityEnum, TaskI } from '@api/types';
 import { getStatusProperties } from '@styles/utils/common';
 import { Button } from '@heroui/react';
 import styled, { css } from 'styled-components';
@@ -67,6 +67,11 @@ export const FooterStyled = styled.div`
   align-items: center;
 `;
 
+export const FooterContentStyled = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const StatusStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
   ({ $taskStatus }) => css`
     ${getStatusProperties($taskStatus).style}
@@ -75,5 +80,16 @@ export const StatusStyled = styled.div<{ $taskStatus: TaskI['status'] }>(
     padding: 7px 14px;
     border-radius: 10px;
     text-align: center;
+  `,
+);
+
+export const PriorityStyled = styled.div<{ $priority: string }>(
+  ({ $priority }) => css`
+    ${$priority === PriorityEnum.low && tw`bg-primary`}
+    ${$priority === PriorityEnum.medium && tw`bg-warning`}
+    ${$priority === PriorityEnum.high && tw`bg-danger`}
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
   `,
 );

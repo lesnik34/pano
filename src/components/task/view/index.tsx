@@ -1,17 +1,21 @@
 import React, { useMemo } from 'react';
-import { Divider } from "@heroui/react";
-import { DepartmentI, TaskStatus, UserI } from '@api/types';
+import { Divider } from '@heroui/react';
+import { ComplexityType, DepartmentI, PriorityEnum, TaskStatus, UserI } from '@api/types';
 import SkeletonTask from '@components/skeleton/task';
 
 import {
   CreatorWrapper,
-  DateWrapper,
-  ExecutorWrapper,
   HeaderWrapper,
   WrapperContent,
   WrapperStyled,
   DescriptionWrapper,
   ExtraWrapperContent,
+  LeftItemWrapper,
+  SecondaryWrapperContent,
+  CreatorWrapperStyled,
+  DescriptionWrapperStyled,
+  WrapperContentStyled,
+  HeaderWrapperStyled,
 } from './item.styled';
 import Executor from './executor';
 import Title from './title';
@@ -19,6 +23,8 @@ import Date from './date';
 import Creator from './creator';
 import Description from './description';
 import Department from './department';
+import Complexity from './complexity';
+import Priority from './priority';
 
 interface ItemI {
   isLoading?: boolean;
@@ -28,6 +34,8 @@ interface ItemI {
   creator?: UserI;
   department?: DepartmentI;
   status: TaskStatus;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   dateFrom?: string;
   dateTill?: string;
 }
@@ -41,6 +49,8 @@ const Item: React.FC<ItemI> = ({
   dateFrom,
   dateTill,
   department,
+  complexity,
+  priority,
   isLoading,
 }) => {
   const isTaskDone = useMemo(() => status === TaskStatus.done || status === TaskStatus.canceled, [status]);
@@ -49,33 +59,35 @@ const Item: React.FC<ItemI> = ({
     <SkeletonTask />
   ) : (
     <WrapperStyled>
-      <HeaderWrapper $status={status}>
+      <HeaderWrapperStyled $status={status}>
         <Title text={title ?? ''} />
 
-        <WrapperContent>
-          <ExecutorWrapper>
-            <Executor user={executor} />
-          </ExecutorWrapper>
+        <WrapperContentStyled>
+          <Executor user={executor} />
 
-          <DateWrapper>
-            <Date isDone={isTaskDone} dateFrom={dateFrom} dateTill={dateTill} />
-          </DateWrapper>
-        </WrapperContent>
+          <Date isDone={isTaskDone} dateFrom={dateFrom} dateTill={dateTill} />
+        </WrapperContentStyled>
 
-        <ExtraWrapperContent>
+        <WrapperContentStyled>
           <Department department={department} />
-        </ExtraWrapperContent>
-      </HeaderWrapper>
+        </WrapperContentStyled>
+      </HeaderWrapperStyled>
 
-      <DescriptionWrapper>
+      <WrapperContentStyled className="mt-[10px]">
+        <Complexity complexity={complexity} />
+
+        <Priority priority={priority} />
+      </WrapperContentStyled>
+
+      <DescriptionWrapperStyled>
         <Description text={description ?? ''} />
-      </DescriptionWrapper>
+      </DescriptionWrapperStyled>
 
       <Divider />
 
-      <CreatorWrapper>
+      <CreatorWrapperStyled>
         <Creator user={creator} />
-      </CreatorWrapper>
+      </CreatorWrapperStyled>
     </WrapperStyled>
   );
 };

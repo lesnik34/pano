@@ -2,17 +2,17 @@ import React, { useCallback, useState } from 'react';
 import { Badge, Button, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@heroui/react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaRegUser } from 'react-icons/fa';
 import { FiFilter } from 'react-icons/fi';
 
-import slices from '@store/slices';
-import { ASSIGNMENTS_PARAMS } from '@constants/pages';
-import { useAppDispatch, useAppSelector } from '@store/store';
+import { ASSIGNMENTS_PARAMS, VIEWED_SELF } from '@constants/pages';
+import { useAppSelector } from '@store/store';
 import selectors from '@store/selectors';
 
 import Status from './status';
-import { PopoverWrapper, SectionStyled } from './parameters.styled';
 import User from './user';
-import { FaRegUser } from 'react-icons/fa';
+
+import { PopoverWrapper, SectionStyled } from './parameters.styled';
 
 interface ParametersI {
   isLoading?: boolean;
@@ -20,33 +20,28 @@ interface ParametersI {
 
 const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const [isPopoverVisible, setPopoverVision] = useState(false);
   const setSearchParams = useSearchParams()[1];
 
   const assignmentsStoreParams = useAppSelector(selectors.assignments.params);
-  const assignmentsViewedUser = useAppSelector(selectors.assignments.viewedUser);
+  const isUserSelected = assignmentsStoreParams.user !== VIEWED_SELF;
 
   const [currentStatus, setCurrentStatus] = useState(assignmentsStoreParams.statuses);
-  const [viewedUser, setViewedUser] = useState(assignmentsViewedUser);
-  const badgeContent = assignmentsViewedUser ? (
-    <FaRegUser className="w-[7px]" />
-  ) : (
-    assignmentsStoreParams.statuses.length
-  );
+  const [viewedUser, setViewedUser] = useState(assignmentsStoreParams.user);
 
   const onSubmit = useCallback(() => {
     setSearchParams((params) => {
       params.set(ASSIGNMENTS_PARAMS.page, '1');
       params.set(ASSIGNMENTS_PARAMS.status, String(currentStatus));
+      params.set(ASSIGNMENTS_PARAMS.user, viewedUser);
 
       return params;
     });
 
-    dispatch(slices.assignments.setViewedUser(viewedUser));
-
     setPopoverVision(false);
-  }, [currentStatus, dispatch, setSearchParams, viewedUser]);
+  }, [currentStatus, setSearchParams, viewedUser]);
+
+  const badgeContent = isUserSelected ? <FaRegUser className="w-[7px]" /> : assignmentsStoreParams.statuses.length;
 
   return (
     <Popover
@@ -57,7 +52,7 @@ const Parameters: React.FC<ParametersI> = ({ isLoading }) => {
       shouldBlockScroll
       backdrop="opaque"
     >
-      <Badge color={assignmentsViewedUser ? 'secondary' : 'primary'} content={badgeContent}>
+      <Badge color={isUserSelected ? 'secondary' : 'primary'} content={badgeContent}>
         <PopoverTrigger>
           <Button isIconOnly isDisabled={isLoading} variant="flat" color="default" startContent={<FiFilter />} />
         </PopoverTrigger>

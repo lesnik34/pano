@@ -3,43 +3,55 @@ import { Button, Input, useDisclosure } from '@heroui/react';
 import { useTranslation } from 'react-i18next';
 import { IoMdClose } from 'react-icons/io';
 
+import { useGetUserByIdQuery, useGetUsersQuery } from '@api/query/users';
 import AsyncInputDrawer from '@components/async-input-drawer';
-import { useGetUsersQuery } from '@api/query/users';
+import { VIEWED_SELF } from '@constants/pages';
 import { useAppSelector } from '@store/store';
 import selectors from '@store/selectors';
-import { UserI } from '@api/types';
 
 import { WrapperStyled } from './user.styled';
 
 interface UserComponentI {
-  viewedUser?: UserI;
-  setViewedUser: (user: UserI | undefined) => void;
+  viewedUser: string;
+  setViewedUser: (user: string) => void;
 }
 
 const UserComponent: React.FC<UserComponentI> = ({ viewedUser, setViewedUser }) => {
   const { t } = useTranslation();
   const userInputRef = useRef<HTMLInputElement | null>(null);
-  const assignmentsViewedUser = useAppSelector(selectors.assignments.viewedUser);
+  const assignmentsViewedUser = useAppSelector(selectors.assignments.user);
 
   const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onOpenChange: onDrawerOpenChange, onClose } = useDisclosure();
   const [search, setSearch] = useState('');
 
   const { data, isFetching } = useGetUsersQuery({ search, page: 1 });
+  const { data: userData, isFetching: isUserFetching } = useGetUserByIdQuery(viewedUser, {
+    skip: viewedUser === VIEWED_SELF,
+  });
 
-  const inputValue = viewedUser ? `${viewedUser?.lastName} ${viewedUser?.firstName}` : '';
   const searchedItems = useMemo(
     () => data?.content.map((el) => ({ id: String(el.id), title: `${el.lastName || ''} ${el.firstName || ''}` })),
     [data?.content],
   );
 
+  const inputValue = useMemo(() => {
+    if (isUserFetching) {
+      return t('default.loader.label');
+    }
+
+    if (viewedUser === VIEWED_SELF) {
+      return '';
+    }
+
+    return userData ? `${userData?.lastName} ${userData?.firstName}` : '';
+  }, [isUserFetching, t, userData, viewedUser]);
+
   const onUserClick = useCallback(
     (item: { id: string }) => () => {
-      const currentUser = data?.content.find((el) => String(el.id) === item.id);
-
       onClose();
-      setViewedUser(currentUser);
+      setViewedUser(item.id);
     },
-    [data?.content, onClose, setViewedUser],
+    [onClose, setViewedUser],
   );
 
   const onFocusInput = useCallback(() => {
@@ -48,7 +60,7 @@ const UserComponent: React.FC<UserComponentI> = ({ viewedUser, setViewedUser }) 
   }, [onDrawerOpen]);
 
   const onClearClick = useCallback(() => {
-    setViewedUser(undefined);
+    setViewedUser(VIEWED_SELF);
   }, [setViewedUser]);
 
   useEffect(() => {
@@ -84,7 +96,7 @@ const UserComponent: React.FC<UserComponentI> = ({ viewedUser, setViewedUser }) 
         onOpenChange={onDrawerOpenChange}
         title={t('search.user')}
         inputPlaceholder={t('async.input.user.placeholder')}
-        isLoading={isFetching}
+        isLoading={isFetching || isUserFetching}
         searchedItems={searchedItems}
         onItemClick={onUserClick}
         setSearch={setSearch}

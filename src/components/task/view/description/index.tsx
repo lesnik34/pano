@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DescriptionStyled, WrapperStyled } from './title.styled';
+import { DescriptionStyled, WrapperStyled } from './description.styled';
 
 interface DescriptionI {
   text: string;

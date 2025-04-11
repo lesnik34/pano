@@ -1,4 +1,4 @@
-import { BaseListWrapperI } from './common';
+import { BaseListWrapperI, ComplexityType, PriorityEnum } from './common';
 import { DepartmentI } from './departments';
 import { UserI } from './users';
 
@@ -22,6 +22,8 @@ export interface TaskI {
   executor: UserI;
   creator: UserI;
   createdDate?: string;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   endDate?: string;
 }
 
@@ -31,6 +33,8 @@ export interface NewTaskI {
   department?: string;
   executor?: number;
   creator?: number;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   endDate?: string;
 }
 export interface EditTaskI {
@@ -40,6 +44,8 @@ export interface EditTaskI {
   department?: string;
   executor?: number;
   creator?: number;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   endDate?: string;
 }
 
@@ -52,6 +58,8 @@ export interface ShortTaskI {
   creator: UserI;
   executor: UserI;
   createdDate?: string;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   endDate?: string;
 }
 

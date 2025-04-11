@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { ScrollShadow, Spinner } from '@heroui/react';
 import { useTranslation } from 'react-i18next';
+import { ScrollShadow, Spinner } from '@heroui/react';
 
 import { useGetAssignmentsQuery } from '@api/query/assignments';
 import AssignmentsList from '@components/assignment-list';
@@ -31,7 +31,7 @@ const Items: React.FC<ItemsI> = ({ search }) => {
   );
   const isLoadingVisible = search !== debounceSearch || isFetching;
   const isErrorVisible = isError && !isLoadingVisible;
-  const isTaskListVisible = !isError && !isLoadingVisible && !isSkippedSearch;
+  const isAssignmentListVisible = !isError && !isLoadingVisible && !isSkippedSearch;
   const needMoreMessage = isSkippedSearch && debounceSearch.length !== 0 && !isLoadingVisible;
   const { content } = data || {};
 
@@ -43,7 +43,7 @@ const Items: React.FC<ItemsI> = ({ search }) => {
     <div className="h-full">
       {isLoadingVisible && (
         <LoaderWrapperStyled>
-          <Spinner label={t('search.tasks.loader.label')} />
+          <Spinner label={t('search.assignment.loader.label')} />
         </LoaderWrapperStyled>
       )}
 
@@ -59,7 +59,7 @@ const Items: React.FC<ItemsI> = ({ search }) => {
         </ErrorWrapperStyled>
       )}
 
-      {isTaskListVisible && (
+      {isAssignmentListVisible && (
         <ScrollShadow hideScrollBar className="max-h-[60vh]">
           <AssignmentsList items={content} isLoading={isFetching} isColumn />
         </ScrollShadow>

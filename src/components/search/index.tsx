@@ -73,16 +73,13 @@ const Search: React.FC<SearchI> = ({ isLoading, title, placeholder, children }) 
                   isClearable
                   autoComplete="off"
                   autoCorrect="off"
-                  spellCheck={false}
+                  spellCheck="false"
                   onFocus={onFocus}
                 />
               </ModalHeader>
 
               <ModalBody>
-                <ModalBodyWrapperStyled>
-                  {children(search)}
-                  {/* <Items search={search} /> */}
-                </ModalBodyWrapperStyled>
+                <ModalBodyWrapperStyled>{children(search)}</ModalBodyWrapperStyled>
               </ModalBody>
             </>
           )}

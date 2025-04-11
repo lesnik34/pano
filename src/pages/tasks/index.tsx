@@ -1,55 +1,51 @@
-import { useCallback, useEffect, useState } from 'react';
-import Layout from '@components/global/layout';
-import TaskList from '@components/task-list';
-import Error from '@components/error';
-import Pagination from '@components/pagination';
-import { useGetTasksQuery } from '@api/query/tasks';
-import selectors from '@store/selectors';
-import { useAppSelector } from '@store/store';
+import { useCallback, useMemo } from 'react';
 
-import Header from './header';
+import { useGetTasksQuery } from '@api/query/tasks';
+import Pagination from '@components/pagination';
+import Layout from '@components/global/layout';
+import { VIEWED_SELF } from '@constants/pages';
+import { useAppSelector } from '@store/store';
+import TaskList from '@components/task-list';
+import selectors from '@store/selectors';
+import Error from '@components/error';
+
 import withTaskParams, { TaskParamsComponentI } from './hoc/with-task-params';
-import { ErrorWrapperStyled, WrapperStyled } from './tasks.styled';
-import Target from './target';
 import Elevation from './elevation';
+import Header from './header';
+import Target from './target';
+
+import { ErrorWrapperStyled, WrapperStyled } from './tasks.styled';
 
 interface TasksI extends TaskParamsComponentI {}
 
 const Tasks: React.FC<TasksI> = ({ params }) => {
   const userId = useAppSelector(selectors.auth.userId);
-  const viewedUserId = useAppSelector(selectors.tasks.viewedUser)?.id;
-  const currentUserId = viewedUserId || userId;
 
-  const [target, setTarget] = useState<{ executor?: number; creator?: number }>({ executor: currentUserId });
-  const { data, isFetching, isError, refetch } = useGetTasksQuery({
-    page: params.page,
-    statuses: params.statuses,
-    executor: target.executor,
-    creator: target.creator,
-  });
+  const currentQueries = useMemo(() => {
+    const currentUser = params.user === VIEWED_SELF ? userId : params.user;
+
+    return {
+      page: params.page,
+      statuses: params.statuses,
+      [params.view]: currentUser,
+    };
+  }, [params.page, params.statuses, params.user, params.view, userId]);
+
+  const { data, isFetching, isError, refetch } = useGetTasksQuery(currentQueries);
   const { content, totalPages } = data || {};
 
-  const isErrorVisible = isError;
   const isTaskListVisible = !isError;
+  const isErrorVisible = isError;
 
   const errorHandler = useCallback(() => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    setTarget((state) => {
-      if (state.creator) {
-        return { creator: currentUserId };
-      }
-      return { executor: currentUserId };
-    });
-  }, [currentUserId]);
-
   return (
     <Layout>
       {isTaskListVisible && (
         <WrapperStyled>
-          <Target isLoading={isFetching} userId={currentUserId} setTarget={setTarget} />
+          <Target isLoading={isFetching} />
 
           <Header isLoading={isFetching} />
 

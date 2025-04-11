@@ -1,17 +1,15 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Divider } from '@heroui/react';
-import { AssignmentStatus, DepartmentI, UserI } from '@api/types';
+
 import SkeletonTask from '@components/skeleton/task';
+import { AssignmentStatus, ComplexityType, DepartmentI, PriorityEnum, UserI } from '@api/types';
 
 import {
-  CreatorWrapper,
-  DateWrapper,
-  ExecutorWrapper,
-  HeaderWrapper,
-  WrapperContent,
   WrapperStyled,
-  DescriptionWrapper,
-  ExtraWrapperContent,
+  HeaderWrapperStyled,
+  WrapperContentStyled,
+  DescriptionWrapperStyled,
+  CreatorWrapperStyled,
 } from './item.styled';
 import Executor from './executor';
 import Title from './title';
@@ -19,6 +17,8 @@ import Date from './date';
 import Creator from './creator';
 import Description from './description';
 import Department from './department';
+import Complexity from './complexity';
+import Priority from './priority';
 
 interface ItemI {
   isLoading?: boolean;
@@ -28,48 +28,57 @@ interface ItemI {
   creator?: UserI;
   department?: DepartmentI;
   status: AssignmentStatus;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   dateFrom?: string;
 }
 
-const Item: React.FC<ItemI> = ({ title, description, executor, creator, status, dateFrom, department, isLoading }) => {
-  const isAssignmentDone = useMemo(
-    () => status === AssignmentStatus.done || status === AssignmentStatus.canceled,
-    [status],
-  );
-
-  return isLoading ? (
+const Item: React.FC<ItemI> = ({
+  title,
+  description,
+  executor,
+  creator,
+  status,
+  dateFrom,
+  department,
+  complexity,
+  priority,
+  isLoading,
+}) =>
+  isLoading ? (
     <SkeletonTask />
   ) : (
     <WrapperStyled>
-      <HeaderWrapper $status={status}>
+      <HeaderWrapperStyled $status={status}>
         <Title text={title ?? ''} />
 
-        <WrapperContent>
-          <ExecutorWrapper>
-            <Executor user={executor} />
-          </ExecutorWrapper>
+        <WrapperContentStyled>
+          <Executor user={executor} />
 
-          <DateWrapper>
-            <Date dateFrom={dateFrom} />
-          </DateWrapper>
-        </WrapperContent>
+          <Date dateFrom={dateFrom} />
+        </WrapperContentStyled>
 
-        <ExtraWrapperContent>
+        <WrapperContentStyled>
           <Department department={department} />
-        </ExtraWrapperContent>
-      </HeaderWrapper>
+        </WrapperContentStyled>
+      </HeaderWrapperStyled>
 
-      <DescriptionWrapper>
+      <WrapperContentStyled className="mt-[10px]">
+        <Complexity complexity={complexity} />
+
+        <Priority priority={priority} />
+      </WrapperContentStyled>
+
+      <DescriptionWrapperStyled>
         <Description text={description ?? ''} />
-      </DescriptionWrapper>
+      </DescriptionWrapperStyled>
 
       <Divider />
 
-      <CreatorWrapper>
+      <CreatorWrapperStyled>
         <Creator user={creator} />
-      </CreatorWrapper>
+      </CreatorWrapperStyled>
     </WrapperStyled>
   );
-};
 
 export default Item;

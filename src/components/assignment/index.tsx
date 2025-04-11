@@ -1,5 +1,5 @@
 import React from 'react';
-import { AssignmentI as AssignmentItemI, AssignmentStatus } from '@api/types';
+import { AssignmentI as AssignmentItemI, AssignmentStatus, PriorityEnum } from '@api/types';
 
 import { WrapperStyled } from './assignment.styled';
 import View from './view';
@@ -25,6 +25,8 @@ const Assignment: React.FC<AssignmentI> = ({ data, isLoading, isEditMode, title 
         title={data?.title}
         description={data?.description}
         status={data?.status || AssignmentStatus.toDo}
+        complexity={data?.complexity ?? 1}
+        priority={data?.priority ?? PriorityEnum.low}
         dateFrom={data?.createdDate}
       />
     )}

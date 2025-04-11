@@ -1,4 +1,4 @@
-import { AssignmentI } from '@api/types';
+import { AssignmentI, PriorityEnum } from '@api/types';
 import { getStatusProperties } from '@styles/utils/common';
 import { Button } from '@heroui/react';
 import styled, { css } from 'styled-components';
@@ -74,5 +74,16 @@ export const StatusStyled = styled.div<{ $assignmentStatus: AssignmentI['status'
     padding: 7px 14px;
     border-radius: 10px;
     text-align: center;
+  `,
+);
+
+export const PriorityStyled = styled.div<{ $priority: string }>(
+  ({ $priority }) => css`
+    ${$priority === PriorityEnum.low && tw`bg-primary`}
+    ${$priority === PriorityEnum.medium && tw`bg-warning`}
+    ${$priority === PriorityEnum.high && tw`bg-danger`}
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
   `,
 );

@@ -37,6 +37,8 @@ const AssignmentsList: React.FC<AssignmentsListI> = ({ items, isLoading, isColum
               title={item.title}
               description={item.description}
               dateFrom={item.createdDate}
+              complexity={item.complexity}
+              priority={item.priority}
               status={item.status}
             />
           </ItemWrapperStyled>

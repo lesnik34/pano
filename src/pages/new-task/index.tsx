@@ -1,15 +1,16 @@
 import React, { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { FormProvider, useForm } from 'react-hook-form';
-import Layout from '@components/global/layout';
-import TaskComponent from '@components/task';
-import { EMPTY_TASK } from '@constants/common';
-import { Button } from "@heroui/react";
 import { IoIosArrowBack } from 'react-icons/io';
-import { PAGE_TASKS } from '@constants/pages';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import selectors from '@store/selectors';
+import { Button } from '@heroui/react';
+
+import Layout from '@components/global/layout';
+import { EMPTY_TASK } from '@constants/common';
+import { PAGE_TASKS } from '@constants/pages';
 import { useAppSelector } from '@store/store';
+import TaskComponent from '@components/task';
+import selectors from '@store/selectors';
 
 import { WrapperStyled } from './new-task.styled';
 import Controls from './controls';

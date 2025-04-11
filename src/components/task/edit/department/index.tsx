@@ -7,6 +7,7 @@ import { useGetDepartmentsQuery } from '@api/query/departments';
 import AsyncInputDrawer from '@components/async-input-drawer';
 import { DepartmentI } from '@api/types';
 
+import { fieldId as executorFieldId } from '../executor';
 import { WrapperStyled } from './department.styled';
 
 interface DepartmentComponentI {
@@ -39,8 +40,9 @@ const Department: React.FC<DepartmentComponentI> = ({ department, isLoading }) =
     (item: DepartmentI) => () => {
       onDrawerOpenChange();
       setSelectedDepartment(item);
+      setValue(executorFieldId, undefined);
     },
-    [onDrawerOpenChange],
+    [onDrawerOpenChange, setValue],
   );
 
   const onFocusInput = useCallback(() => {

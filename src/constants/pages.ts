@@ -46,9 +46,15 @@ export const NAV_LINKS = [
 export const TASK_PARAMS = {
   page: 'page',
   status: 'status',
+  view: 'view',
+  user: 'user',
 };
 
 export const ASSIGNMENTS_PARAMS = {
   page: 'page',
   status: 'status',
+  view: 'view',
+  user: 'user',
 };
+
+export const VIEWED_SELF = 'self';

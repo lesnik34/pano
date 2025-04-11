@@ -76,7 +76,7 @@ router.get('/api/v1/tasks/:id', wait(INIT_TIMEOUT), async (req, res) => {
 
 router.post('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
   try {
-    const { id, title, executor, creator, department, description, endDate } = req.body || {};
+    const { id, title, executor, creator, department, description, endDate, complexity, priority } = req.body || {};
     const { data: executorData } = await axios.get(`${DB_URL}/users/${executor}`);
     const { data: creatorData } = await axios.get(`${DB_URL}/users/${creator}`);
     const { data: departmentData } = await axios.get(`${DB_URL}/departments/${department}`);
@@ -87,6 +87,8 @@ router.post('/api/v1/tasks', wait(INIT_TIMEOUT), async (req, res) => {
       creator: creatorData,
       department: departmentData,
       description,
+      complexity,
+      priority,
       endDate,
     };
     let newTask;

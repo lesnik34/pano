@@ -9,7 +9,7 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: customBaseQuery({ baseUrl: import.meta.env.VITE_RES_URL }),
   endpoints: (builder) => ({
-    getUserById: builder.query<UserI, number | undefined>({
+    getUserById: builder.query<UserI, string | number | undefined>({
       query: (id) => ({
         url: `${API_URLS.USER}/${id}`,
       }),

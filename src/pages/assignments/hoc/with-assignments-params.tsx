@@ -1,15 +1,19 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { useSearchParams } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '@store/store';
+import { ASSIGNMENTS_PARAMS } from '@constants/pages';
+import { ViewQueryEnum } from '@api/types';
 import selectors from '@store/selectors';
 import slices from '@store/slices';
 
 export interface AssignmentsParamsComponentI {
   params: {
-    page: number;
     statuses: Array<string>;
+    view: ViewQueryEnum;
+    user?: string;
+    page: number;
   };
   totalPages?: number;
 }
@@ -31,21 +35,38 @@ const withAssignmentsParams = (Component: React.ComponentType<AssignmentsParamsC
         sliceValue: assignmentsStoreParams.statuses,
         changeStore: slices.assignments.setStatus,
       },
+      {
+        name: ASSIGNMENTS_PARAMS.view,
+        sliceValue: assignmentsStoreParams.view,
+        changeStore: slices.assignments.setView,
+      },
+      {
+        name: ASSIGNMENTS_PARAMS.user,
+        sliceValue: assignmentsStoreParams.user,
+        changeStore: slices.assignments.setUser,
+      },
     ],
-    [assignmentsStoreParams.page, assignmentsStoreParams.statuses],
+    [
+      assignmentsStoreParams.page,
+      assignmentsStoreParams.statuses,
+      assignmentsStoreParams.user,
+      assignmentsStoreParams.view,
+    ],
   );
 
   const syncQueryStore = useCallback(
-    (name: string, sliceValue: unknown, changeValue: ActionCreatorWithPayload<unknown>) => {
+    (name: string, sliceValue: unknown, changeValue: ActionCreatorWithPayload<any>) => {
       const paramValue = searchParams.get(name);
 
+      // Ставим в квери значение из стора в случае если квери нет
       if (!paramValue) {
         setSearchParams((params) => {
-          params.set(name, String(sliceValue));
+          params.set(name, String(sliceValue || ''));
           return params;
         });
       }
 
+      // Обновляем стор из квери в случае если: квери не пустое && квери не равно стору
       if (paramValue && paramValue !== String(sliceValue)) {
         dispatch(changeValue(paramValue));
       }

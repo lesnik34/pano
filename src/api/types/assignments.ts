@@ -1,4 +1,4 @@
-import { BaseListWrapperI } from './common';
+import { BaseListWrapperI, ComplexityType, PriorityEnum } from './common';
 import { DepartmentI } from './departments';
 import { UserI } from './users';
 
@@ -21,6 +21,8 @@ export interface AssignmentI {
   department?: DepartmentI;
   executor: UserI;
   creator: UserI;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
   createdDate?: string;
 }
 
@@ -30,6 +32,8 @@ export interface NewAssignmentI {
   department?: string;
   executor?: number;
   creator?: number;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
 }
 export interface EditAssignmentI {
   id: string;
@@ -38,6 +42,8 @@ export interface EditAssignmentI {
   department?: string;
   executor?: number;
   creator?: number;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
 }
 
 export interface ShortAssignmentI {
@@ -49,6 +55,8 @@ export interface ShortAssignmentI {
   creator: UserI;
   executor: UserI;
   createdDate?: string;
+  complexity: ComplexityType;
+  priority: PriorityEnum;
 }
 
 export enum AssignmentStatus {
