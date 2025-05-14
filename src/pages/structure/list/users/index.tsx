@@ -1,12 +1,18 @@
 import React, { useCallback, useMemo } from 'react';
-import { Link, User } from '@heroui/react';
+import { User } from '@heroui/react';
 
 import { useGetUsersQuery } from '@api/query/users';
 import { ROLE_RESTRICTIONS } from '@constants/restrictions';
 import SkeletonUserList from '@components/skeleton/user-list';
 
-import { TELEGRAM_PROFILE_LINK } from '@constants/common';
-import { ButtonItemStyled, ListItemStyled, ListStyled, ManagerCheckStyled, WrapperStyled } from './users.styled';
+import {
+  ButtonItemStyled,
+  ListItemStyled,
+  ListStyled,
+  ManagerCheckStyled,
+  ManagerIconStyled,
+  WrapperStyled,
+} from './users.styled';
 
 interface UsersI {
   department: string;
@@ -49,13 +55,15 @@ const Users: React.FC<UsersI> = ({ department }) => {
           {managers?.map((el) => (
             <ListItemStyled key={el.id}>
               <ButtonItemStyled variant="light" radius="md" fullWidth>
-                <ManagerCheckStyled />
+                <ManagerCheckStyled>
+                  <ManagerIconStyled width={10} height={10} />
+                </ManagerCheckStyled>
 
                 <User
                   description={
-                    <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
-                      @{el.username}
-                    </Link>
+                    // <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
+                    `@${el.username}`
+                    // </Link>
                   }
                   name={getName(el.firstName, el.lastName)}
                 />
@@ -68,9 +76,9 @@ const Users: React.FC<UsersI> = ({ department }) => {
               <ButtonItemStyled variant="light" radius="md" fullWidth>
                 <User
                   description={
-                    <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
-                      @{el.username}
-                    </Link>
+                    // <Link isExternal href={`${TELEGRAM_PROFILE_LINK}/${el.username}`} size="sm">
+                    `@${el.username}`
+                    // </Link>
                   }
                   name={getName(el.firstName, el.lastName)}
                 />

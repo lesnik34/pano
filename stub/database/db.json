@@ -462,11 +462,12 @@
         "id": "125",
         "title": "Водители"
       },
-      "description": "авыфвы",
+      "description": "авыфвы фыова долфоалдфоылад фыдлат лдфта лдофытаол дтфыалдь тфылоа тфоылат олфыта олфыта олфыта флоыат флыоа толфыта олфыта лофтыа олфтыа лофтыа олфыта олфыта олфтыа олфтыол атфыол атлфоыт аолфыт аолфыта олфыат лофыат фыол",
       "createdDate": "2024-09-20T15:40:45.417588Z",
       "status": "IN_PROGRESS",
       "complexity": 1,
-      "id": 11
+      "id": 11,
+      "priority": "MEDIUM"
     },
     {
       "title": "Отвезти машину на ТО",
@@ -493,57 +494,6 @@
       "complexity": 1,
       "priority": "MEDIUM",
       "id": 12
-    },
-    {
-      "title": "csad",
-      "executor": {
-        "id": 1249012412,
-        "username": "fas1234",
-        "firstName": "Jhon",
-        "lastName": "Doh",
-        "roles": [
-          {
-            "department": {
-              "id": "125",
-              "title": "Водители"
-            },
-            "role": {
-              "id": "222-222",
-              "name": "manager"
-            }
-          }
-        ]
-      },
-      "creator": {
-        "id": 5000496962,
-        "username": "lesnik343",
-        "firstName": "Nikita",
-        "lastName": "Lesnyak",
-        "roles": [
-          {
-            "department": {
-              "id": "000",
-              "title": "Тех. поддержка"
-            },
-            "role": {
-              "id": "555-555",
-              "name": "tech"
-            }
-          }
-        ]
-      },
-      "department": {
-        "id": "125",
-        "title": "Водители"
-      },
-      "description": "",
-      "complexity": [
-        2
-      ],
-      "priority": "MEDIUM",
-      "createdDate": "2024-09-20T15:40:45.417588Z",
-      "status": "TO_DO",
-      "id": 14
     }
   ],
   "assignments": [

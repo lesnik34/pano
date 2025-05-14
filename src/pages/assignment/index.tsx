@@ -27,7 +27,11 @@ const Assignment: React.FC<AssignmentI> = () => {
   const isAssignmentVisible = !isError;
 
   const onBackClick = useCallback(() => {
-    navigate(PAGE_ASSIGNMENTS);
+    if (window.history?.length && window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(PAGE_ASSIGNMENTS, { replace: true });
+    }
   }, [navigate]);
 
   const errorHandler = useCallback(() => {
@@ -38,7 +42,7 @@ const Assignment: React.FC<AssignmentI> = () => {
     <Layout navHidden>
       <FormProvider {...formMethods}>
         <Button onPress={onBackClick} startContent={<IoIosArrowBack />} variant="light">
-          {t('move.to.assignments')}
+          {t('text.back')}
         </Button>
 
         {isAssignmentVisible && (

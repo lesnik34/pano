@@ -21,14 +21,18 @@ const NewAssignment = () => {
   const navigate = useNavigate();
 
   const onBackClick = useCallback(() => {
-    navigate(PAGE_ASSIGNMENTS);
+    if (window.history?.length && window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(PAGE_ASSIGNMENTS, { replace: true });
+    }
   }, [navigate]);
 
   return (
     <Layout navHidden>
       <FormProvider {...formMethods}>
         <Button onPress={onBackClick} startContent={<IoIosArrowBack />} variant="light">
-          {t('move.to.assignments')}
+          {t('text.back')}
         </Button>
 
         <WrapperStyled>

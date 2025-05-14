@@ -22,14 +22,18 @@ const NewTask = () => {
   const navigate = useNavigate();
 
   const onBackClick = useCallback(() => {
-    navigate(PAGE_TASKS);
+    if (window.history?.length && window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(PAGE_TASKS, { replace: true });
+    }
   }, [navigate]);
 
   return (
     <Layout navHidden>
       <FormProvider {...formMethods}>
         <Button onPress={onBackClick} startContent={<IoIosArrowBack />} variant="light">
-          {t('move.to.tasks')}
+          {t('text.back')}
         </Button>
 
         <WrapperStyled>

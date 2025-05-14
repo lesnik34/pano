@@ -24,24 +24,21 @@ const Priority: React.FC<PriorityI> = ({ value, isLoading }) => {
         name={formName}
         control={control}
         defaultValue={value}
-        render={({ field }) => {
-          console.log(field);
-          return (
-            <Select
-              {...field}
-              selectedKeys={[field.value]}
-              disallowEmptySelection
-              label={t('task.priority.label')}
-              disabled={isLoading}
-            >
-              <SelectItem key={PriorityEnum.high}>{t('priority.3.label')}</SelectItem>
+        render={({ field }) => (
+          <Select
+            {...field}
+            selectedKeys={[field.value]}
+            disallowEmptySelection
+            label={t('task.priority.label')}
+            disabled={isLoading}
+          >
+            <SelectItem key={PriorityEnum.high}>{t('priority.3.label')}</SelectItem>
 
-              <SelectItem key={PriorityEnum.medium}>{t('priority.2.label')}</SelectItem>
+            <SelectItem key={PriorityEnum.medium}>{t('priority.2.label')}</SelectItem>
 
-              <SelectItem key={PriorityEnum.low}>{t('priority.1.label')}</SelectItem>
-            </Select>
-          );
-        }}
+            <SelectItem key={PriorityEnum.low}>{t('priority.1.label')}</SelectItem>
+          </Select>
+        )}
       />
     </WrapperStyled>
   );
